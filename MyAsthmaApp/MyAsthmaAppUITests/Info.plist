@@ -16,6 +16,10 @@
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>MyAsthma would like to write Health data to help you manage symptoms and treatment plan actions</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>MyAsthma would like to access your Health data to help you manage your symptoms and treatment plan actions</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 </dict>

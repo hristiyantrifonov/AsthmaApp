@@ -32,12 +32,14 @@ class RootViewController: UITabBarController {
         carePlanData = CarePlanData(carePlanStore: storeManager.myCarePlanStore)
         
         super.init(coder: aDecoder)
+        let mainTabViewController = createMainTabViewController()
         careContentsViewController = createCareContentsViewController()
         let insightsViewController = createInsightsViewController()
         let connectViewController = createConnectViewController()
         
         
         self.viewControllers = [
+            mainTabViewController,
             UINavigationController(rootViewController: careContentsViewController),
             insightsViewController,
             connectViewController]
@@ -45,6 +47,15 @@ class RootViewController: UITabBarController {
     }
     
     //MARK: Creating Controllers Methods
+    
+    fileprivate func createMainTabViewController() -> MainTabViewController{
+        let viewController = MainTabViewController()
+        
+//        viewController.tabBarItem = UITabBarItem(title: "Main")
+        viewController.title = "Main"
+        
+        return viewController
+    }
     
     fileprivate func createCareContentsViewController() -> OCKCareContentsViewController {
         /*
@@ -60,20 +71,6 @@ class RootViewController: UITabBarController {
         viewController.delegate = self;
         return viewController
     }
-    
-//    fileprivate func createSymptomTrackerViewController() -> OCKSymptomTrackerViewController {
-//        
-//        /*
-//         Symptom and Measurement Tracker monitors progress
-//         */
-//        
-//        let viewController = OCKSymptomTrackerViewController(carePlanStore:storeManager.myCarePlanStore)
-//        
-//        viewController.tabBarItem = UITabBarItem(title: "Symptom Tracker", image: UIImage(named: "symptoms"), selectedImage: UIImage.init(named: "symptoms-filled"))
-//        viewController.title = "Symptom Tracker"
-//        
-//        return viewController
-//    }
     
     fileprivate func createInsightsViewController() -> UINavigationController {
         let viewController = UIViewController()
@@ -98,15 +95,105 @@ class RootViewController: UITabBarController {
 
 extension RootViewController: OCKCareContentsViewControllerDelegate {
     
-    //Tells when the user selects an activity on the view
+    /*
+     Triggers when the user selects an assessment activity on the view
+     */
     func careContentsViewController(_ viewController: OCKCareContentsViewController, didSelectRowWithAssessmentEvent assessmentEvent: OCKCarePlanEvent) {
+        print("Assessment activity clicked")
         
+        //the enum identifier (i.e. bloodGlucose)
+        guard let activityType = ActivityType(rawValue: assessmentEvent.activity.identifier) else { return }
+        
+        //The assessment object (i.e. BloodGlucose(activityType: MyAsthmaApp.ActivityType.bloodGlucose)
+        guard let sampleAssessment = carePlanData.activityWithType(activityType) as? Assessment else { return }
+        
+        //Check the state - if not completed we will let the user edit itß
+        guard assessmentEvent.state == .initial || assessmentEvent.state == .notCompleted ||
+            (assessmentEvent.state == .completed && assessmentEvent.activity.resultResettable) else { return }
+        
+        //ORTaskViewController is the primary entry point for presentation Research kit views
+        //We pass the task part of the Assessment object in order to display it on screen
+        let taskViewController = ORKTaskViewController(task: sampleAssessment.task(), taskRun: nil)
+        taskViewController.delegate = self
+        
+        present(taskViewController, animated: true, completion: nil)
     }
 }
 
-//extension RootViewController: ORKTaskViewControllerDelegate{
-//    
-//}
+extension RootViewController: ORKTaskViewControllerDelegate {
+    
+    //Triggered when a task is finished
+    func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        defer {
+            dismiss(animated: true, completion: nil)
+        }
+        
+        //Ensures task controller's reason for finishing is completion
+        guard reason == .completed else { return }
+        
+        //Determine the event that was comleted
+        guard let event = careContentsViewController.lastSelectedEvent,
+            let activityType = ActivityType(rawValue: event.activity.identifier),
+            let assessment = carePlanData.activityWithType(activityType) as? Assessment else { return }
+        
+        print("THE COMPLETED EVENT: \(event)")
+        
+        //Create 'OCKCarePlanEvenResult' object to be saved into the Care Plan Store
+        let carePlanResultObject = assessment.buildResultForCarePlanEvent(event, taskResult: taskViewController.result)
+        
+        //If assessment compatible with HealthKit then create a sample to save in the HealthKit store
+        if let healthBuilder = assessment as? HealthSampleBuilder {
+            
+            let sample = healthBuilder.buildSampleWithTaskResult(taskViewController.result)
+            let sampleTypes: Set<HKSampleType> = [sample.sampleType]
+            
+            //HealthKit authorisation
+            let healthStore = HKHealthStore()
+            healthStore.requestAuthorization(toShare: sampleTypes, read: sampleTypes) {
+                (success,error) in
+                
+                if !success {
+                    print("Permission form HealthKit failed to be granted")
+                    self.completeEvent(event, inStore: self.storeManager.myCarePlanStore, withResult: carePlanResultObject)
+                    return
+                }
+                
+                //Save the sample to the HealthKit Store
+                healthStore.save(sample) {
+                    (success, error) in
+                    
+                    if success {
+                        print("Sample successfully saved to HealthKit store")
+                        
+                        //Use the sample to create an "EventResult" and save it to the CarePlanStore
+                        let resultViaHealthKitSample = OCKCarePlanEventResult(quantitySample: sample, quantityStringFormatter: nil,
+                                                                              display: healthBuilder.unit, displayUnitStringKey: healthBuilder.localizedUnitForSample(sample), userInfo: nil)
+                        
+                        self.completeEvent(event, inStore: self.storeManager.myCarePlanStore, withResult: resultViaHealthKitSample)
+                        
+                    }else{
+                        //Go back to saving the simple Event Result to the CarePlanStore
+                        self.completeEvent(event, inStore: self.storeManager.myCarePlanStore, withResult: carePlanResultObject)
+                    }
+                }
+            }
+        } else { //In the case it is not compatible with HealthKit
+            completeEvent(event, inStore: storeManager.myCarePlanStore, withResult: carePlanResultObject)
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //Complete an event by changing it's state
+    fileprivate func completeEvent(_ event: OCKCarePlanEvent, inStore store: OCKCarePlanStore, withResult result: OCKCarePlanEventResult) {
+        store.update(event, with: result, state: .completed) {
+            (success, _, error) in
+            if !success {
+                print(error!.localizedDescription)
+            }
+        }
+    }
+}
 
 //MARK: ConnectViewController Delegate
 

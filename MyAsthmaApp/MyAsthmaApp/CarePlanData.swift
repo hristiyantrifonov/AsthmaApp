@@ -59,7 +59,6 @@ class CarePlanData: NSObject {
         for activity in activities where activity.activityType == type {
             return activity
         }
-        
         return nil
     }
     

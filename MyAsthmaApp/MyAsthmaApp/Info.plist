@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>MyAsthma would like to access your Health data to help you manage your symptoms and treatment plan actions</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>MyAsthma would like to write Health data to help you manage symptoms and treatment plan actions</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

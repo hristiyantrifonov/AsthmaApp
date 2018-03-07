@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE1E33E7204235B8000E07F7 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1E33E4204235AF000E07F7 /* ResearchKit.framework */; };
-		DE1E33E8204235B8000E07F7 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE1E33E4204235AF000E07F7 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84100021204EDF9000E90326 /* CareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8410001E204EDF7100E90326 /* CareKit.framework */; };
+		84100022204EDF9000E90326 /* CareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8410001E204EDF7100E90326 /* CareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8410002F204EE01800E90326 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8410002C204EE00F00E90326 /* ResearchKit.framework */; };
+		84100030204EE01800E90326 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8410002C204EE00F00E90326 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84347FE6205074E800FEF667 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84347FE5205074E800FEF667 /* MainTabViewController.swift */; };
+		846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA336204F663200AADA1A /* HealthBuilder.swift */; };
+		846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */; };
+		846CA364204F7CFA00AADA1A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846CA363204F7CFA00AADA1A /* HealthKit.framework */; };
 		DE1E33ED2042394E000E07F7 /* CarePlanStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */; };
 		DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE561ABB204483160021E83A /* InsightsBuilder.swift */; };
 		DE7A099220499C27005A1593 /* TakeNurofen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7A099120499C27005A1593 /* TakeNurofen.swift */; };
@@ -25,28 +31,47 @@
 		DEE91CC7204227350024F76C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE91CC5204227350024F76C /* LaunchScreen.storyboard */; };
 		DEE91CD2204227350024F76C /* MyAsthmaAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE91CD1204227350024F76C /* MyAsthmaAppTests.swift */; };
 		DEE91CDD204227350024F76C /* MyAsthmaAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE91CDC204227350024F76C /* MyAsthmaAppUITests.swift */; };
-		DEE91CF42042276A0024F76C /* CareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE91CF1204227410024F76C /* CareKit.framework */; };
-		DEE91CF52042276A0024F76C /* CareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEE91CF1204227410024F76C /* CareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DE1E33E3204235AF000E07F7 /* PBXContainerItemProxy */ = {
+		8410001D204EDF7100E90326 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE1E33DD204235AE000E07F7 /* ResearchKit.xcodeproj */;
+			containerPortal = 84100017204EDF7000E90326 /* CareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8605A5BA1C4F04EC00DD65FF;
+			remoteInfo = CareKit;
+		};
+		8410001F204EDF7100E90326 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84100017204EDF7000E90326 /* CareKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8605A5C41C4F04EC00DD65FF;
+			remoteInfo = CareKitTests;
+		};
+		84100023204EDF9000E90326 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84100017204EDF7000E90326 /* CareKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8605A5B91C4F04EC00DD65FF;
+			remoteInfo = CareKit;
+		};
+		8410002B204EE00F00E90326 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84100025204EE00F00E90326 /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B183A5951A8535D100C76870;
 			remoteInfo = ResearchKit;
 		};
-		DE1E33E5204235AF000E07F7 /* PBXContainerItemProxy */ = {
+		8410002D204EE00F00E90326 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE1E33DD204235AE000E07F7 /* ResearchKit.xcodeproj */;
+			containerPortal = 84100025204EE00F00E90326 /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
 			remoteInfo = ResearchKitTests;
 		};
-		DE1E33E9204235B8000E07F7 /* PBXContainerItemProxy */ = {
+		84100031204EE01800E90326 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DE1E33DD204235AE000E07F7 /* ResearchKit.xcodeproj */;
+			containerPortal = 84100025204EE00F00E90326 /* ResearchKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = B183A4731A8535D100C76870;
 			remoteInfo = ResearchKit;
@@ -65,27 +90,6 @@
 			remoteGlobalIDString = DEE91CB5204227340024F76C;
 			remoteInfo = MyAsthmaApp;
 		};
-		DEE91CF0204227410024F76C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DEE91CEA204227400024F76C /* CareKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8605A5BA1C4F04EC00DD65FF;
-			remoteInfo = CareKit;
-		};
-		DEE91CF2204227410024F76C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DEE91CEA204227400024F76C /* CareKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8605A5C41C4F04EC00DD65FF;
-			remoteInfo = CareKitTests;
-		};
-		DEE91CF62042276A0024F76C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DEE91CEA204227400024F76C /* CareKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8605A5B91C4F04EC00DD65FF;
-			remoteInfo = CareKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,8 +99,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DE1E33E8204235B8000E07F7 /* ResearchKit.framework in Embed Frameworks */,
-				DEE91CF52042276A0024F76C /* CareKit.framework in Embed Frameworks */,
+				84100030204EE01800E90326 /* ResearchKit.framework in Embed Frameworks */,
+				84100022204EDF9000E90326 /* CareKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +108,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DE1E33DD204235AE000E07F7 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../../ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
+		84100017204EDF7000E90326 /* CareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CareKit.xcodeproj; path = ../../../../CareKit/carekit/CareKit.xcodeproj; sourceTree = "<group>"; };
+		84100025204EE00F00E90326 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../../../../ResearchKIt/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
+		84347FE5205074E800FEF667 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		846CA336204F663200AADA1A /* HealthBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBuilder.swift; sourceTree = "<group>"; };
+		846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		846CA363204F7CFA00AADA1A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlanStoreManager.swift; sourceTree = "<group>"; };
 		DE561ABB204483160021E83A /* InsightsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightsBuilder.swift; sourceTree = "<group>"; };
 		DE7A099120499C27005A1593 /* TakeNurofen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakeNurofen.swift; sourceTree = "<group>"; };
@@ -127,7 +136,6 @@
 		DEE91CD8204227350024F76C /* MyAsthmaAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAsthmaAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE91CDC204227350024F76C /* MyAsthmaAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAsthmaAppUITests.swift; sourceTree = "<group>"; };
 		DEE91CDE204227350024F76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEE91CEA204227400024F76C /* CareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CareKit.xcodeproj; path = ../../carekit/CareKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +143,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE1E33E7204235B8000E07F7 /* ResearchKit.framework in Frameworks */,
-				DEE91CF42042276A0024F76C /* CareKit.framework in Frameworks */,
+				846CA364204F7CFA00AADA1A /* HealthKit.framework in Frameworks */,
+				8410002F204EE01800E90326 /* ResearchKit.framework in Frameworks */,
+				84100021204EDF9000E90326 /* CareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,23 +166,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DE1E33DE204235AE000E07F7 /* Products */ = {
+		84100018204EDF7000E90326 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE1E33E4204235AF000E07F7 /* ResearchKit.framework */,
-				DE1E33E6204235AF000E07F7 /* ResearchKitTests.xctest */,
+				8410001E204EDF7100E90326 /* CareKit.framework */,
+				84100020204EDF7100E90326 /* CareKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DE1E33EB20423620000E07F7 /* Linked frameworks */ = {
+		84100026204EE00F00E90326 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE1E33DD204235AE000E07F7 /* ResearchKit.xcodeproj */,
-				DEE91CEA204227400024F76C /* CareKit.xcodeproj */,
+				8410002C204EE00F00E90326 /* ResearchKit.framework */,
+				8410002E204EE00F00E90326 /* ResearchKitTests.xctest */,
 			);
-			name = "Linked frameworks";
-			path = MyAsthmaApp;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		846CA361204F7CEA00AADA1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				846CA363204F7CFA00AADA1A /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DE7A09972049B234005A1593 /* Assessments */ = {
@@ -181,6 +197,7 @@
 			children = (
 				DE7A09982049B251005A1593 /* Assessment.swift */,
 				DE7A099A2049B4FE005A1593 /* Blood Glucose.swift */,
+				846CA336204F663200AADA1A /* HealthBuilder.swift */,
 			);
 			name = Assessments;
 			sourceTree = "<group>";
@@ -202,7 +219,7 @@
 				DEE91CD0204227350024F76C /* MyAsthmaAppTests */,
 				DEE91CDB204227350024F76C /* MyAsthmaAppUITests */,
 				DEE91CB7204227340024F76C /* Products */,
-				DE1E33EB20423620000E07F7 /* Linked frameworks */,
+				846CA361204F7CEA00AADA1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,7 +236,11 @@
 		DEE91CB8204227340024F76C /* MyAsthmaApp */ = {
 			isa = PBXGroup;
 			children = (
+				84100025204EE00F00E90326 /* ResearchKit.xcodeproj */,
+				84100017204EDF7000E90326 /* CareKit.xcodeproj */,
 				DEE91CB9204227340024F76C /* AppDelegate.swift */,
+				846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */,
+				84347FE5205074E800FEF667 /* MainTabViewController.swift */,
 				DEE91CBB204227340024F76C /* RootViewController.swift */,
 				DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */,
 				DEE91CBD204227340024F76C /* Main.storyboard */,
@@ -253,15 +274,6 @@
 			path = MyAsthmaAppUITests;
 			sourceTree = "<group>";
 		};
-		DEE91CEB204227400024F76C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DEE91CF1204227410024F76C /* CareKit.framework */,
-				DEE91CF3204227410024F76C /* CareKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,8 +289,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				DEE91CF72042276A0024F76C /* PBXTargetDependency */,
-				DE1E33EA204235B8000E07F7 /* PBXTargetDependency */,
+				84100024204EDF9000E90326 /* PBXTargetDependency */,
+				84100032204EE01800E90326 /* PBXTargetDependency */,
 			);
 			name = MyAsthmaApp;
 			productName = MyAsthmaApp;
@@ -360,12 +372,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DEE91CEB204227400024F76C /* Products */;
-					ProjectRef = DEE91CEA204227400024F76C /* CareKit.xcodeproj */;
+					ProductGroup = 84100018204EDF7000E90326 /* Products */;
+					ProjectRef = 84100017204EDF7000E90326 /* CareKit.xcodeproj */;
 				},
 				{
-					ProductGroup = DE1E33DE204235AE000E07F7 /* Products */;
-					ProjectRef = DE1E33DD204235AE000E07F7 /* ResearchKit.xcodeproj */;
+					ProductGroup = 84100026204EE00F00E90326 /* Products */;
+					ProjectRef = 84100025204EE00F00E90326 /* ResearchKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -378,32 +390,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DE1E33E4204235AF000E07F7 /* ResearchKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ResearchKit.framework;
-			remoteRef = DE1E33E3204235AF000E07F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE1E33E6204235AF000E07F7 /* ResearchKitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ResearchKitTests.xctest;
-			remoteRef = DE1E33E5204235AF000E07F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DEE91CF1204227410024F76C /* CareKit.framework */ = {
+		8410001E204EDF7100E90326 /* CareKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = CareKit.framework;
-			remoteRef = DEE91CF0204227410024F76C /* PBXContainerItemProxy */;
+			remoteRef = 8410001D204EDF7100E90326 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DEE91CF3204227410024F76C /* CareKitTests.xctest */ = {
+		84100020204EDF7100E90326 /* CareKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CareKitTests.xctest;
-			remoteRef = DEE91CF2204227410024F76C /* PBXContainerItemProxy */;
+			remoteRef = 8410001F204EDF7100E90326 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8410002C204EE00F00E90326 /* ResearchKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchKit.framework;
+			remoteRef = 8410002B204EE00F00E90326 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8410002E204EE00F00E90326 /* ResearchKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchKitTests.xctest;
+			remoteRef = 8410002D204EE00F00E90326 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -443,6 +455,9 @@
 				DEE91CBC204227340024F76C /* RootViewController.swift in Sources */,
 				DEE91CBA204227340024F76C /* AppDelegate.swift in Sources */,
 				DEB2BA912046FE7A009D60B5 /* CarePlanData.swift in Sources */,
+				846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */,
+				846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */,
+				84347FE6205074E800FEF667 /* MainTabViewController.swift in Sources */,
 				DEE91CC2204227340024F76C /* MyAsthmaApp.xcdatamodeld in Sources */,
 				DE7A099B2049B4FE005A1593 /* Blood Glucose.swift in Sources */,
 				DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */,
@@ -473,10 +488,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DE1E33EA204235B8000E07F7 /* PBXTargetDependency */ = {
+		84100024204EDF9000E90326 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CareKit;
+			targetProxy = 84100023204EDF9000E90326 /* PBXContainerItemProxy */;
+		};
+		84100032204EE01800E90326 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ResearchKit;
-			targetProxy = DE1E33E9204235B8000E07F7 /* PBXContainerItemProxy */;
+			targetProxy = 84100031204EE01800E90326 /* PBXContainerItemProxy */;
 		};
 		DEE91CCF204227350024F76C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -487,11 +507,6 @@
 			isa = PBXTargetDependency;
 			target = DEE91CB5204227340024F76C /* MyAsthmaApp */;
 			targetProxy = DEE91CD9204227350024F76C /* PBXContainerItemProxy */;
-		};
-		DEE91CF72042276A0024F76C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CareKit;
-			targetProxy = DEE91CF62042276A0024F76C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
