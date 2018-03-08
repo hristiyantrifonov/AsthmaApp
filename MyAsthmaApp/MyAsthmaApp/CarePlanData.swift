@@ -11,7 +11,7 @@ import CareKit
 
 class CarePlanData: NSObject {
     /* Class will be difining activities and adding them to
-       the data store  */
+     the data store  */
     
     //MARK: Properties
     
@@ -34,11 +34,12 @@ class CarePlanData: NSObject {
             let carePlanActivity = activity.carePlanActivity()
             carePlanStore.add(carePlanActivity) {
                 (success, error) in
-                if success {
-                    print("Activity successfully added")
+                if error != nil  {
+                    print("Error adding ac activity \(error!)")
+                    
                 }
                 else{
-                    print("Error adding ac activity \(error)")
+                    print("Activity successfully added")
                 }
             }
         }

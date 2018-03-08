@@ -48,13 +48,15 @@ class RootViewController: UITabBarController {
     
     //MARK: Creating Controllers Methods
     
-    fileprivate func createMainTabViewController() -> MainTabViewController{
-        let viewController = MainTabViewController()
+    fileprivate func createMainTabViewController() -> UINavigationController{
+        var viewController = UIViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        viewController = storyboard.instantiateViewController(withIdentifier: "main")
         
 //        viewController.tabBarItem = UITabBarItem(title: "Main")
         viewController.title = "Main"
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }
     
     fileprivate func createCareContentsViewController() -> OCKCareContentsViewController {

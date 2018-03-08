@@ -1,0 +1,6 @@
+framework module Pods_MyAsthmaAppUITests {
+  umbrella header "Pods-MyAsthmaAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
