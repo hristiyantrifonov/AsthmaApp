@@ -19,6 +19,7 @@
 		846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA336204F663200AADA1A /* HealthBuilder.swift */; };
 		846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */; };
 		846CA364204F7CFA00AADA1A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846CA363204F7CFA00AADA1A /* HealthKit.framework */; };
+		84A7D63A20530BD4003343D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A7D63420530BD4003343D1 /* Main.storyboard */; };
 		D3E385D2220C11F19AF25787 /* Pods_MyAsthmaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DADF44F1E4BFA009EF0179B /* Pods_MyAsthmaApp.framework */; };
 		DE1E33ED2042394E000E07F7 /* CarePlanStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */; };
 		DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE561ABB204483160021E83A /* InsightsBuilder.swift */; };
@@ -30,7 +31,6 @@
 		DEB2BA9B20471093009D60B5 /* OutdoorWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB2BA9A20471093009D60B5 /* OutdoorWalk.swift */; };
 		DEE91CBA204227340024F76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE91CB9204227340024F76C /* AppDelegate.swift */; };
 		DEE91CBC204227340024F76C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE91CBB204227340024F76C /* RootViewController.swift */; };
-		DEE91CBF204227340024F76C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE91CBD204227340024F76C /* Main.storyboard */; };
 		DEE91CC2204227340024F76C /* MyAsthmaApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEE91CC0204227340024F76C /* MyAsthmaApp.xcdatamodeld */; };
 		DEE91CC4204227350024F76C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE91CC3204227350024F76C /* Assets.xcassets */; };
 		DEE91CC7204227350024F76C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE91CC5204227350024F76C /* LaunchScreen.storyboard */; };
@@ -127,6 +127,7 @@
 		846CA336204F663200AADA1A /* HealthBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBuilder.swift; sourceTree = "<group>"; };
 		846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		846CA363204F7CFA00AADA1A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		84A7D63520530BD4003343D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8FE2829DCEF363BD0587129A /* Pods-MyAsthmaAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAsthmaAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyAsthmaAppTests/Pods-MyAsthmaAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CFA05D1FEDCC415AB5B4F307 /* Pods_MyAsthmaAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyAsthmaAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD397D48662DFB18014785E7 /* Pods-MyAsthmaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAsthmaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyAsthmaApp/Pods-MyAsthmaApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,7 +142,6 @@
 		DEE91CB6204227340024F76C /* MyAsthmaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAsthmaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE91CB9204227340024F76C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEE91CBB204227340024F76C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		DEE91CBE204227340024F76C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEE91CC1204227340024F76C /* MyAsthmaApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAsthmaApp.xcdatamodel; sourceTree = "<group>"; };
 		DEE91CC3204227350024F76C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DEE91CC6204227350024F76C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 				84347FE5205074E800FEF667 /* MainTabViewController.swift */,
 				DEE91CBB204227340024F76C /* RootViewController.swift */,
 				DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */,
-				DEE91CBD204227340024F76C /* Main.storyboard */,
+				84A7D63420530BD4003343D1 /* Main.storyboard */,
 				DEE91CC3204227350024F76C /* Assets.xcassets */,
 				DEE91CC5204227350024F76C /* LaunchScreen.storyboard */,
 				DEE91CC8204227350024F76C /* Info.plist */,
@@ -472,9 +472,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A7D63A20530BD4003343D1 /* Main.storyboard in Resources */,
 				DEE91CC7204227350024F76C /* LaunchScreen.storyboard in Resources */,
 				DEE91CC4204227350024F76C /* Assets.xcassets in Resources */,
-				DEE91CBF204227340024F76C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,10 +698,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DEE91CBD204227340024F76C /* Main.storyboard */ = {
+		84A7D63420530BD4003343D1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DEE91CBE204227340024F76C /* Base */,
+				84A7D63520530BD4003343D1 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
