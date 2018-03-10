@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import Firebase
+import SVProgressHUD
 
 class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        //If the user have logged in previously then immediately enter the system
+        if let userID = Auth.auth().currentUser?.uid {
+            SVProgressHUD.init()
+            
+            performSegue(withIdentifier: "goToRoot", sender: self)
+            
+            SVProgressHUD.dismiss()
+            
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

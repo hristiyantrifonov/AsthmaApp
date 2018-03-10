@@ -11,7 +11,6 @@ target 'MyAsthmaApp' do
   pod 'Firebase/Database'
   pod 'KeychainSwift'
   pod 'SVProgressHUD'
-  pod 'ChameleonFramework'
 
   target 'MyAsthmaAppTests' do
     inherit! :search_paths
@@ -24,3 +23,4 @@ target 'MyAsthmaApp' do
   end
 
 end
+

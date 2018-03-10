@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import Firebase
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        errorLabel.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -21,7 +29,29 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        
+        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) {
+            (user, error) in
+            
+            if error != nil {
+                print(error!)
+                SVProgressHUD.dismiss()
+                self.errorLabel.text = "There was problem with your login. Pleasy try again."
+                
+                RegistrationViewController().updateErrorLabel(self.errorLabel, false)
+            }else{
+                print("Login Successful!")
+                SVProgressHUD.dismiss()
+                
+                self.performSegue(withIdentifier: "goToRoot", sender: self)
+            }
+            
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

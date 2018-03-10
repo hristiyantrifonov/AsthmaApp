@@ -32,6 +32,8 @@ class RootViewController: UITabBarController {
         carePlanData = CarePlanData(carePlanStore: storeManager.myCarePlanStore)
         
         super.init(coder: aDecoder)
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        
         let mainTabViewController = createMainTabViewController()
         careContentsViewController = createCareContentsViewController()
         let insightsViewController = createInsightsViewController()

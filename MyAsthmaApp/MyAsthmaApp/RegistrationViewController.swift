@@ -8,11 +8,12 @@
 
 import UIKit
 import Firebase
-import KeychainSwift
+import SVProgressHUD
 
 class RegistrationViewController: UIViewController {
     
     let PASSWORD_MINIMUM_CHARACTERS : Int = 6
+    
     
     @IBOutlet weak var forenameField: UITextField!
     @IBOutlet weak var surnameField: UITextField!
@@ -100,7 +101,28 @@ class RegistrationViewController: UIViewController {
         print(passwordField.text!)
         print(emailField.text!)
         
-        performSegue(withIdentifier: "goToRoot", sender: self)
+        SVProgressHUD.show()
+        
+        let reference : DatabaseReference!
+        reference = Database.database().reference()
+        
+        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) {
+            (user, error) in
+            
+            if error != nil{
+                print(error!)
+                SVProgressHUD.dismiss()
+            }else{
+                
+                //Send the additional data (forename, surname) to the server
+                reference.child("users").child(user!.uid).setValue(["Forename": self.forenameField.text!, "Surname": self.surnameField.text!, "Email": self.emailField.text!])
+                print("Registration Successful!")
+                SVProgressHUD.dismiss()
+                
+                self.performSegue(withIdentifier: "goToRoot", sender: self)
+            }
+            
+        }
     }
     
 }

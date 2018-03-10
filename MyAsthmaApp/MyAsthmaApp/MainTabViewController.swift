@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabViewController: UIViewController {
     
@@ -15,12 +16,16 @@ class MainTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let userID = Auth.auth().currentUser?.uid
+        print(userID)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    //TODO - add Logout button to clear session
     
+    //TODO - Display user's name (try using sideway window
     
 }

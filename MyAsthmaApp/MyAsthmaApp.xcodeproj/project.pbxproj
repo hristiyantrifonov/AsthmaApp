@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6EA3D3F28780D6F57B8F6885 /* Pods_MyAsthmaAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E9423B10F166284DE9EE62 /* Pods_MyAsthmaAppTests.framework */; };
 		7A02C8C09346EF6B5394419A /* Pods_MyAsthmaAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA05D1FEDCC415AB5B4F307 /* Pods_MyAsthmaAppUITests.framework */; };
+		84057BDE2053500A0003CE35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84057BDD2053500A0003CE35 /* GoogleService-Info.plist */; };
 		84100021204EDF9000E90326 /* CareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8410001E204EDF7100E90326 /* CareKit.framework */; };
 		84100022204EDF9000E90326 /* CareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8410001E204EDF7100E90326 /* CareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8410002F204EE01800E90326 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8410002C204EE00F00E90326 /* ResearchKit.framework */; };
@@ -119,6 +120,7 @@
 		2830D33DA3739EF77C9BDE85 /* Pods-MyAsthmaAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAsthmaAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyAsthmaAppUITests/Pods-MyAsthmaAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4DADF44F1E4BFA009EF0179B /* Pods_MyAsthmaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyAsthmaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70853904A18F4D39C44C6121 /* Pods-MyAsthmaAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAsthmaAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyAsthmaAppTests/Pods-MyAsthmaAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		84057BDD2053500A0003CE35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84100017204EDF7000E90326 /* CareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CareKit.xcodeproj; path = ../../../../CareKit/carekit/CareKit.xcodeproj; sourceTree = "<group>"; };
 		84100025204EE00F00E90326 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../../../../ResearchKIt/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		84347FE5205074E800FEF667 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,15 @@
 				2830D33DA3739EF77C9BDE85 /* Pods-MyAsthmaAppUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		84057BDF205350160003CE35 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				DEE91CC8204227350024F76C /* Info.plist */,
+				84057BDD2053500A0003CE35 /* GoogleService-Info.plist */,
+			);
+			name = "Supporting files";
 			sourceTree = "<group>";
 		};
 		84100018204EDF7000E90326 /* Products */ = {
@@ -284,10 +295,10 @@
 				84A7D63420530BD4003343D1 /* Main.storyboard */,
 				DEE91CC3204227350024F76C /* Assets.xcassets */,
 				DEE91CC5204227350024F76C /* LaunchScreen.storyboard */,
-				DEE91CC8204227350024F76C /* Info.plist */,
 				DEE91CC0204227340024F76C /* MyAsthmaApp.xcdatamodeld */,
 				DE561ABB204483160021E83A /* InsightsBuilder.swift */,
 				DEB2BA902046FE7A009D60B5 /* CarePlanData.swift */,
+				84057BDF205350160003CE35 /* Supporting files */,
 				DEB2BA9C204710F3009D60B5 /* Activities */,
 				DE7A09972049B234005A1593 /* Assessments */,
 			);
@@ -473,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A7D63A20530BD4003343D1 /* Main.storyboard in Resources */,
+				84057BDE2053500A0003CE35 /* GoogleService-Info.plist in Resources */,
 				DEE91CC7204227350024F76C /* LaunchScreen.storyboard in Resources */,
 				DEE91CC4204227350024F76C /* Assets.xcassets in Resources */,
 			);
