@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class WelcomeViewController: UIViewController {
-
+class WelcomeViewController: UIViewController{
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,8 +22,10 @@ class WelcomeViewController: UIViewController {
             performSegue(withIdentifier: "goToRoot", sender: self)
             
             SVProgressHUD.dismiss()
-            
+        }else{
+            print("No current logged user")
         }
+        
         
         
     }
@@ -34,4 +36,8 @@ class WelcomeViewController: UIViewController {
     }
 
     @IBAction func buttonPressed(_ sender: UIButton) { }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        
+    }
 }
