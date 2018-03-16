@@ -21,7 +21,9 @@
 		846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA336204F663200AADA1A /* HealthBuilder.swift */; };
 		846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */; };
 		846CA364204F7CFA00AADA1A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846CA363204F7CFA00AADA1A /* HealthKit.framework */; };
+		848FC3B2205C890B008429EE /* BuildInsightsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FC3B1205C890B008429EE /* BuildInsightsOperation.swift */; };
 		84A7D63A20530BD4003343D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A7D63420530BD4003343D1 /* Main.storyboard */; };
+		84BD186E205C16A600B37E16 /* QueryActivityEventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BD186D205C16A600B37E16 /* QueryActivityEventsOperation.swift */; };
 		D3E385D2220C11F19AF25787 /* Pods_MyAsthmaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DADF44F1E4BFA009EF0179B /* Pods_MyAsthmaApp.framework */; };
 		DE1E33ED2042394E000E07F7 /* CarePlanStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */; };
 		DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE561ABB204483160021E83A /* InsightsBuilder.swift */; };
@@ -131,7 +133,9 @@
 		846CA336204F663200AADA1A /* HealthBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBuilder.swift; sourceTree = "<group>"; };
 		846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		846CA363204F7CFA00AADA1A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		848FC3B1205C890B008429EE /* BuildInsightsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInsightsOperation.swift; sourceTree = "<group>"; };
 		84A7D63520530BD4003343D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84BD186D205C16A600B37E16 /* QueryActivityEventsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryActivityEventsOperation.swift; sourceTree = "<group>"; };
 		8FE2829DCEF363BD0587129A /* Pods-MyAsthmaAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAsthmaAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyAsthmaAppTests/Pods-MyAsthmaAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CFA05D1FEDCC415AB5B4F307 /* Pods_MyAsthmaAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyAsthmaAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD397D48662DFB18014785E7 /* Pods-MyAsthmaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAsthmaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyAsthmaApp/Pods-MyAsthmaApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -229,12 +233,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		843A19252058C68A002280FD /* models */ = {
+		843A19252058C68A002280FD /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				843A192A2058C6B5002280FD /* User.swift */,
 			);
-			name = models;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		846CA361204F7CEA00AADA1A /* Frameworks */ = {
@@ -246,6 +250,16 @@
 				CFA05D1FEDCC415AB5B4F307 /* Pods_MyAsthmaAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84DC88A0205B5FC0001BBB1F /* Insights */ = {
+			isa = PBXGroup;
+			children = (
+				DE561ABB204483160021E83A /* InsightsBuilder.swift */,
+				84BD186D205C16A600B37E16 /* QueryActivityEventsOperation.swift */,
+				848FC3B1205C890B008429EE /* BuildInsightsOperation.swift */,
+			);
+			name = Insights;
 			sourceTree = "<group>";
 		};
 		DE7A09972049B234005A1593 /* Assessments */ = {
@@ -306,9 +320,9 @@
 				DEE91CC3204227350024F76C /* Assets.xcassets */,
 				DEE91CC5204227350024F76C /* LaunchScreen.storyboard */,
 				DEE91CC0204227340024F76C /* MyAsthmaApp.xcdatamodeld */,
-				DE561ABB204483160021E83A /* InsightsBuilder.swift */,
 				DEB2BA902046FE7A009D60B5 /* CarePlanData.swift */,
-				843A19252058C68A002280FD /* models */,
+				84DC88A0205B5FC0001BBB1F /* Insights */,
+				843A19252058C68A002280FD /* Models */,
 				84057BDF205350160003CE35 /* Supporting files */,
 				DEB2BA9C204710F3009D60B5 /* Activities */,
 				DE7A09972049B234005A1593 /* Assessments */,
@@ -670,6 +684,8 @@
 				843A192B2058C6B5002280FD /* User.swift in Sources */,
 				DEE91CC2204227340024F76C /* MyAsthmaApp.xcdatamodeld in Sources */,
 				DE7A099B2049B4FE005A1593 /* Blood Glucose.swift in Sources */,
+				848FC3B2205C890B008429EE /* BuildInsightsOperation.swift in Sources */,
+				84BD186E205C16A600B37E16 /* QueryActivityEventsOperation.swift in Sources */,
 				DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */,
 				DEB2BA9B20471093009D60B5 /* OutdoorWalk.swift in Sources */,
 				DEB2BA9920470FFE009D60B5 /* Activity.swift in Sources */,

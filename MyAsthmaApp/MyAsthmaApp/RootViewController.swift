@@ -77,7 +77,7 @@ class RootViewController: UITabBarController {
     }
     
     fileprivate func createInsightsViewController() -> UINavigationController {
-        let viewController = UIViewController()
+        let viewController = OCKInsightsViewController(nibName: "Weekly charts", bundle: nil)
         
         viewController.tabBarItem = UITabBarItem(title: "Insights", image: UIImage(named: "insights"), selectedImage: UIImage.init(named: "insights-filled"))
         viewController.title = "Insights"
