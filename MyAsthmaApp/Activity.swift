@@ -24,5 +24,6 @@ enum ActivityType: String {
     case outdoorWalk
     
     case bloodGlucose
+    case backPain
     
 }

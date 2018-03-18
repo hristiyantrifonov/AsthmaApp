@@ -31,7 +31,7 @@ class QueryActivityEventsOperation : Operation {
     }
     
     
-    //MARK: - Operation
+    //MARK: - The Operation
     
     override func main() {
         
@@ -52,8 +52,8 @@ class QueryActivityEventsOperation : Operation {
         //Here we enumerate each event (between the start and the end date) of an activity
         DispatchQueue.main.async {
             //enumerates all the events associated with activity within a given range
-            self.store.enumerateEvents(of: activity, startDate: self.startDate, endDate: self.endDate, handler: {
-                (event, _) in
+            self.store.enumerateEvents(of: activity, startDate: self.startDate as DateComponents,
+                                       endDate: self.endDate as DateComponents, handler: { event, _ in
                 if let event = event {
                     self.dailyEvents?[event.date].append(event)
                 }
@@ -85,7 +85,7 @@ class QueryActivityEventsOperation : Operation {
             
             activity = foundActivity
             
-            if !success { print(error!) }
+            if !success { print(error?.localizedDescription as Any) }
             
             semaphore.signal()  //send signal that query is complete
         }
@@ -119,8 +119,12 @@ struct DailyEvents {
     //We declare the subscript so that calling DailyEvents(day: Tuesday) will gives us all of the days events (or set them)
     subscript(day: DateComponents) -> [OCKCarePlanEvent] {
         get {
-            if let events = mappedEvents[day]{ return events }
-            else { return [] }
+            if let events = mappedEvents[day]{
+                return events
+            }
+            else {
+                return []
+            }
         }
         
         set(newValue){
@@ -134,4 +138,5 @@ struct DailyEvents {
     }
     
 }
+
 

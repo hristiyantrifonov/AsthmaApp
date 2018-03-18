@@ -11,8 +11,7 @@ import CareKit
 
 class InsightsBuilder {
     
-//    fileprivate(set) var insights = [OCKInsightItem.emptyInsightsMessage()]
-    
+    fileprivate(set) var insights = [OCKInsightItem.noInsightsToShowMessage()]
     
     fileprivate let carePlanStore: OCKCarePlanStore
     
@@ -32,13 +31,14 @@ class InsightsBuilder {
      Enqueue NSOperation's to query the OCKCarePlanStore and update the 'insights' property
      */
     func updateInsights(_ completion: ((Bool, [OCKInsightItem]?) -> Void)?){
+        //Cancel all queued or executing (in-progress) operations
+        updateOperationQueue.cancelAllOperations()
         
         //Get the dates of current and previous weeks
         let dateRange = calculateDateRange()
         
-        //Cancel all queued or executing (in-progress) operations
-        updateOperationQueue.cancelAllOperations()
         
+        /*******  GUERY OPERATIONS  *******/
         
         //Define operations to query for events for the previous week of every activity/assessment
         //Gives us data in the form of enumerated events for activities with particular identifiers - This is our first operation
@@ -56,8 +56,54 @@ class InsightsBuilder {
                                                                        activityIdentifier: ActivityType.bloodGlucose.rawValue)
         
         
-        //Now we create "BuildInsightsOperation" to actually make insights from the data collected
+        /*******  BUILD OPERATIONS  *******/
         
+        //Now we create "BuildInsightsOperation" to actually make insights from the data collected
+        let buildInsightsOperation = BuildInsightsOperation()
+        
+        //Operation to feed the data from the queries to the BuildInsightsOperation
+        let feedDataOperation = BlockOperation {
+            buildInsightsOperation.outdoorWalkEvents = outdoorWalkEventsOperation.dailyEvents
+            buildInsightsOperation.takeNurofenEvents = takeNurofenEventsOperation.dailyEvents
+            buildInsightsOperation.bloodGlucoseEvents = bloodGlucoseEventsOperation.dailyEvents
+        }
+        
+        //Use the completion block of the "BuildInsightsOperation" to store the new insights
+        buildInsightsOperation.completionBlock = { [unowned buildInsightsOperation] in
+            let completed = !buildInsightsOperation.isCancelled
+            let newInsights = buildInsightsOperation.insights
+            
+            // Call the completion block on the main queue.
+            OperationQueue.main.addOperation {
+                if completed {
+                    completion?(true, newInsights)
+                }
+                else {
+                    completion?(false, nil)
+                }
+            }
+        }
+        
+        /*** ADDING DEPENDENCIES FOR SMOOTH OPERATIONAL FLOW ***/
+        //this is instead of semaphore?
+        
+        //addDependency - make the receiver (feedDataOperation) dependent on the completion of the argument in brackets
+        //feedDataOperation is dependent on the QUERY OPERATIONS
+        feedDataOperation.addDependency(outdoorWalkEventsOperation)
+        feedDataOperation.addDependency(takeNurofenEventsOperation)
+        feedDataOperation.addDependency(bloodGlucoseEventsOperation)
+        
+        //"BuildInsightsOperation" is dependent on the completion of the data feeding
+        buildInsightsOperation.addDependency(feedDataOperation)
+        
+        
+        //Finally add all operations to the operational queue
+        updateOperationQueue.addOperations([
+            outdoorWalkEventsOperation,
+            takeNurofenEventsOperation,
+            bloodGlucoseEventsOperation,
+            buildInsightsOperation
+            ], waitUntilFinished: false)
         
     }
     
@@ -100,3 +146,4 @@ extension Calendar {
         return (start as Date, end as Date)
     }
 }
+

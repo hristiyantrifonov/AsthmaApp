@@ -16,10 +16,15 @@ class CarePlanStoreManager: NSObject {
     //allows access from anywhere in the AsthmaApp
     static var sharedCarePlanStoreManager = CarePlanStoreManager()
     
-    var myCarePlanStore: OCKCarePlanStore
-    
     weak var delegate: CarePlanStoreManagerDelegate?
     
+    let myCarePlanStore: OCKCarePlanStore
+    
+    var insights: [OCKInsightItem] {
+        return insightsBuilder.insights
+    }
+    
+    fileprivate let insightsBuilder: InsightsBuilder
     
     //MARK: Initialisation
     
@@ -36,16 +41,49 @@ class CarePlanStoreManager: NSObject {
         //Create the actual Store
         myCarePlanStore = OCKCarePlanStore(persistenceDirectoryURL: myDirectoryURL)
         
+        //Create the InsightBuilder to build insights based on store's data
+        insightsBuilder = InsightsBuilder(carePlanStore: myCarePlanStore)
+        
         super.init()
         
         //Register this class to be notified of changes in the store
         myCarePlanStore.delegate = self
         
+        //Start to build the initial array of Insights
+        updateInsights()
+        
     }
+    
+    func updateInsights() {
+        insightsBuilder.updateInsights { [weak self] completed, newInsights in
+            // If new insights have been created, notifiy the delegate.
+            guard let storeManager = self, let newInsights = newInsights , completed else { return }
+            storeManager.delegate?.carePlanStoreManager(storeManager, didUpdateInsights: newInsights)
+        }
+    }
+    
 }
 
 extension CarePlanStoreManager: OCKCarePlanStoreDelegate{
     
+    //Called everytime the activities change
+    func carePlanStoreActivityListDidChange(_ store: OCKCarePlanStore) {
+        updateInsights()
+    }
+    
+    //Called everytime a single event changes
+    func carePlanStore(_ store: OCKCarePlanStore, didReceiveUpdateOf event: OCKCarePlanEvent) {
+        updateInsights()
+        
+        let triggeredThresholds = event.evaluateNumericThresholds()
+        if triggeredThresholds.count != 0 {
+            for thresholdArray in triggeredThresholds {
+                for threshold in thresholdArray {
+                    NSLog("Threshold triggered on event \(event.occurrenceIndexOfDay) of \(event.date) for activity \(event.activity.identifier) with title:\n\(threshold.title!)")
+                }
+            }
+        }
+    }
 }
 
 protocol CarePlanStoreManagerDelegate: class {
@@ -53,4 +91,5 @@ protocol CarePlanStoreManagerDelegate: class {
     func carePlanStoreManager(_ manager: CarePlanStoreManager, didUpdateInsights insights: [OCKInsightItem])
     
 }
+
 
