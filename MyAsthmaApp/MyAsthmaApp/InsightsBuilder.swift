@@ -24,6 +24,8 @@ class InsightsBuilder {
     
     required init(carePlanStore: OCKCarePlanStore){
         self.carePlanStore = carePlanStore
+        
+        print("INSIGHTS BUILDER CALLED")
     }
     
     
@@ -37,6 +39,7 @@ class InsightsBuilder {
         //Get the dates of current and previous weeks
         let dateRange = calculateDateRange()
         
+        print("PreQUERY OPERATIONS")
         
         /*******  GUERY OPERATIONS  *******/
         
@@ -55,11 +58,14 @@ class InsightsBuilder {
                                                                        startDate: dateRange.start, endDate: dateRange.end,
                                                                        activityIdentifier: ActivityType.bloodGlucose.rawValue)
         
+        print("AFTER QUERY OPERATIONS")
         
         /*******  BUILD OPERATIONS  *******/
         
         //Now we create "BuildInsightsOperation" to actually make insights from the data collected
         let buildInsightsOperation = BuildInsightsOperation()
+        
+        print("AFTER BUILD INSIGHTS OPERATION")
         
         //Operation to feed the data from the queries to the BuildInsightsOperation
         let feedDataOperation = BlockOperation {
@@ -102,6 +108,7 @@ class InsightsBuilder {
             outdoorWalkEventsOperation,
             takeNurofenEventsOperation,
             bloodGlucoseEventsOperation,
+            feedDataOperation,
             buildInsightsOperation
             ], waitUntilFinished: false)
         

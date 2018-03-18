@@ -28,6 +28,8 @@ class QueryActivityEventsOperation : Operation {
         self.startDate = startDate
         self.endDate = endDate
         self.activityIdentifier = activityIdentifier
+        
+        print("QueryActivityEventsOperation CALLED")
     }
     
     
@@ -35,12 +37,17 @@ class QueryActivityEventsOperation : Operation {
     
     override func main() {
         
+        print("BEGIN OPERATION")
+        
         //If operation is cancelled we exit
         guard !isCancelled else { return }
+        
+        print("IS NOT CANCELLED FOR: \(activityIdentifier)")
         
         //If we do not find the requested activity we exit
         guard let activity = findActivity() else { return }
         
+        print("ACTIVITY: \(activityIdentifier) - \(activity)")
         
         //semaphore to wait for the asynchronous call to "enumerateEventsOfActivity" to complete
         let semaphore = DispatchSemaphore(value: 0)

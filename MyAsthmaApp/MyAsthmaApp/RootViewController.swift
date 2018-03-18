@@ -80,11 +80,13 @@ class RootViewController: UITabBarController {
 
     fileprivate func createInsightsViewController() -> OCKInsightsViewController {
 
-//        let activityType1: ActivityType = .bloodGlucose
-//
-//        let widget1 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType1.rawValue, tintColor: UIColor.blue)
+        let activityType1: ActivityType = .bloodGlucose
+        let activityType2: ActivityType = .backPain
 
-        let viewController = OCKInsightsViewController(insightItems: storeManager.insights, patientWidgets: nil, thresholds: nil, store: storeManager.myCarePlanStore)
+        let widget1 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType1.rawValue, tintColor: UIColor.blue)
+        let widget2 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType2.rawValue, tintColor: UIColor.blue)
+
+        let viewController = OCKInsightsViewController(insightItems: storeManager.insights, patientWidgets: [widget1, widget2], thresholds: nil, store: storeManager.myCarePlanStore)
 
         viewController.tabBarItem = UITabBarItem(title: "Insights", image: UIImage(named: "insights"), selectedImage: UIImage.init(named: "insights-filled"))
         viewController.title = "Insights"

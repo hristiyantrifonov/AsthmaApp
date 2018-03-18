@@ -22,8 +22,12 @@ class BuildInsightsOperation: Operation {
     
     override func main() {
         
+        print("BUILDINSIGHTSOPERATION CALLED")
+        
         //If operation cancelled we exit
         guard !isCancelled else { return }
+        
+        print("BUILDNSIGHTS - Not cancelled")
         
         //Create an array of insights
         var newInsights = [OCKInsightItem]()
@@ -32,6 +36,9 @@ class BuildInsightsOperation: Operation {
             newInsights.append(insight)
         }
         
+        for i in newInsights{
+            print(i)
+        }
         
         //Store any new insights that were created
         if !newInsights.isEmpty {
