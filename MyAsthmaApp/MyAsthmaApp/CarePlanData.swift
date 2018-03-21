@@ -20,6 +20,7 @@ class CarePlanData: NSObject {
     let activities: [Activity] = [
         OutdoorWalk(),
         TakeNurofen(),
+        TestActivity(),
         BloodGlucose(),
         BackPain()]
     
