@@ -19,6 +19,7 @@
 		843A192B2058C6B5002280FD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A192A2058C6B5002280FD /* User.swift */; };
 		845708A92050D228007B49A8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708A82050D228007B49A8 /* WelcomeViewController.swift */; };
 		845708AB2050D431007B49A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708AA2050D431007B49A8 /* LoginViewController.swift */; };
+		84615A34206FCB76007CE6B6 /* AddActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */; };
 		846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA336204F663200AADA1A /* HealthBuilder.swift */; };
 		846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */; };
 		846CA364204F7CFA00AADA1A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846CA363204F7CFA00AADA1A /* HealthKit.framework */; };
@@ -134,6 +135,7 @@
 		843A192A2058C6B5002280FD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		845708A82050D228007B49A8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		845708AA2050D431007B49A8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivitiesViewController.swift; sourceTree = "<group>"; };
 		846CA336204F663200AADA1A /* HealthBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBuilder.swift; sourceTree = "<group>"; };
 		846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		846CA363204F7CFA00AADA1A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -326,6 +328,7 @@
 				DEE91CBB204227340024F76C /* RootViewController.swift */,
 				DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */,
 				8426E2F7205E04AE001FD646 /* CarePlanData.swift */,
+				84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */,
 				84A7D63420530BD4003343D1 /* Main.storyboard */,
 				DEE91CC3204227350024F76C /* Assets.xcassets */,
 				DEE91CC5204227350024F76C /* LaunchScreen.storyboard */,
@@ -696,6 +699,7 @@
 				848FC3B2205C890B008429EE /* BuildInsightsOperation.swift in Sources */,
 				84E17A372061F2290099631A /* ActivityBuilder.swift in Sources */,
 				84BD186E205C16A600B37E16 /* QueryActivityEventsOperation.swift in Sources */,
+				84615A34206FCB76007CE6B6 /* AddActivitiesViewController.swift in Sources */,
 				DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */,
 				DEB2BA9B20471093009D60B5 /* OutdoorWalk.swift in Sources */,
 				84E17A312061DC120099631A /* TestActivity.swift in Sources */,

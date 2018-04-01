@@ -35,6 +35,9 @@ class RootViewController: UITabBarController {
         self.navigationItem.setHidesBackButton(true, animated:true);
         
         
+        
+        
+        
 
         let mainTabViewController = createMainTabViewController()
         careContentsViewController = createCareContentsViewController()
@@ -47,7 +50,7 @@ class RootViewController: UITabBarController {
             UINavigationController(rootViewController: careContentsViewController),
             UINavigationController(rootViewController: insightsViewController),
             connectViewController]
-
+        
         storeManager.delegate = self
         
     }

@@ -1,0 +1,169 @@
+//
+//  AddActivitiesViewController.swift
+//  MyAsthmaApp
+//
+//  Created by user136629 on 3/31/18.
+//  Copyright © 2018 Hristiyan Trifonov. All rights reserved.
+//
+
+import UIKit
+
+class AddActivitiesViewController: UIViewController {
+    
+    //Properties
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var summaryTextField: UITextField!
+    @IBOutlet weak var instructionsTextField: UITextField!
+    
+    //Group Part Properties
+    var activitiesGroupsArray : [String] = []
+    @IBOutlet weak var groupsPickerView: UIPickerView!
+    @IBOutlet weak var newGroupButton: UIButton!
+    
+    //Schedule Part Properties
+    @IBOutlet weak var mondayView: UIView!
+    @IBOutlet weak var mondayTextField: UITextField!
+    @IBOutlet weak var tuesdayView: UIView!
+    @IBOutlet weak var tuesdayTextField: UITextField!
+    @IBOutlet weak var wednesdayView: UIView!
+    @IBOutlet weak var wednesdayTextField: UITextField!
+    @IBOutlet weak var thursdayView: UIView!
+    @IBOutlet weak var thursdayTextField: UITextField!
+    @IBOutlet weak var fridayView: UIView!
+    @IBOutlet weak var fridayTextField: UITextField!
+    @IBOutlet weak var saturdayView: UIView!
+    @IBOutlet weak var saturdayTextField: UITextField!
+    @IBOutlet weak var sundayView: UIView!
+    @IBOutlet weak var sundayTextField: UITextField!
+    
+    //Optionality Part properties and fields
+    var optionalChosen = false
+    @IBOutlet weak var optionalityButtonPanel: UIView!
+    @IBOutlet weak var optionalityButton: UIButton!
+    let greenDesignColor = UIColor(red:40/255, green:164/255, blue:40/255, alpha: 1)
+
+    fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
+    var activeField: UITextField?
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        titleTextField.delegate = self
+        summaryTextField.delegate = self
+        instructionsTextField.delegate = self
+        mondayTextField.delegate = self
+        tuesdayTextField.delegate = self
+        wednesdayTextField.delegate = self
+        thursdayTextField.delegate = self
+        fridayTextField.delegate = self
+        saturdayTextField.delegate = self
+        sundayTextField.delegate = self
+        
+        
+        newGroupButton.backgroundColor = .clear
+        newGroupButton.layer.cornerRadius = 5
+        newGroupButton.layer.borderWidth = 1.5
+        newGroupButton.layer.borderColor = UIColor.black.cgColor
+        
+        groupsPickerView.delegate = self
+        groupsPickerView.dataSource = self
+        
+        
+        
+        
+        findCurrentActivityGroupIdentifiers()
+        
+        
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    /***  OPTIONALITY PART  ***/
+    //The Optionality button style changes to green when selected and vice-versa
+        @IBAction func optinalityChosen(_ sender: Any) {
+            print("Optionality Clicked")
+            optionalChosen = !optionalChosen //change the optionality bool
+    
+            if optionalChosen{
+                self.optionalityButtonPanel.layer.borderWidth = 3.5
+                self.optionalityButtonPanel.layer.borderColor = greenDesignColor.cgColor
+    
+                optionalityButton.setTitle("Optionality Chosen!", for: .normal)
+            }else{
+                self.optionalityButtonPanel.layer.borderColor = UIColor.clear.cgColor
+                optionalityButton.setTitle("Optional Activity?", for: .normal)
+            }
+    
+        }
+    
+    @IBAction func doneButtonClicked(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    //MARK: - Helper Functions
+    func findCurrentActivityGroupIdentifiers(){
+        storeManager.myCarePlanStore.activities {
+            (success, activitiesArray, error) in
+            
+            if success{
+                for activity in activitiesArray{
+                    let activityGroup = activity.groupIdentifier!
+                    if !self.activitiesGroupsArray.contains(activityGroup) && activityGroup != "Assessment"{
+                        self.activitiesGroupsArray.append(activityGroup)
+                    }
+                }
+                
+            }else{
+                print(error!)
+            }
+        }
+    }
+    
+}
+
+extension AddActivitiesViewController: UIPickerViewDelegate {
+    
+}
+
+extension AddActivitiesViewController:  UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.activitiesGroupsArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.activitiesGroupsArray[row]
+    }
+    
+}
+
+extension AddActivitiesViewController: UITextFieldDelegate{
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("TEXTFIELD CLICKED !!!!")
+        print(textField.tag)
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("Did end Editing")
+        var tag = textField.tag
+        if tag == 1{
+            if textField.text != ""{
+            mondayView.layer.cornerRadius = 7
+            mondayView.layer.borderWidth = 2
+            mondayView.layer.borderColor = greenDesignColor.cgColor
+            }
+        }
+    }
+}
