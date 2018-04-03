@@ -16,6 +16,7 @@ class AddActivitiesViewController: UIViewController {
     @IBOutlet weak var summaryTextField: UITextField!
     @IBOutlet weak var instructionsTextField: UITextField!
     var selectedGroupIdentifier : String = ""
+    var successAddition : Bool = false
     
     //Group Part Properties
     var activitiesGroupsArray : [String] = []
@@ -152,8 +153,9 @@ class AddActivitiesViewController: UIViewController {
         let sa = Int(saturdayTextField.text!) ?? 0
         let su = Int(sundayTextField.text!) ?? 0
     
-        let schedule = [mo,tu,we,th,fr,sa,su]
+        let schedule = [su,mo,tu,we,th,fr,sa]
         
+        print(schedule)
         print(inputTitle, inputSummary, inputInstructions, "\(inputGroupIdentifier)", schedule, self.optionalChosen)
         
         //Adding the activity with the specified parameters
@@ -173,6 +175,7 @@ class AddActivitiesViewController: UIViewController {
             }
             else{
                 print("Activity successfully added")
+                self.successAddition = true
                 self.navigationController?.popViewController(animated: true)
                 self.dismiss(animated: true, completion: nil)
 
@@ -189,6 +192,8 @@ class AddActivitiesViewController: UIViewController {
     func findCurrentActivityGroupIdentifiers(){
         storeManager.myCarePlanStore.activities {
             (success, activitiesArray, error) in
+            
+            self.activitiesGroupsArray.append("---") //default value
             
             if success{
                 for activity in activitiesArray{

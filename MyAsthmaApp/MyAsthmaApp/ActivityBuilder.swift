@@ -47,7 +47,7 @@ class ActivityBuilder {
     //Method to prepare the chosen occurences for input for creating activities
     func constructSchedule(occurencesArray: [Int]) -> OCKCareSchedule {
         let schedule = OCKCareSchedule.weeklySchedule(withStartDate: startDate as DateComponents, occurrencesOnEachDay: occurencesArray as [NSNumber])
-
+        
         return schedule
     }
     

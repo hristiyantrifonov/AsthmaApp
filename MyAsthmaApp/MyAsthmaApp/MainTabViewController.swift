@@ -56,28 +56,36 @@ class MainTabViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func beginCofigurationClicked(_ sender: Any) {
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popUpDoctorCredentialsRequest") as! PopUpDoctorCredentialsViewController
+        self.addChildViewController(popUpVC)
+        popUpVC.view.frame = self.view.frame
+        self.view.addSubview(popUpVC.view)
+        popUpVC.didMove(toParentViewController: self)
+    }
+    
     @IBAction func addActivityPressed(_ sender: Any) {
         print("Add activity pressed")
         
-        let myCarePlanStore = storeManager.myCarePlanStore
-        
-        let activityBuilder = ActivityBuilder()
-        
-        activityBuilder.setActivityDefinitions(title: "This is a test", summary: "Testing Summary", instructions: "Testing Instuctions", groupIdentifier: "Medications")
-        
-        let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: [3, 3, 3, 3, 3, 1, 1])
-        let optionalityChosen = false
-        
-        let activity = activityBuilder.createActivity(schedule: chosenSchedule, optionality: optionalityChosen)
-        myCarePlanStore.add(activity) {
-            (success, error) in
-            if error != nil  {
-                print("Error adding an activity \(error!)")
-            }
-            else{
-                print("Activity successfully added")
-            }
-        }
+//        let myCarePlanStore = storeManager.myCarePlanStore
+//        
+//        let activityBuilder = ActivityBuilder()
+//        
+//        activityBuilder.setActivityDefinitions(title: "This is a test", summary: "Testing Summary", instructions: "Testing Instuctions", groupIdentifier: "Medications")
+//        
+//        let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: [3, 3, 3, 3, 3, 1, 1])
+//        let optionalityChosen = false
+//        
+//        let activity = activityBuilder.createActivity(schedule: chosenSchedule, optionality: optionalityChosen)
+//        myCarePlanStore.add(activity) {
+//            (success, error) in
+//            if error != nil  {
+//                print("Error adding an activity \(error!)")
+//            }
+//            else{
+//                print("Activity successfully added")
+//            }
+//        }
     }
     
     //Ending an activity by setting an End Date to it - this is to preserve the previous date obtained from the activity
@@ -85,7 +93,7 @@ class MainTabViewController: UIViewController {
     @IBAction func endActivityRequest(_ sender: Any) {
         print("End Activity Request")
         let myCarePlanStore = storeManager.myCarePlanStore
-        
+    
         storeManager.myCarePlanStore.activities {
             (success, activitiesArray, error) in
             if success {
@@ -95,7 +103,7 @@ class MainTabViewController: UIViewController {
                 myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error ) in
                     if success {
                         print("founds activity - \(identifier)")
-                        var endDate = DateComponents(year: 2018, month: 03, day: 23)
+                        var endDate = DateComponents(year: 2018, month: 04, day: 03)
                         chosenActivity?.schedule.setValue(endDate, forKey: "endDate")
                         print("successfuly changed")
                     }else{
@@ -127,3 +135,4 @@ class MainTabViewController: UIViewController {
     
     
 }
+
