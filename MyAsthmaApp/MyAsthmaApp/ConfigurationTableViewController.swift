@@ -24,8 +24,8 @@ class ConfigurationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myTableView.separatorStyle = .none
-        messageLabel.isHidden = success
+//        myTableView.separatorStyle = .none
+        messageLabel.isHidden = !success
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         

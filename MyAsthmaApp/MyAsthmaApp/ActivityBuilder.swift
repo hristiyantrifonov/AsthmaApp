@@ -10,7 +10,7 @@ import CareKit
 
 class ActivityBuilder {
     
-    //Properties
+    //MARK: - Properties
     
     var startDate : DateComponents
     var title : String?
@@ -22,6 +22,7 @@ class ActivityBuilder {
     
     var activity : OCKCarePlanActivity?
     
+    //MARK: - Initialisations
     //Set-up date during initialisation
     init() {
         let date = Date()
@@ -35,6 +36,8 @@ class ActivityBuilder {
         print("Creating activity with startDate = \(startDate)")
         
     }
+    
+    //MARK: - Constructor Methods
     
     //groupIdentifier, title, summary, instuctions all-in-one object
     func setActivityDefinitions(title: String, summary: String, instructions: String, groupIdentifier: String){
@@ -66,7 +69,9 @@ class ActivityBuilder {
         
     }
     
-    func createActivity(schedule: OCKCareSchedule, optionality: Bool) -> OCKCarePlanActivity {
+    //MARK: - Activities Creation Methods
+    
+    func createInterventionActivity(schedule: OCKCareSchedule, optionality: Bool) -> OCKCarePlanActivity {
         
         //for creating random colors...
         let randomRedValue = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
@@ -91,35 +96,45 @@ class ActivityBuilder {
         return self.activity!
     }
     
+    func createAssessmentActivity() -> OCKCarePlanActivity {
+        
+        generateTypeIdentifier()
+        
+        let schedule = OCKCareSchedule.weeklySchedule(withStartDate: startDate as DateComponents, occurrencesOnEachDay: [1, 1, 1, 1, 1, 1, 1])
+        
+        self.activity = OCKCarePlanActivity.assessment(
+            withIdentifier: self.identifier!,
+            groupIdentifier: "Assessment",
+            title: self.title!,
+            text: self.summary!,
+            tintColor: UIColor.blue,
+            resultResettable: false,
+            schedule: schedule,
+            userInfo: nil,
+            optional: false
+        )
+    
+        return self.activity!
+    }
+    
+    func createNoteActivity() -> OCKCarePlanActivity {
+
+        generateTypeIdentifier()
+        
+        let schedule = OCKCareSchedule.weeklySchedule(withStartDate: startDate as DateComponents, occurrencesOnEachDay: [1, 1, 1, 1, 1, 1, 1])
+        
+         self.activity = OCKCarePlanActivity.readOnly(
+            withIdentifier: self.identifier!,
+            groupIdentifier: nil,
+            title: self.title!,
+            text: self.summary,
+            instructions: self.instructions,
+            imageURL: nil,
+            schedule: schedule,
+            userInfo: nil)
+        
+        return self.activity!
+    }
+    
+    
 }
-
-//
-//let activityType: ActivityType = .takeNurofen
-//
-//func carePlanActivity() -> OCKCarePlanActivity {
-//    // Create a weekly schedule.
-//    let startDate = DateComponents(year: 2018, month: 01, day: 01)
-//    let schedule = OCKCareSchedule.weeklySchedule(withStartDate: startDate as DateComponents, occurrencesOnEachDay: [2, 3, 3, 1, 3, 1, 2])
-//    
-//    // Get the localized strings to use for the activity.
-//    let title = NSLocalizedString("TakeNurofen", comment: "")
-//    let summary = NSLocalizedString("15 mins", comment: "")
-//    let instructions = NSLocalizedString("Take a leisurely walk.", comment: "")
-//    
-//    // Create the intervention activity.
-//    let activity = OCKCarePlanActivity.intervention(
-//        withIdentifier: activityType.rawValue,
-//        groupIdentifier: "Medications",
-//        title: title,
-//        text: summary,
-//        tintColor: UIColor.purple,
-//        instructions: instructions,
-//        imageURL: nil,
-//        schedule: schedule,
-//        userInfo: nil,
-//        optional: false
-//    )
-//    
-//    return activity
-//}
-

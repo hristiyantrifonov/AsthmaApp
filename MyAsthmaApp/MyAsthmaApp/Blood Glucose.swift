@@ -21,7 +21,7 @@ struct BloodGlucose: Assessment {
     func carePlanActivity() -> OCKCarePlanActivity {
         // Create a weekly schedule.
         let startDate = DateComponents(year: 2016, month: 01, day: 01)
-        let schedule = OCKCareSchedule.weeklySchedule(withStartDate: startDate as DateComponents, occurrencesOnEachDay: [1, 1, 1, 1, 1, 1, 1])
+        let schedule = OCKCareSchedule.weeklySchedule(withStartDate: startDate as DateComponents, occurrencesOnEachDay: [1, 1, 1, 1, 1, 1, 2])
         let thresholds = [OCKCarePlanThreshold.numericThreshold(withValue: NSNumber.init(value: 70), type: .numericRangeInclusive, upperValue: NSNumber.init(value: 100), title: "Healthy blood glucose."), OCKCarePlanThreshold.numericThreshold(withValue: NSNumber.init(value: 180), type: .numericGreaterThanOrEqual, upperValue: nil, title: "High blood glucose.")] as Array<OCKCarePlanThreshold>;
         
         // Get the localized strings to use for the assessment.

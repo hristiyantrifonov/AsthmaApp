@@ -46,12 +46,8 @@ class CarePlanData: NSObject {
             }
         }
         
-        
-        //TODO: Define assessment activities
-        
         super.init()
         
-        //TODO: Add activities to store
     }
     
     

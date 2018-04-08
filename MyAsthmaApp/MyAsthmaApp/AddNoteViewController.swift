@@ -36,6 +36,26 @@ class AddNoteViewController: UIViewController {
         
         let myCarePlanStore = storeManager.myCarePlanStore
         
+        let activityBuilder = ActivityBuilder()
+        
+        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: inputInstructions, groupIdentifier: "")
+        
+        let activity = activityBuilder.createNoteActivity()
+        myCarePlanStore.add(activity) {
+            (success, error) in
+            if error != nil  {
+                print("Error adding the note \(error!)")
+            }
+            else{
+                print("Note successfully added")
+                DispatchQueue.main.async { //Because we need to update these from the main thread not background one
+                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                    
+                }
+            }
+        }
+        
     }
     /*
     // MARK: - Navigation

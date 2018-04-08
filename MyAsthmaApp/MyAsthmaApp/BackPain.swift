@@ -36,6 +36,7 @@ import ResearchKit
  assessment.
  */
 struct BackPain: Assessment {
+    
     // MARK: Activity
     
     let activityType: ActivityType = .backPain

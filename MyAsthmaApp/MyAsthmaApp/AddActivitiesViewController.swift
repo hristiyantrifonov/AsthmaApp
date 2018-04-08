@@ -152,7 +152,7 @@ class AddActivitiesViewController: UIViewController {
         let fr = Int(fridayTextField.text!) ?? 0
         let sa = Int(saturdayTextField.text!) ?? 0
         let su = Int(sundayTextField.text!) ?? 0
-    
+        
         let schedule = [su,mo,tu,we,th,fr,sa]
         
         print(schedule)
@@ -161,26 +161,30 @@ class AddActivitiesViewController: UIViewController {
         //Adding the activity with the specified parameters
         let myCarePlanStore = storeManager.myCarePlanStore
         
-        let activityBuilder = ActivityBuilder()
         
-        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: inputInstructions, groupIdentifier: "\(inputGroupIdentifier)")
-        
-        let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: schedule)
-        
-        let activity = activityBuilder.createActivity(schedule: chosenSchedule, optionality: self.optionalChosen)
-        myCarePlanStore.add(activity) {
-            (success, error) in
-            if error != nil  {
-                print("Error adding an activity \(error!)")
-            }
-            else{
-                print("Activity successfully added")
-                self.successAddition = true
-                self.navigationController?.popViewController(animated: true)
-                self.dismiss(animated: true, completion: nil)
+            
+            let activityBuilder = ActivityBuilder()
+            
+            activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: inputInstructions, groupIdentifier: "\(inputGroupIdentifier)")
+            
+            let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: schedule)
+            
+            let activity = activityBuilder.createInterventionActivity(schedule: chosenSchedule, optionality: self.optionalChosen)
+            myCarePlanStore.add(activity) {
+                (success, error) in
+                if error != nil  {
+                    print("Error adding an activity \(error!)")
+                }
+                else{
+                    print("Activity successfully added")
+                    self.successAddition = true
+                    DispatchQueue.main.async { //Because the navigation controller must be updated from the main thread
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
 
+                    }
+                }
             }
-        }
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
@@ -197,9 +201,10 @@ class AddActivitiesViewController: UIViewController {
             
             if success{
                 for activity in activitiesArray{
-                    let activityGroup = activity.groupIdentifier!
-                    if !self.activitiesGroupsArray.contains(activityGroup) && activityGroup != "Assessment"{
-                        self.activitiesGroupsArray.append(activityGroup)
+                    if let activityGroup = activity.groupIdentifier{
+                        if !self.activitiesGroupsArray.contains(activityGroup) && activityGroup != "Assessment"{
+                            self.activitiesGroupsArray.append(activityGroup)
+                        }
                     }
                 }
                 
