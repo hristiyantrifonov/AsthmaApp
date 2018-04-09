@@ -96,7 +96,9 @@ class ActivityBuilder {
         return self.activity!
     }
     
-    func createAssessmentActivity() -> OCKCarePlanActivity {
+    func createAssessmentActivity(assessmentType: AssessmentType, assessmentDescription: String,
+                                  maxValue: Int? = 0 , minValue: Int? = 0,
+                                  quantityTypeIdentifier: HKQuantityTypeIdentifier? = HKQuantityTypeIdentifier.respiratoryRate, unit: String? = "", optionality: Bool) -> OCKCarePlanActivity {
         
         generateTypeIdentifier()
         
@@ -110,20 +112,22 @@ class ActivityBuilder {
             tintColor: UIColor.blue,
             resultResettable: false,
             schedule: schedule,
-            userInfo: nil,
+            userInfo: [AnyHashable("assessmentType") : "\(assessmentType)", AnyHashable("descriptions") : assessmentDescription, AnyHashable("maxValue") : maxValue,
+                       AnyHashable("minValue") : minValue, AnyHashable("quantityTypeIdentifier") : quantityTypeIdentifier, AnyHashable("unit") : unit,
+                       AnyHashable("optionality") : optionality],
             optional: false
         )
-    
+        
         return self.activity!
     }
     
     func createNoteActivity() -> OCKCarePlanActivity {
-
+        
         generateTypeIdentifier()
         
         let schedule = OCKCareSchedule.weeklySchedule(withStartDate: startDate as DateComponents, occurrencesOnEachDay: [1, 1, 1, 1, 1, 1, 1])
         
-         self.activity = OCKCarePlanActivity.readOnly(
+        self.activity = OCKCarePlanActivity.readOnly(
             withIdentifier: self.identifier!,
             groupIdentifier: nil,
             title: self.title!,

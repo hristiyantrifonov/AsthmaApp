@@ -119,23 +119,58 @@ extension RootViewController: OCKCareContentsViewControllerDelegate {
      */
     func careContentsViewController(_ viewController: OCKCareContentsViewController, didSelectRowWithAssessmentEvent assessmentEvent: OCKCarePlanEvent) {
         print("Assessment activity clicked")
-
-        //the enum identifier (i.e. bloodGlucose)
-        guard let activityType = ActivityType(rawValue: assessmentEvent.activity.identifier) else { return }
-
-        //The assessment object (i.e. BloodGlucose(activityType: MyAsthmaApp.ActivityType.bloodGlucose)
-        guard let sampleAssessment = carePlanData.activityWithType(activityType) as? Assessment else { return }
-
+        print(assessmentEvent)
+        print(assessmentEvent.activity)
+        print(assessmentEvent.activity.identifier)
+        print(assessmentEvent.activity.userInfo)
+        print(assessmentEvent.activity.userInfo?["descriptions"])
+        
+        //Uses the options (i.e description, assessmentType, max and min values) we have save to the activity userInfor hash dictionary
+        let taskOptions = assessmentEvent.activity.userInfo
+        
+        let taskBuilder = TaskBuilder()
+        taskBuilder.assessmentActivityIdentifier = assessmentEvent.activity.identifier
+        let task : ORKTask
+        let taskViewController : ORKTaskViewController
+        
+        let assessmentTypeChosen = taskOptions!["assessmentType"]!
+        print("Creating \(assessmentTypeChosen)")
+        
+        if assessmentTypeChosen as! String == "scaleAssessment"{
+        
+            taskViewController = ORKTaskViewController(task: taskBuilder.createScaleAssessmentTask(descriptionQuestion: taskOptions!["descriptions"]! as! String, maxValue: taskOptions!["maxValue"]! as! Int, minValue: taskOptions!["minValue"] as! Int, optionality: taskOptions!["optionality"]! as! Bool), taskRun: nil)
+            taskViewController.delegate = self
+            present(taskViewController, animated: true, completion: nil)
+            
+        }else if assessmentTypeChosen as! String == "quantityAssessment"{
+            print("quantity")
+            
+           taskViewController = ORKTaskViewController(task: taskBuilder.createQuantityAssessmentTask(descriptionTitle: taskOptions!["descriptions"]! as! String, quantityTypeIdentifier: taskOptions!["quantityTypeIdentifier"]! as! HKQuantityTypeIdentifier, unitString: taskOptions!["unit"]! as! String, optionality: taskOptions!["optionality"]! as! Bool), taskRun: nil)
+            taskViewController.delegate = self
+            present(taskViewController, animated: true, completion: nil)
+        }
+        
         //Check the state - if not completed we will let the user edit itß
         guard assessmentEvent.state == .initial || assessmentEvent.state == .notCompleted ||
             (assessmentEvent.state == .completed && assessmentEvent.activity.resultResettable) else { return }
+        
+    }
+}
 
-        //ORTaskViewController is the primary entry point for presentation Research kit views
-        //We pass the task part of the Assessment object in order to display it on screen
-        let taskViewController = ORKTaskViewController(task: sampleAssessment.task(), taskRun: nil)
-        taskViewController.delegate = self
-
-        present(taskViewController, animated: true, completion: nil)
+extension RootViewController {
+    func buildResultForCarePlanEvent(_ event: OCKCarePlanEvent, taskResult: ORKTaskResult, upperBound: Int = 10) -> OCKCarePlanEventResult {
+        // Get the first result for the first step of the task result.
+        guard let firstResult = taskResult.firstResult as? ORKStepResult, let stepResult = firstResult.results?.first else { fatalError("Unexepected task results") }
+        
+        // Determine what type of result should be saved.
+        if let scaleResult = stepResult as? ORKScaleQuestionResult, let answer = scaleResult.scaleAnswer {
+            return OCKCarePlanEventResult(valueString: answer.stringValue, unitString: "of \(upperBound)", userInfo: nil, values: [answer])
+        }
+        else if let numericResult = stepResult as? ORKNumericQuestionResult, let answer = numericResult.numericAnswer {
+            return OCKCarePlanEventResult(valueString: answer.stringValue, unitString: numericResult.unit!, userInfo: nil, values: [answer])
+        }
+        
+        fatalError("Unexpected task result type")
     }
 }
 
@@ -149,19 +184,33 @@ extension RootViewController: ORKTaskViewControllerDelegate {
 
         //Ensures task controller's reason for finishing is completion
         guard reason == .completed else { return }
-
+        
         //Determine the event that was comleted
-        guard let event = careContentsViewController.lastSelectedEvent,
-            let activityType = ActivityType(rawValue: event.activity.identifier),
-            let assessment = carePlanData.activityWithType(activityType) as? Assessment else { return }
-
+        guard let event = careContentsViewController.lastSelectedEvent else { return }
+        let activityType = event.activity.identifier
+        var theActivity : OCKCarePlanActivity?
+    
+        storeManager.myCarePlanStore.activity(forIdentifier: activityType) {
+            (success, activity, error) in
+            
+            if error != nil {
+                return
+            }else{
+                print(activity)
+                theActivity = activity
+                print(theActivity)
+                
+            }
+            
+        }
+        
         print("THE COMPLETED EVENT: \(event)")
 
         //Create 'OCKCarePlanEvenResult' object to be saved into the Care Plan Store
-        let carePlanResultObject = assessment.buildResultForCarePlanEvent(event, taskResult: taskViewController.result)
+        let carePlanResultObject = buildResultForCarePlanEvent(event, taskResult: taskViewController.result, upperBound: event.activity.userInfo!["maxValue"] as! Int)
 
         //If assessment compatible with HealthKit then create a sample to save in the HealthKit store
-        if let healthBuilder = assessment as? HealthSampleBuilder {
+        if let healthBuilder = theActivity as? HealthSampleBuilder {
 
             let sample = healthBuilder.buildSampleWithTaskResult(taskViewController.result)
             let sampleTypes: Set<HKSampleType> = [sample.sampleType]

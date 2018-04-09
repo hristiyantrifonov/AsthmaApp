@@ -53,8 +53,11 @@ class AddAssessmentViewController: UIViewController {
         scaleAssessmentPanel.isHidden = false
         quantityAssessmentPanel.isHidden = true
         
+        categoryTypePickerView.delegate = self
+        categoryTypePickerView.dataSource = self
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,15 +94,23 @@ class AddAssessmentViewController: UIViewController {
     @IBAction func doneButtonClicked(_ sender: Any) {
         let inputTitle = titleTextField.text!
         let inputSummary = summaryTextField.text!
-        
+    
         let myCarePlanStore = storeManager.myCarePlanStore
         
         let activityBuilder = ActivityBuilder()
-        let taskBuilder = TaskBuilder()
         
         activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: "", groupIdentifier: "")
         
-        let activity = activityBuilder.createAssessmentActivity()
+        let activity: OCKCarePlanActivity
+        
+        if assessmentTypeChoiceSegmentedControl.selectedSegmentIndex == 0{
+            
+            activity = activityBuilder.createAssessmentActivity(assessmentType: .scaleAssessment, assessmentDescription: scaleAssessmentDescriptionTextField.text!, maxValue: Int(maxValueTextField.text!)!, minValue: Int(minValueTextField.text!)!, optionality: optionalityChosen)
+        }else{
+        
+            activity = activityBuilder.createAssessmentActivity(assessmentType: .quantityAssessment, assessmentDescription: quantityAssessmentDescriptionTextField.text!, quantityTypeIdentifier: HKQuantityTypeIdentifier.respiratoryRate, unit: unitTextField.text!, optionality: optionalityChosen)
+        }
+        
         myCarePlanStore.add(activity) {
             (success, error) in
             if error != nil  {
@@ -108,29 +119,12 @@ class AddAssessmentViewController: UIViewController {
             else{
                 print("Assessment Activity successfully added")
                 
-                //Set the task builder's identifier to the create assessment identifier
-                taskBuilder.assessmentActivityIdentifier = activity.identifier
-                
                 DispatchQueue.main.async { //Because we need to update these from the main thread not background one
                     self.navigationController?.popViewController(animated: true)
                     self.dismiss(animated: true, completion: nil)
                     
                 }
-            }
-        }
-        
-        //If we have set the Task Builder's identifier we continue
-        if (taskBuilder.assessmentActivityIdentifier != nil){
-            if assessmentTypeChoiceSegmentedControl.selectedSegmentIndex == 0{
-                let task = taskBuilder.createScaleAssessmentTask(descriptionQuestion: scaleAssessmentDescriptionTextField.text!, maxValue: Int(maxValueTextField.text!)!,
-                                                      minValue: Int(minValueTextField.text!)!, optionality: optionalityChosen)
                 
-                //TODO - find out how the task part is added/associated with activity
-                
-                print("Created Scale Assessment Task")
-            }else{
-                let task = taskBuilder.createQuantityAssessmentTask(descriptionTitle: quantityAssessmentDescriptionTextField.text!, quantityTypeIdentifier: HKQuantityTypeIdentifier.respiratoryRate, unitString: unitTextField.text!, optionality: optionalityChosen)
-                print("Created Quantitu Assessment Task")
             }
         }
         

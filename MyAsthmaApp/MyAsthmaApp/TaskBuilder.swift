@@ -9,6 +9,12 @@
 import CareKit
 import ResearchKit
 
+//provides unique identifiers for intervention and assessment activities
+enum AssessmentType: String {
+    case scaleAssessment
+    case quantityAssessment
+}
+
 //Class for building the task associated with assessment activities
 class TaskBuilder {
     
@@ -19,6 +25,9 @@ class TaskBuilder {
     init() { }
     
     func createScaleAssessmentTask(descriptionQuestion: String, maxValue: Int, minValue: Int, optionality: Bool) -> ORKTask {
+        
+        print("YAYAYYAYAY")
+        print("optionality: \(optionality)")
         
         let displayedQuestion = NSLocalizedString(descriptionQuestion, comment: "")
         let maximumValueDescription = NSLocalizedString("Very much", comment: "")
