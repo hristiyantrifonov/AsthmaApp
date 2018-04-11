@@ -54,10 +54,6 @@ class TaskBuilder {
     }
     
     func createQuantityAssessmentTask(descriptionTitle: String, quantityTypeIdentifier: HKQuantityTypeIdentifier, unitString: String, optionality: Bool) -> ORKTask {
-//        HKQuantityTypeIdentifier.appleExerciseTime
-//        HKQuantityTypeIdentifier.forcedVitalCapacity - amount of air forcibly exhaled after deepest breath
-//        HKQuantityTypeIdentifier.inhalerUsage
-//        HKQuantityTypeIdentifier.respiratoryRate
         
         //Task describing strings
         let quantityType = HKQuantityType.quantityType(forIdentifier: quantityTypeIdentifier)!

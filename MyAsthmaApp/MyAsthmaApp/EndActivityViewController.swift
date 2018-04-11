@@ -87,19 +87,61 @@ class EndActivityViewController: UIViewController {
     }
     
     @IBAction func doneButtonClicked(_ sender: Any) {
+        print("End Activity Request for \(selectedActivity)")
+        let myCarePlanStore = storeManager.myCarePlanStore
         
-        print(selectedActivity)
+        var endDateDay : Int,
+            endDateMonth: Int,
+            endDateYear: Int
         
+        //If date picker view is enabled then user wants to specify custom date
+        //and we obtain the values from the picker
+        //If not - then user selected today or next week
         if datePicker.isEnabled{
             let calendar = Calendar.current
-            print(calendar.component(.day, from: datePicker.date))
-            print(calendar.component(.month, from: datePicker.date))
-            print(calendar.component(.year, from: datePicker.date))
+            endDateDay = calendar.component(.day, from: datePicker.date)
+            endDateMonth = calendar.component(.month, from: datePicker.date)
+            endDateYear = calendar.component(.year, from: datePicker.date)
         }else{
+            endDateDay = selectedEndDate.day!
+            endDateMonth = selectedEndDate.month!
+            endDateYear = selectedEndDate.year!
+        }
+        
+        //The date at which the activity will be ended
+        let endDate = DateComponents(year: endDateYear, month: endDateMonth, day: endDateDay)
+        print("End Date Chosen: \(endDate)")
+        
+        storeManager.myCarePlanStore.activities {
+            (success, activitiesArray, error) in
             
-            print(selectedEndDate.day!)
-            print(selectedEndDate.month!)
-            print(selectedEndDate.year!)
+            if success{
+                let identifier = self.selectedActivity.lowercased()
+                print("Identifier: \(identifier)")
+                
+                myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error) in
+                    if success {
+                        print("Found activity with identifier: \(identifier)")
+//                        chosenActivity?.schedule.setValue(endDate, forKey: "endDate")
+                        myCarePlanStore.setEndDate(endDate, for: chosenActivity!, completion: { (success, updatedActivity, error) in
+                            if success{
+                                print("successfully ended activity")
+                                
+                            }else{
+                                print("Could not update endDate")
+                            }
+                        })
+                        
+                        //TODO - CLOSE THE WINDOW 
+                        
+                    }else{
+                        print(error!)
+                    }
+                }
+                
+            }else{
+                print(error!)
+            }
         }
     }
     //MARK: - Helper Functions
@@ -113,8 +155,12 @@ class EndActivityViewController: UIViewController {
             if success{
                 for activity in activitiesArray{
                     let activityName = activity.title
-                    print("HEREEEE")
-                    self.activitiesNames.append(activityName)
+                    print(activity.schedule.endDate)
+                    
+                    //Show only the activities without an endDate
+                    if ((activity.schedule.endDate) == nil) {
+                        self.activitiesNames.append(activityName)
+                    }
                 }
             }else{
                 print(error!)
