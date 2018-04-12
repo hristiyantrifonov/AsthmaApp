@@ -11,6 +11,7 @@ target 'MyAsthmaApp' do
   pod 'Firebase/Database'
   pod 'KeychainSwift'
   pod 'SVProgressHUD'
+  pod 'ZeroKit'
 
   target 'MyAsthmaAppTests' do
     inherit! :search_paths

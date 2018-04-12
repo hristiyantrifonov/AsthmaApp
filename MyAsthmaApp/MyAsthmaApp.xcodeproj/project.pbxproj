@@ -10,10 +10,12 @@
 		6EA3D3F28780D6F57B8F6885 /* Pods_MyAsthmaAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E9423B10F166284DE9EE62 /* Pods_MyAsthmaAppTests.framework */; };
 		7A02C8C09346EF6B5394419A /* Pods_MyAsthmaAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA05D1FEDCC415AB5B4F307 /* Pods_MyAsthmaAppUITests.framework */; };
 		84057BDE2053500A0003CE35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84057BDD2053500A0003CE35 /* GoogleService-Info.plist */; };
+		840CEEC7207EDB93003486D3 /* GMCNumberSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */; };
 		84100021204EDF9000E90326 /* CareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8410001E204EDF7100E90326 /* CareKit.framework */; };
 		84100022204EDF9000E90326 /* CareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8410001E204EDF7100E90326 /* CareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8410002F204EE01800E90326 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8410002C204EE00F00E90326 /* ResearchKit.framework */; };
 		84100030204EE01800E90326 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8410002C204EE00F00E90326 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		841DBB3C207EED23006F9E0B /* DoctorMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DBB3B207EED23006F9E0B /* DoctorMainViewController.swift */; };
 		8426E2F8205E04AE001FD646 /* CarePlanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8426E2F7205E04AE001FD646 /* CarePlanData.swift */; };
 		84347FE6205074E800FEF667 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84347FE5205074E800FEF667 /* MainTabViewController.swift */; };
 		843A192B2058C6B5002280FD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A192A2058C6B5002280FD /* User.swift */; };
@@ -135,8 +137,10 @@
 		4DADF44F1E4BFA009EF0179B /* Pods_MyAsthmaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyAsthmaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70853904A18F4D39C44C6121 /* Pods-MyAsthmaAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAsthmaAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyAsthmaAppTests/Pods-MyAsthmaAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		84057BDD2053500A0003CE35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMCNumberSubmissionViewController.swift; sourceTree = "<group>"; };
 		84100017204EDF7000E90326 /* CareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CareKit.xcodeproj; path = ../../../../CareKit/carekit/CareKit.xcodeproj; sourceTree = "<group>"; };
 		84100025204EE00F00E90326 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../../../../ResearchKIt/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
+		841DBB3B207EED23006F9E0B /* DoctorMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorMainViewController.swift; sourceTree = "<group>"; };
 		8426E2F7205E04AE001FD646 /* CarePlanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlanData.swift; sourceTree = "<group>"; };
 		84347FE5205074E800FEF667 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		843A192A2058C6B5002280FD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -359,6 +363,8 @@
 				84B61CEF207E69EB00F522A4 /* AddAssessmentPickerDelegates.swift */,
 				84920B1D2072F558004E8498 /* AddNoteViewController.swift */,
 				84920B1F2072F8CC004E8498 /* EndActivityViewController.swift */,
+				840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */,
+				841DBB3B207EED23006F9E0B /* DoctorMainViewController.swift */,
 			);
 			path = MyAsthmaApp;
 			sourceTree = "<group>";
@@ -715,11 +721,13 @@
 				846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */,
 				846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */,
 				84A05352205DF9250025D039 /* BackPain.swift in Sources */,
+				841DBB3C207EED23006F9E0B /* DoctorMainViewController.swift in Sources */,
 				84347FE6205074E800FEF667 /* MainTabViewController.swift in Sources */,
 				845708A92050D228007B49A8 /* WelcomeViewController.swift in Sources */,
 				84B61CF0207E69EB00F522A4 /* AddAssessmentPickerDelegates.swift in Sources */,
 				843A192B2058C6B5002280FD /* User.swift in Sources */,
 				DEE91CC2204227340024F76C /* MyAsthmaApp.xcdatamodeld in Sources */,
+				840CEEC7207EDB93003486D3 /* GMCNumberSubmissionViewController.swift in Sources */,
 				DE7A099B2049B4FE005A1593 /* Blood Glucose.swift in Sources */,
 				848FC3B2205C890B008429EE /* BuildInsightsOperation.swift in Sources */,
 				84E17A372061F2290099631A /* ActivityBuilder.swift in Sources */,

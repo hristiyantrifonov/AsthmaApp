@@ -46,6 +46,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - SVProgressHUD (2.2.5)
+  - ZeroKit (5.0.0)
 
 DEPENDENCIES:
   - Firebase
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - Firebase/Database
   - KeychainSwift
   - SVProgressHUD
+  - ZeroKit
 
 SPEC CHECKSUMS:
   Firebase: c98c8b1fbcbdccd82539a36c2b17a9b1bb0ee798
@@ -67,7 +69,8 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  ZeroKit: 03f693327aab7d83e55bb93dbab4ed2e4c96ddad
 
-PODFILE CHECKSUM: 50f0d9a1d5c7a426a8644ff278b7b8b008aa8bd3
+PODFILE CHECKSUM: 67557aa863cbec3132c57d29f091152a5e479bd3
 
 COCOAPODS: 1.2.1
