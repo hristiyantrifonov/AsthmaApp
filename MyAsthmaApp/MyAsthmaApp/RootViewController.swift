@@ -207,7 +207,7 @@ extension RootViewController: ORKTaskViewControllerDelegate {
         print("THE COMPLETED EVENT: \(event)")
 
         //Create 'OCKCarePlanEvenResult' object to be saved into the Care Plan Store
-        let carePlanResultObject = buildResultForCarePlanEvent(event, taskResult: taskViewController.result, upperBound: event.activity.userInfo!["maxValue"] as! Int)
+       let carePlanResultObject = buildResultForCarePlanEvent(event, taskResult: taskViewController.result, upperBound: event.activity.userInfo!["maxValue"] as! Int)
 
         //If assessment compatible with HealthKit then create a sample to save in the HealthKit store
         if let healthBuilder = theActivity as? HealthSampleBuilder {

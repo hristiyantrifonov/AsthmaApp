@@ -257,7 +257,7 @@
         <!--Requests-->
         <scene sceneID="WLk-cv-Ofr">
             <objects>
-                <viewController id="GKH-Ux-y6d" sceneMemberID="viewController">
+                <viewController id="GKH-Ux-y6d" customClass="DoctorsRequestsTableViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dN7-oS-hox"/>
                         <viewControllerLayoutGuide type="bottom" id="xW8-5u-OHg"/>
@@ -309,7 +309,7 @@
         <!--Main-->
         <scene sceneID="alr-Bj-huo">
             <objects>
-                <viewController id="oIY-3T-WPW" sceneMemberID="viewController">
+                <viewController id="oIY-3T-WPW" customClass="DoctorMainViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lMo-bI-ixB"/>
                         <viewControllerLayoutGuide type="bottom" id="BxJ-iT-q6x"/>
@@ -329,21 +329,64 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIW-UA-xaK">
+                                        <rect key="frame" x="89" y="165" width="196" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="View Patients">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewPatientsClicked:" destination="oIY-3T-WPW" eventType="touchUpInside" id="gnS-D9-Dwj"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" id="tKN-CP-6Dl"/>
+                    <connections>
+                        <segue destination="xM0-6S-Gv9" kind="show" identifier="goToPatientRecord" id="iNY-Pa-EOR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozf-vd-49v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="543"/>
+            <point key="canvasLocation" x="-66.400000000000006" y="542.87856071964018"/>
         </scene>
-        <!--Doctor Main View Controller-->
+        <!--Doctors Patients Table View Controller-->
+        <scene sceneID="hDv-G5-g5H">
+            <objects>
+                <tableViewController id="xM0-6S-Gv9" customClass="DoctorsPatientsTableViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kIx-W5-0Ma">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="patientRecord" id="IpH-N5-LSO">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IpH-N5-LSO" id="FGb-B8-n8d">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xM0-6S-Gv9" id="MtS-P7-gHv"/>
+                            <outlet property="delegate" destination="xM0-6S-Gv9" id="ir8-bf-nA3"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M86-1X-Ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="700" y="543"/>
+        </scene>
+        <!--Doctor Root View Controller-->
         <scene sceneID="fi9-CW-bws">
             <objects>
-                <tabBarController id="drM-xg-1zJ" customClass="DoctorMainViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="drM-xg-1zJ" customClass="DoctorRootViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aVn-Gm-RGP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -562,6 +605,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="GMCNumberTextFIeld" destination="Bv1-01-ZuA" id="F0K-N7-lDh"/>
+                        <outlet property="forenameTextField" destination="aTb-Wo-Nbg" id="0gB-TP-kKW"/>
+                        <outlet property="passwordTextField" destination="NFI-iJ-LCF" id="b0p-m0-n8O"/>
+                        <outlet property="surnameTextField" destination="9cq-JS-1RO" id="oy7-ef-5Hc"/>
                         <segue destination="mLy-JS-Dgg" kind="show" identifier="goToConfiguration" id="7Se-eK-XwF"/>
                     </connections>
                 </viewController>
@@ -1671,6 +1718,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="MGS-kv-fjf"/>
-        <segue reference="fcV-TA-AhX"/>
+        <segue reference="FmJ-Hy-Kgc"/>
     </inferredMetricsTieBreakers>
 </document>

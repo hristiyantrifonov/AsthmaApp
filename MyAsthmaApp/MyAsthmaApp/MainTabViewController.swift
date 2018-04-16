@@ -36,6 +36,8 @@ class MainTabViewController: UIViewController {
         //obtains the users' values for displaying in the app
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             
+            print(snapshot.value)
+            
             let userObject = snapshot.value as? NSDictionary
             
             let forename = userObject?["Forename"] as? String ?? ""
