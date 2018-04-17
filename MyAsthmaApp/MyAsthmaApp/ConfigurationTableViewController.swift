@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ConfigurationTableViewController: UITableViewController {
     
@@ -20,6 +21,10 @@ class ConfigurationTableViewController: UITableViewController {
     @IBOutlet weak var messageLabel: UILabel!
     
     var success : Bool = false
+    
+    let userID = Auth.auth().currentUser?.uid
+    
+    let firebaseManager = FirebaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +109,29 @@ class ConfigurationTableViewController: UITableViewController {
     
     @IBAction func finishConfigurationButtonClicked(_ sender: Any) {
         print("Finish Configuration requested")
+    
+        firebaseManager.changeUserField(userID: self.userID!, key: "Profile_Configured", value: true)
+        
+        let configurationFinishedAlert = UIAlertController(title: "Configuration", message: "The configuration settings are set. You will be signed out in order to complete the process. Please log in to view your new action plan!", preferredStyle: UIAlertControllerStyle.alert)
+        
+        configurationFinishedAlert.addAction(UIAlertAction(title: "OK!", style: .default, handler: {
+            (action: UIAlertAction!) in
+            
+            do{
+                try Auth.auth().signOut()
+                print("Logged out")
+                self.performSegue(withIdentifier: "unwindToLoginWithSegue", sender: nil)
+                
+            }catch{
+                print("Could not logout user")
+            }
+            
+        }))
+        
+        present(configurationFinishedAlert, animated: true, completion: nil)
     }
     
-    
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
+        
+    }
 }

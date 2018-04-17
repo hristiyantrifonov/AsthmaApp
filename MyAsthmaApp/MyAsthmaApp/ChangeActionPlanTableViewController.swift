@@ -1,29 +1,20 @@
 //
-//  DoctorsPatientsTableViewController.swift
+//  ChangeActionPlanTableViewController.swift
 //  MyAsthmaApp
 //
-//  Created by user136629 on 4/16/18.
+//  Created by user136629 on 4/17/18.
 //  Copyright © 2018 Hristiyan Trifonov. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class DoctorsPatientsTableViewController: UITableViewController {
+class ChangeActionPlanTableViewController: UITableViewController {
     
-    let doctorUID = Auth.auth().currentUser?.uid
-    var ref: DatabaseReference!
-    var patientList : Array<Any> = []
+    let options = ["Add New Activity", "Add New Assessment", "Stop an Activity/Assessment"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ref = Database.database().reference()
-        print("Doctors' UID: \(doctorUID)")
-        
-        print("Patient List")
-        print(patientList)
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,8 +27,12 @@ class DoctorsPatientsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func doneClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -45,32 +40,28 @@ class DoctorsPatientsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return patientList.count
+        return options.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "patientRecord", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "changePlanOption", for: indexPath)
 
         // Configure the cell...
-        ref.child("users").child(patientList[indexPath.row] as! String).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let userObject = snapshot.value as! NSDictionary
-            
-            let forename = userObject["Forename"] as! String
-            let surname = userObject["Surname"] as! String
-            let email = userObject["Email"] as! String
-            
-            cell.textLabel?.text = "\(forename) \(surname)"
-            cell.detailTextLabel?.text = email
-            
-        });
-        
-
+        cell.textLabel?.text = options[indexPath.row]
 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Row selected: \(options[indexPath.row])")
+        
+        //Stop an Activity is selected
+        if indexPath.row == 2{
+            performSegue(withIdentifier: "goToEndActivityPage", sender: self)
+        }
+    }
+ 
 
     /*
     // Override to support conditional editing of the table view.

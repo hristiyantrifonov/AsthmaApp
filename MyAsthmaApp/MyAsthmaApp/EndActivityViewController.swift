@@ -144,7 +144,10 @@ class EndActivityViewController: UIViewController {
             }
         }
     }
+    
+    
     //MARK: - Helper Functions
+    
     
     func findAllActivitiesNames() {
         storeManager.myCarePlanStore.activities {
