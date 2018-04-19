@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EndActivityViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class EndActivityViewController: UIViewController {
     let todaysDate = Date()
     
     fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
+    let userID = Auth.auth().currentUser?.uid
+    var configurationStatus : Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,12 @@ class EndActivityViewController: UIViewController {
         findAllActivitiesNames()
         
         datePicker.isEnabled = false
+        
+        //Find out whether user profile has been configured or not and set the class variable
+        FirebaseManager().returnUserField(userID: self.userID!, key: "Profile_Configured", completion: { (value) in
+            print("status \(value))")
+            self.configurationStatus = value as! Bool
+        })
         
     }
     
@@ -112,37 +121,41 @@ class EndActivityViewController: UIViewController {
         let endDate = DateComponents(year: endDateYear, month: endDateMonth, day: endDateDay)
         print("End Date Chosen: \(endDate)")
         
-        storeManager.myCarePlanStore.activities {
-            (success, activitiesArray, error) in
-            
-            if success{
-                let identifier = self.selectedActivity.lowercased()
-                print("Identifier: \(identifier)")
-                
-                myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error) in
-                    if success {
-                        print("Found activity with identifier: \(identifier)")
-//                        chosenActivity?.schedule.setValue(endDate, forKey: "endDate")
-                        myCarePlanStore.setEndDate(endDate, for: chosenActivity!, completion: { (success, updatedActivity, error) in
-                            if success{
-                                print("successfully ended activity")
-                                
-                            }else{
-                                print("Could not update endDate")
-                            }
-                        })
-                        
-                        //TODO - CLOSE THE WINDOW 
-                        
-                    }else{
-                        print(error!)
-                    }
-                }
-                
-            }else{
-                print(error!)
-            }
-        }
+        
+        print("Configuration status: \(self.configurationStatus)")
+        
+        
+//        storeManager.myCarePlanStore.activities {
+//            (success, activitiesArray, error) in
+//
+//            if success{
+//                let identifier = self.selectedActivity.lowercased()
+//                print("Identifier: \(identifier)")
+//
+//                myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error) in
+//                    if success {
+//                        print("Found activity with identifier: \(identifier)")
+//
+//                        myCarePlanStore.setEndDate(endDate, for: chosenActivity!, completion: { (success, updatedActivity, error) in
+//                            if success{
+//                                print("successfully ended activity")
+//
+//                            }else{
+//                                print("Could not update endDate")
+//                            }
+//                        })
+//
+//                        //TODO - CLOSE THE WINDOW
+//
+//                    }else{
+//                        print(error!)
+//                    }
+//                }
+//
+//            }else{
+//                print(error!)
+//            }
+//        }
     }
     
     

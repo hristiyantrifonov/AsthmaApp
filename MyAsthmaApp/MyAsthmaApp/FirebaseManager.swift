@@ -12,9 +12,11 @@ import Firebase
 class FirebaseManager {
     
     var ref: DatabaseReference!
+    var userFieldValue : Any?
     
     init() {
         ref = Database.database().reference()
+        userFieldValue = nil
     }
     
     func changeUserField(userID : String, key : String, value : Any){
@@ -28,25 +30,26 @@ class FirebaseManager {
         })
     }
     
-    func returnUserField(userID : String, key : String) -> Any {
-        
-        var valueToBeReturned : (Any)? = nil
+    typealias Value = (Any?) -> Void
+    
+    func returnUserField(userID : String, key : String, completion : @escaping Value) {
         
         ref.child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
             let userObject = snapshot.value as? NSDictionary
             
             let fieldValue = userObject![key]
-            print("this")
-            print(fieldValue)
-            valueToBeReturned = fieldValue
-            print("now")
-            print(fieldValue)
-            print(valueToBeReturned)
             
-            
+            if fieldValue == nil{
+                completion(nil)
+            }else{
+                completion(fieldValue)
+            }
         })
+    }
+    
+    //TODO this will be used for making requests
+    func makeAlteringRequest(){
         
-        return valueToBeReturned
     }
     
     
