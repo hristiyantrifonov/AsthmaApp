@@ -1,18 +1,21 @@
 //
-//  DoctorRootViewController.swift
+//  RequestReviewViewController.swift
 //  MyAsthmaApp
 //
-//  Created by user136629 on 4/16/18.
+//  Created by user136629 on 4/20/18.
 //  Copyright © 2018 Hristiyan Trifonov. All rights reserved.
 //
 
 import UIKit
 
-class DoctorRootViewController: UITabBarController {
-
+class RequestReviewViewController: UIViewController {
+    
+    var requestID : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Page for review of request \(requestID)")
         // Do any additional setup after loading the view.
     }
 
@@ -21,13 +24,7 @@ class DoctorRootViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print("Selected item")
-        print(item)
-        print(item.tag)
-    }
-    
+
     /*
     // MARK: - Navigation
 
