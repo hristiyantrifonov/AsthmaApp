@@ -100,8 +100,8 @@ class EndActivityViewController: UIViewController {
         let myCarePlanStore = storeManager.myCarePlanStore
         
         var endDateDay : Int,
-            endDateMonth: Int,
-            endDateYear: Int
+        endDateMonth: Int,
+        endDateYear: Int
         
         //If date picker view is enabled then user wants to specify custom date
         //and we obtain the values from the picker
@@ -143,42 +143,42 @@ class EndActivityViewController: UIViewController {
                 }
             }
         }else{
-            //        storeManager.myCarePlanStore.activities {
-            //            (success, activitiesArray, error) in
-            //
-            //            if success{
-            //                let identifier = self.selectedActivity.lowercased()
-            //                print("Identifier: \(identifier)")
-            //
-            //                myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error) in
-            //                    if success {
-            //                        print("Found activity with identifier: \(identifier)")
-            //
-            //                        myCarePlanStore.setEndDate(endDate, for: chosenActivity!, completion: { (success, updatedActivity, error) in
-            //                            if success{
-            //                                print("successfully ended activity")
-            //
-            //                            }else{
-            //                                print("Could not update endDate")
-            //                            }
-            //                        })
-            //
-            //                        //TODO - CLOSE THE WINDOW
-            //
-            //                    }else{
-            //                        print(error!)
-            //                    }
-            //                }
-            //
-            //            }else{
-            //                print(error!)
-            //            }
-            //        }
+//            storeManager.myCarePlanStore.activities {
+//                (success, activitiesArray, error) in
+//                
+//                if success{
+//                    let identifier = self.selectedActivity.lowercased()
+//                    print("Identifier: \(identifier)")
+//                    
+//                    myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error) in
+//                        if success {
+//                            print("Found activity with identifier: \(identifier)")
+//                            
+//                            myCarePlanStore.setEndDate(endDate, for: chosenActivity!, completion: { (success, updatedActivity, error) in
+//                                if success{
+//                                    print("successfully ended activity")
+//                                    
+//                                }else{
+//                                    print("Could not update endDate")
+//                                }
+//                            })
+//                            
+//                            //TODO - CLOSE THE WINDOW
+//                            
+//                        }else{
+//                            print(error!)
+//                        }
+//                    }
+//                    
+//                }else{
+//                    print(error!)
+//                }
+//            }
         }
         
         
         
-
+        
     }
     
     

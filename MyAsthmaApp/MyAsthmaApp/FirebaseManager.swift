@@ -154,7 +154,7 @@ class FirebaseManager {
     }
     
     /*
-        Returns whether the request has been approved/rejected or is on pending
+     Returns whether the request has been approved/rejected or is on pending
      */
     func getRequestStatus(requestID : String, completion : @escaping Value){
         ref.child("requests").child(requestID).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -167,6 +167,44 @@ class FirebaseManager {
             }else{
                 completion(nil)
             }
+        })
+    }
+    
+    func getPatientField(patientID : String, completion : @escaping Value){
+        ref.child("users").child(patientID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let patient = snapshot.value as? NSDictionary
+            
+            if patient != nil{
+                completion(patient)
+            }else{
+                completion(nil)
+            }
+        })
+    }
+    
+    func getRequestFields(requestID : String, completion : @escaping Value){
+        
+        ref.child("requests").child(requestID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let request = snapshot.value as? NSDictionary
+            
+            if request != nil{
+                completion(request)
+            }else{
+                completion(nil)
+            }
+        })
+    }
+    
+    func changeRequestAuthorisationStatus(requestID : String, authorisation : Bool){
+        ref.child("requests").child(requestID).observeSingleEvent(of: .value, with: { (snapshot) in
+            let requestObject = snapshot.value as! NSDictionary
+            
+            requestObject.setValue(authorisation, forKey: "Authorised")
+            requestObject.setValue(true, forKey: "Reviewed")
+            
+            self.ref.child("requests").child(requestID).setValue(requestObject)
         })
     }
     
