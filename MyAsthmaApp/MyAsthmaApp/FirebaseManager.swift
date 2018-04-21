@@ -170,7 +170,11 @@ class FirebaseManager {
         })
     }
     
-    func getPatientField(patientID : String, completion : @escaping Value){
+    /*
+        Returns the patient's profile with all its fields
+    */
+    
+    func getPatientFields(patientID : String, completion : @escaping Value){
         ref.child("users").child(patientID).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let patient = snapshot.value as? NSDictionary
@@ -182,6 +186,10 @@ class FirebaseManager {
             }
         })
     }
+    
+    /*
+        Returns the request db object with all its fields
+     */
     
     func getRequestFields(requestID : String, completion : @escaping Value){
         
@@ -197,6 +205,10 @@ class FirebaseManager {
         })
     }
     
+    /*
+        Sets the decision made by the doctor whether to allow change or not
+     */
+    
     func changeRequestAuthorisationStatus(requestID : String, authorisation : Bool){
         ref.child("requests").child(requestID).observeSingleEvent(of: .value, with: { (snapshot) in
             let requestObject = snapshot.value as! NSDictionary
@@ -209,5 +221,10 @@ class FirebaseManager {
     }
     
     
+    func removeRequest(requestID : String){
+        ref.child("requests").child(requestID).removeValue { error, _ in
+            print(error)
+        }
+    }
     
 }

@@ -118,8 +118,9 @@ class EndActivityViewController: UIViewController {
         }
         
         //The date at which the activity will be ended
-        let endDate = DateComponents(year: endDateYear, month: endDateMonth, day: endDateDay)
-        print("End Date Chosen: \(endDate)")
+        //THIS/////////////////////
+        //        let endDate = DateComponents(year: endDateYear, month: endDateMonth, day: endDateDay)
+        //        print("End Date Chosen: \(endDate)")
         
         
         print("Configuration status: \(self.configurationStatus)")
@@ -143,42 +144,13 @@ class EndActivityViewController: UIViewController {
                 }
             }
         }else{
-//            storeManager.myCarePlanStore.activities {
-//                (success, activitiesArray, error) in
-//                
-//                if success{
-//                    let identifier = self.selectedActivity.lowercased()
-//                    print("Identifier: \(identifier)")
-//                    
-//                    myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error) in
-//                        if success {
-//                            print("Found activity with identifier: \(identifier)")
-//                            
-//                            myCarePlanStore.setEndDate(endDate, for: chosenActivity!, completion: { (success, updatedActivity, error) in
-//                                if success{
-//                                    print("successfully ended activity")
-//                                    
-//                                }else{
-//                                    print("Could not update endDate")
-//                                }
-//                            })
-//                            
-//                            //TODO - CLOSE THE WINDOW
-//                            
-//                        }else{
-//                            print(error!)
-//                        }
-//                    }
-//                    
-//                }else{
-//                    print(error!)
-//                }
-//            }
+            
+            ActionPlanAlteringManager().endActivity(withIdentifier: self.selectedActivity.lowercased(),endDay: endDateDay, endMonth: endDateMonth, endYear: endDateYear, completion: {
+                    (success) in
+                print("Action Plan Altering - \(success)")
+            })
+            
         }
-        
-        
-        
-        
     }
     
     

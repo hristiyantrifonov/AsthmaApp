@@ -112,7 +112,7 @@ extension DoctorRequestsViewController: UITableViewDataSource {
             let patientID = self.requestFields["Patient"] as? String ?? ""
             
             //Find the patient profile from database
-            FirebaseManager().getPatientField(patientID: patientID, completion: {
+            FirebaseManager().getPatientFields(patientID: patientID, completion: {
                 (patientProfile) in
                 
                 self.patientFields = patientProfile as! NSDictionary

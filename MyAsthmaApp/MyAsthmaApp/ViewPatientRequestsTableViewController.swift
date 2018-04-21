@@ -21,6 +21,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
     
     var userID = Auth.auth().currentUser?.uid
     var requests : Array<Any> = []
+    var selectedRequestID : String!
     
     @IBOutlet weak var finaliseChangesButton: UIButton!
     
@@ -104,7 +105,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
         print("Selected \(indexPath.row)")
         
         let selectedCell = tableView.cellForRow(at: indexPath) as! PatientSideRequestCell
-        let requestID = requests[indexPath.row]
+        self.selectedRequestID = requests[indexPath.row] as! String
         let status = selectedCell.statusLabel?.text
         
         if status == "Pending"{
@@ -118,6 +119,42 @@ class ViewPatientRequestsTableViewController: UITableViewController {
     
     @IBAction func finaliseChangesClicked(_ sender: Any) {
         print("Finalise Changes Clicked")
+        print("For request : \(self.selectedRequestID)")
+        
+        FirebaseManager().getRequestFields(requestID: self.selectedRequestID) {
+            (requestFields) in
+            
+            let requestObject = requestFields as! NSDictionary
+            
+            let requestIdentifier = requestObject["Identifier"] as! String
+            let parametersObject = requestObject["Parameters"] as! NSDictionary
+            
+            //Here we see the identifier of the request and do different things depending on it
+            if requestIdentifier == "End Activity"{
+                //Distribute parameters for End Activity Altering Action
+                let targetActivityIdentifier = parametersObject["Target"] as! String
+                let endDay = parametersObject["End-Day"] as! Int
+                let endMonth = parametersObject["End-Month"] as! Int
+                let endYear = parametersObject["End-Year"] as! Int
+                
+                //Perform the actions
+                ActionPlanAlteringManager().endActivity(withIdentifier: targetActivityIdentifier, endDay: endDay, endMonth: endMonth, endYear: endYear, completion: { (success) in
+                    print("Action Plan Altering - \(success) (End Activity)")
+                    
+                    FirebaseManager().removeRequest(requestID: self.selectedRequestID)
+                    //Return to main menu
+                    //TODO - useful to pass back some message of success
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                })
+            }else{
+                //TODO add the other activities options functionality here - Add Activity / Add Assessment
+            }
+            
+        }
+        
     }
  
 

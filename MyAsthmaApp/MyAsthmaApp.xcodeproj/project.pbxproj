@@ -32,6 +32,7 @@
 		846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */; };
 		846CA364204F7CFA00AADA1A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846CA363204F7CFA00AADA1A /* HealthKit.framework */; };
 		84723122207252860001582F /* ConfigurationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84723121207252860001582F /* ConfigurationTableViewController.swift */; };
+		8482C2F4208AA76300D2EDDF /* ActionPlanAlteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */; };
 		848FC3B2205C890B008429EE /* BuildInsightsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FC3B1205C890B008429EE /* BuildInsightsOperation.swift */; };
 		84920B162072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84920B152072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift */; };
 		84920B1C2072F53C004E8498 /* AddAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84920B1B2072F53C004E8498 /* AddAssessmentViewController.swift */; };
@@ -164,6 +165,7 @@
 		846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		846CA363204F7CFA00AADA1A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		84723121207252860001582F /* ConfigurationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewController.swift; sourceTree = "<group>"; };
+		8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPlanAlteringManager.swift; sourceTree = "<group>"; };
 		848FC3B1205C890B008429EE /* BuildInsightsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInsightsOperation.swift; sourceTree = "<group>"; };
 		84920B152072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDoctorCredentialsViewController.swift; sourceTree = "<group>"; };
 		84920B1B2072F53C004E8498 /* AddAssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssessmentViewController.swift; sourceTree = "<group>"; };
@@ -390,10 +392,11 @@
 				84920B1D2072F558004E8498 /* AddNoteViewController.swift */,
 				84920B1F2072F8CC004E8498 /* EndActivityViewController.swift */,
 				840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */,
+				84F7E7A0208965F1004AB137 /* ViewPatientRequestsTableViewController.swift */,
 				843FED1120852AA100D5ED84 /* Doctor's Interface Side */,
 				8446D2E120868D4600BFFE30 /* FirebaseManager.swift */,
+				8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */,
 				8446D2E72086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift */,
-				84F7E7A0208965F1004AB137 /* ViewPatientRequestsTableViewController.swift */,
 			);
 			path = MyAsthmaApp;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				DEB2BA9920470FFE009D60B5 /* Activity.swift in Sources */,
 				845708AB2050D431007B49A8 /* LoginViewController.swift in Sources */,
 				DE1E33ED2042394E000E07F7 /* CarePlanStoreManager.swift in Sources */,
+				8482C2F4208AA76300D2EDDF /* ActionPlanAlteringManager.swift in Sources */,
 				DE7A099220499C27005A1593 /* TakeNurofen.swift in Sources */,
 				843FED0A2085260700D5ED84 /* DoctorsPatientsTableViewController.swift in Sources */,
 				DE7A09992049B251005A1593 /* Assessment.swift in Sources */,
