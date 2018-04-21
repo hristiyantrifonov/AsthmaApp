@@ -58,7 +58,33 @@ class ActionPlanAlteringManager {
     }
     
     //TODO
-    func addActivity() {
+    func addActivity(inputTitle : String, inputSummary : String, inputInstructions : String ,
+                     inputGroupdIdentifier : String, schedule : [Int], optionalChosen : Bool, completion : @escaping Value) {
+        
+        let myCarePlanStore = storeManager.myCarePlanStore
+        
+        let activityBuilder = ActivityBuilder()
+        
+        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: inputInstructions, groupIdentifier: "\(inputGroupdIdentifier)")
+        
+        let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: schedule)
+        
+        let activity = activityBuilder.createInterventionActivity(schedule: chosenSchedule, optionality: optionalChosen)
+        myCarePlanStore.add(activity) {
+            (success, error) in
+            if error != nil  {
+                print("Error adding an activity \(error!)")
+            }
+            else{
+                print("Activity successfully added")
+//                self.successAddition = true
+//                DispatchQueue.main.async { //Because the navigation controller must be updated from the main thread
+//                    self.navigationController?.popViewController(animated: true)
+//                    self.dismiss(animated: true, completion: nil)
+//                    
+//                }
+            }
+        }
         
     }
     

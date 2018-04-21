@@ -9,6 +9,7 @@
 import UIKit
 import CareKit
 import ResearchKit
+import Firebase
 
 class AddAssessmentViewController: UIViewController {
     
@@ -47,10 +48,13 @@ class AddAssessmentViewController: UIViewController {
     let unitPickerDelegate = UnitTypePickerDelegate()
     
     
+    //MARK - Firebase Properties
+    let userID = Auth.auth().currentUser?.uid
+    //Users profile configuration
+    var configurationStatus : Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         //Style the Done button
         doneButton?.layer.cornerRadius = 5
@@ -60,14 +64,17 @@ class AddAssessmentViewController: UIViewController {
         scaleAssessmentPanel.isHidden = false
         quantityAssessmentPanel.isHidden = true
         
-        
-        
         //We use two sepaatee classes in order to manage correctly the
         //functionality of the two picker views in this view
         categoryTypePickerView.delegate = categoryPickerDelegate
         categoryTypePickerView.dataSource = categoryPickerDelegate
         unitPickerView.delegate = unitPickerDelegate
         unitPickerView.dataSource = unitPickerDelegate
+        
+        FirebaseManager().returnUserField(userID: self.userID!, key: "Profile_Configured", completion: { (value) in
+            print("status \(value))")
+            self.configurationStatus = value as! Bool
+        })
     }
     
     override func didReceiveMemoryWarning() {

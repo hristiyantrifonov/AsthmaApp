@@ -130,7 +130,37 @@ class ViewPatientRequestsTableViewController: UITableViewController {
             let parametersObject = requestObject["Parameters"] as! NSDictionary
             
             //Here we see the identifier of the request and do different things depending on it
-            if requestIdentifier == "End Activity"{
+            if requestIdentifier == "Add Activity"{
+                //Distribute parameters for Add Activity Altering Action
+                let activityTitle = parametersObject["Title"] as! String
+                let activitySummary = parametersObject["Summary"] as! String
+                let activityInstructions = parametersObject["Instructions"] as! String
+                let activityGroupIdentifier = parametersObject["Group-Identifier"] as! String
+                
+                let scheduleObject = parametersObject["Schedule"] as! NSArray
+                print("SCHEDULEEE \(scheduleObject)")
+                
+                let activitySchedule = scheduleObject as! [Int]
+                
+//                let activitySchedule = [su,mo,tu,we,th,fr,sa]
+                let optionalityChosen = parametersObject["Optionality"] as! Bool
+                
+                //Perform the Action
+                ActionPlanAlteringManager().addActivity(inputTitle: activityTitle, inputSummary: activitySummary, inputInstructions: activityInstructions, inputGroupdIdentifier: activityGroupIdentifier, schedule: activitySchedule, optionalChosen: optionalityChosen, completion: {
+                    (success) in
+                    
+                    FirebaseManager().removeRequest(requestID: self.selectedRequestID)
+                    //Return to main menu
+                    //TODO - useful to pass back some message of success
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                })
+                
+            }
+            else if requestIdentifier == "End Activity"{
                 //Distribute parameters for End Activity Altering Action
                 let targetActivityIdentifier = parametersObject["Target"] as! String
                 let endDay = parametersObject["End-Day"] as! Int

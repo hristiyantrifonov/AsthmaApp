@@ -52,10 +52,13 @@ class FirebaseManager {
         
         print(parameters)
         
-        if requestIdentifier == "End Activity"{
-            ref.child("requests").childByAutoId().setValue(["Identifier" : requestIdentifier, "Patient" : patientID, "Doctor" : doctorID,
-                                                            "Authorised" : false, "Parameters" :
-                                                                (["Target" : parameters[0], "End-Day" : parameters[1], "End-Month" : parameters[2], "End-Year" : parameters[3] ]) ])
+        if requestIdentifier == "Add Activity"{
+            ref.child("requests").childByAutoId().setValue(["Identifier" : requestIdentifier, "Patient" : patientID, "Doctor" : doctorID, "Authorised" : false, "Parameters" :
+                (["Title" : parameters[0], "Summary" : parameters[1], "Instructions" : parameters[2], "Group-Identifier" : parameters[3], "Schedule" : parameters[4], "Optionality" : parameters[5] ]) ])
+        }
+        else if requestIdentifier == "End Activity"{
+            ref.child("requests").childByAutoId().setValue(["Identifier" : requestIdentifier, "Patient" : patientID, "Doctor" : doctorID, "Authorised" : false, "Parameters" :
+                                                            (["Target" : parameters[0], "End-Day" : parameters[1], "End-Month" : parameters[2], "End-Year" : parameters[3] ]) ])
         }
         
     }

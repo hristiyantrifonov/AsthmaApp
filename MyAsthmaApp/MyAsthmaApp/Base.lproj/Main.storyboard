@@ -877,6 +877,8 @@
                     </navigationItem>
                     <connections>
                         <segue destination="afO-1T-YzH" kind="show" identifier="goToEndActivityPage" id="IXB-dX-etx"/>
+                        <segue destination="G4e-OC-b2w" kind="show" identifier="goToAddAssessment" id="RaX-ho-l6N"/>
+                        <segue destination="Vin-mf-bZm" kind="show" identifier="goToAddActivity" id="Z1V-XS-UEU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEF-Vo-hCM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1994,6 +1996,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="MGS-kv-fjf"/>
+        <segue reference="Z1V-XS-UEU"/>
+        <segue reference="RaX-ho-l6N"/>
         <segue reference="fcV-TA-AhX"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 
 class AddActivitiesViewController: UIViewController {
     
@@ -55,6 +55,11 @@ class AddActivitiesViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var submitAndAddAnotherButton: UIButton!
     
+    //MARK - Firebase Properties
+    
+    let userID = Auth.auth().currentUser?.uid
+    //Users profile configuration
+    var configurationStatus : Bool = true 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +98,11 @@ class AddActivitiesViewController: UIViewController {
         
         
         findCurrentActivityGroupIdentifiers()
+        
+        FirebaseManager().returnUserField(userID: self.userID!, key: "Profile_Configured", completion: { (value) in
+            print("status \(value))")
+            self.configurationStatus = value as! Bool
+        })
         
         
     }
@@ -158,33 +168,63 @@ class AddActivitiesViewController: UIViewController {
         print(schedule)
         print(inputTitle, inputSummary, inputInstructions, "\(inputGroupIdentifier)", schedule, self.optionalChosen)
         
-        //Adding the activity with the specified parameters
-        let myCarePlanStore = storeManager.myCarePlanStore
+        print("Configuration status: \(self.configurationStatus)")
         
-        
+        //If configuration have been finished on this profile
+        if self.configurationStatus == true{
             
-            let activityBuilder = ActivityBuilder()
-            
-            activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: inputInstructions, groupIdentifier: "\(inputGroupIdentifier)")
-            
-            let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: schedule)
-            
-            let activity = activityBuilder.createInterventionActivity(schedule: chosenSchedule, optionality: self.optionalChosen)
-            myCarePlanStore.add(activity) {
-                (success, error) in
-                if error != nil  {
-                    print("Error adding an activity \(error!)")
-                }
-                else{
-                    print("Activity successfully added")
-                    self.successAddition = true
-                    DispatchQueue.main.async { //Because the navigation controller must be updated from the main thread
-                        self.navigationController?.popViewController(animated: true)
-                        self.dismiss(animated: true, completion: nil)
-
-                    }
+            //We try to find patients doctor
+            FirebaseManager().findPatientDoctor(patientID: userID!) {
+                (doctor) in
+                
+                //If we find a doctor
+                if doctor != nil{
+                    
+                    print("Found Doctor")
+                    //We send a request for his/her approval
+                    FirebaseManager().makeAlteringRequest(fromPatient: self.userID!, toDoctor: doctor as! String, requestIdentifier: "Add Activity",
+                                                          parameters: [inputTitle, inputSummary, inputInstructions, inputGroupIdentifier, schedule, self.optionalChosen])
+                    
+                    
+                }else{
+                    print("You do not have a profile-linked doctor.")
                 }
             }
+        }else{
+            
+            ActionPlanAlteringManager().addActivity(inputTitle: inputTitle, inputSummary: inputSummary, inputInstructions: inputInstructions, inputGroupdIdentifier: inputGroupIdentifier, schedule: schedule, optionalChosen: self.optionalChosen, completion: {
+                (success) in
+                print("Action Plan Altering - \(success) (for Adding Activity)")
+                
+            })
+            
+        }
+        
+        //Adding the activity with the specified parameters
+//        let myCarePlanStore = storeManager.myCarePlanStore
+//
+//        let activityBuilder = ActivityBuilder()
+//
+//        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: inputInstructions, groupIdentifier: "\(inputGroupIdentifier)")
+//
+//        let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: schedule)
+//
+//        let activity = activityBuilder.createInterventionActivity(schedule: chosenSchedule, optionality: self.optionalChosen)
+//        myCarePlanStore.add(activity) {
+//            (success, error) in
+//            if error != nil  {
+//                print("Error adding an activity \(error!)")
+//            }
+//            else{
+//                print("Activity successfully added")
+//                self.successAddition = true
+//                DispatchQueue.main.async { //Because the navigation controller must be updated from the main thread
+//                    self.navigationController?.popViewController(animated: true)
+//                    self.dismiss(animated: true, completion: nil)
+//
+//                }
+//            }
+//        }
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {

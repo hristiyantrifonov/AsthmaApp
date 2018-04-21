@@ -56,8 +56,11 @@ class ChangeActionPlanTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Row selected: \(options[indexPath.row])")
         
-        //Stop an Activity is selected
-        if indexPath.row == 2{
+        if indexPath.row == 0{
+            performSegue(withIdentifier: "goToAddActivity", sender: self)
+        }else if indexPath.row == 1{
+            performSegue(withIdentifier: "goToAddAssessment", sender: self)
+        }else{ //Stop an Activity is selected
             performSegue(withIdentifier: "goToEndActivityPage", sender: self)
         }
     }

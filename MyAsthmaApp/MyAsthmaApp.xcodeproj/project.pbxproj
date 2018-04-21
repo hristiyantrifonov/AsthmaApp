@@ -377,7 +377,6 @@
 				8426E2F7205E04AE001FD646 /* CarePlanData.swift */,
 				84723121207252860001582F /* ConfigurationTableViewController.swift */,
 				84920B152072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift */,
-				84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */,
 				84A7D63420530BD4003343D1 /* Main.storyboard */,
 				DEE91CC3204227350024F76C /* Assets.xcassets */,
 				DEE91CC5204227350024F76C /* LaunchScreen.storyboard */,
@@ -387,16 +386,17 @@
 				84057BDF205350160003CE35 /* Supporting files */,
 				DEB2BA9C204710F3009D60B5 /* Activities */,
 				DE7A09972049B234005A1593 /* Assessments */,
+				84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */,
 				84920B1B2072F53C004E8498 /* AddAssessmentViewController.swift */,
 				84B61CEF207E69EB00F522A4 /* AddAssessmentPickerDelegates.swift */,
 				84920B1D2072F558004E8498 /* AddNoteViewController.swift */,
 				84920B1F2072F8CC004E8498 /* EndActivityViewController.swift */,
 				840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */,
-				84F7E7A0208965F1004AB137 /* ViewPatientRequestsTableViewController.swift */,
 				843FED1120852AA100D5ED84 /* Doctor's Interface Side */,
 				8446D2E120868D4600BFFE30 /* FirebaseManager.swift */,
 				8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */,
 				8446D2E72086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift */,
+				84F7E7A0208965F1004AB137 /* ViewPatientRequestsTableViewController.swift */,
 			);
 			path = MyAsthmaApp;
 			sourceTree = "<group>";
