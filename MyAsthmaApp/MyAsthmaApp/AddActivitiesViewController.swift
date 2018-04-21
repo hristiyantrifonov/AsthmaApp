@@ -194,6 +194,7 @@ class AddActivitiesViewController: UIViewController {
             
             ActionPlanAlteringManager().addActivity(inputTitle: inputTitle, inputSummary: inputSummary, inputInstructions: inputInstructions, inputGroupdIdentifier: inputGroupIdentifier, schedule: schedule, optionalChosen: self.optionalChosen, completion: {
                 (success) in
+                self.successAddition = true
                 print("Action Plan Altering - \(success) (for Adding Activity)")
                 
             })

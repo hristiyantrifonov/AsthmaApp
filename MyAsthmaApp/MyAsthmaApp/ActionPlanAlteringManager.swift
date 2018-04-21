@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CareKit
 
 class ActionPlanAlteringManager {
     
@@ -57,7 +58,7 @@ class ActionPlanAlteringManager {
         }
     }
     
-    //TODO
+    
     func addActivity(inputTitle : String, inputSummary : String, inputInstructions : String ,
                      inputGroupdIdentifier : String, schedule : [Int], optionalChosen : Bool, completion : @escaping Value) {
         
@@ -74,23 +75,85 @@ class ActionPlanAlteringManager {
             (success, error) in
             if error != nil  {
                 print("Error adding an activity \(error!)")
+                completion(false)
             }
             else{
                 print("Activity successfully added")
-//                self.successAddition = true
-//                DispatchQueue.main.async { //Because the navigation controller must be updated from the main thread
-//                    self.navigationController?.popViewController(animated: true)
-//                    self.dismiss(animated: true, completion: nil)
-//                    
-//                }
+                completion(true)
+                //                self.successAddition = true
+                //                DispatchQueue.main.async { //Because the navigation controller must be updated from the main thread
+                //                    self.navigationController?.popViewController(animated: true)
+                //                    self.dismiss(animated: true, completion: nil)
+                //
+                //                }
             }
         }
         
     }
     
     //TODO
-    func addAssessment(){
+    func addScaleAssessment(inputTitle : String, inputSummary : String, scaleAssessmentDescription : String, selectedMaxValue : Int, selectedMinValue : Int,
+                            optionalityChosen : Bool, completion: @escaping Value){
+        
+        let myCarePlanStore = storeManager.myCarePlanStore
+        
+        let activityBuilder = ActivityBuilder()
+        
+        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: "", groupIdentifier: "")
+        
+        let activity: OCKCarePlanActivity
+        
+        activity = activityBuilder.createAssessmentActivity(assessmentType: .scaleAssessment, assessmentDescription: scaleAssessmentDescription, maxValue: selectedMaxValue, minValue: selectedMinValue, optionality: optionalityChosen)
+        
+        
+        myCarePlanStore.add(activity) {
+            (success, error) in
+            if error != nil  {
+                print("Error adding the assessment activity \(error!)")
+                completion(false)
+            }
+            else{
+                print("Scale Assessment Activity successfully added")
+                completion(true)
+                //                DispatchQueue.main.async { //Because we need to update these from the main thread not background one
+                //                    self.navigationController?.popViewController(animated: true)
+                //                    self.dismiss(animated: true, completion: nil)
+                //
+                //                }
+                
+            }
+        }
+    }
+    
+    func addQuantityAssessment(inputTitle : String, inputSummary : String, quantityAssessmentDesciption : String, quantityAssessmentTypeIdentifier : HKQuantityTypeIdentifier,
+                               optionalityChosen : Bool, completion: @escaping Value){
+        
+        let myCarePlanStore = storeManager.myCarePlanStore
+        
+        let activityBuilder = ActivityBuilder()
+        
+        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: "", groupIdentifier: "")
+        
+        let activity: OCKCarePlanActivity
+        
+        activity = activityBuilder.createAssessmentActivity(assessmentType: .quantityAssessment, assessmentDescription: quantityAssessmentDesciption, quantityTypeIdentifier: quantityAssessmentTypeIdentifier, unit: "mg/dL", optionality: optionalityChosen)
+        
+        
+        myCarePlanStore.add(activity) {
+            (success, error) in
+            if error != nil  {
+                print("Error adding the assessment activity \(error!)")
+                completion(false)
+            }
+            else{
+                print("Quantity Assessment Activity successfully added")
+                completion(true)
+                
+                
+            }
+        }
         
     }
+    
     
 }

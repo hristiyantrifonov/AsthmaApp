@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CareKit
 
 class PatientSideRequestCell: UITableViewCell {
     
@@ -42,7 +43,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
         }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -63,21 +64,21 @@ class ViewPatientRequestsTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return requests.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "patientSideRequestCell", for: indexPath) as! PatientSideRequestCell
-
+        
         // Configure the cell...
         let requestID = requests[indexPath.row]
         cell.descriptionLabel?.text = requestID as! String
@@ -96,8 +97,8 @@ class ViewPatientRequestsTableViewController: UITableViewController {
             
         }
         
-//        cell.submitButton.tag = indexPath.row
-
+        //        cell.submitButton.tag = indexPath.row
+        
         return cell
     }
     
@@ -114,7 +115,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
         else if status == "Authorised"{
             enableSubmitButton()
         }
-
+        
     }
     
     @IBAction func finaliseChangesClicked(_ sender: Any) {
@@ -131,6 +132,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
             
             //Here we see the identifier of the request and do different things depending on it
             if requestIdentifier == "Add Activity"{
+                
                 //Distribute parameters for Add Activity Altering Action
                 let activityTitle = parametersObject["Title"] as! String
                 let activitySummary = parametersObject["Summary"] as! String
@@ -142,7 +144,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
                 
                 let activitySchedule = scheduleObject as! [Int]
                 
-//                let activitySchedule = [su,mo,tu,we,th,fr,sa]
+                //                let activitySchedule = [su,mo,tu,we,th,fr,sa]
                 let optionalityChosen = parametersObject["Optionality"] as! Bool
                 
                 //Perform the Action
@@ -152,6 +154,53 @@ class ViewPatientRequestsTableViewController: UITableViewController {
                     FirebaseManager().removeRequest(requestID: self.selectedRequestID)
                     //Return to main menu
                     //TODO - useful to pass back some message of success
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                })
+                
+            }
+            else if requestIdentifier == "Add Scale Assessment"{
+                
+                let activityTitle = parametersObject["Title"] as! String
+                let activitySummary = parametersObject["Summary"] as! String
+                let activityDescription = parametersObject["Description"] as! String
+                let assessmentMaxValue = parametersObject["Max"] as! Int
+                let assessmentMinValue = parametersObject["Min"] as! Int
+                let optionalityChosen = parametersObject["Optionality"] as! Bool
+                
+                ActionPlanAlteringManager().addScaleAssessment(inputTitle: activityTitle, inputSummary: activitySummary, scaleAssessmentDescription: activityDescription,
+                    selectedMaxValue: assessmentMaxValue, selectedMinValue: assessmentMinValue, optionalityChosen: optionalityChosen, completion: {
+                    (success) in
+                                                                
+                    FirebaseManager().removeRequest(requestID: self.selectedRequestID)
+                                                                
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                })
+                
+                
+            }
+            else if requestIdentifier == "Add Quantity Assessment"{
+                
+                let activityTitle = parametersObject["Title"] as! String
+                let activitySummary = parametersObject["Summary"] as! String
+                let activityDescription = parametersObject["Description"] as! String
+                let rawAssessmentTypeCategoryValue = parametersObject["Type-Category"] as! String
+                let rawAssessmentUnit = parametersObject["Unit"] as! String
+                let optionalityChosen = parametersObject["Optionality"] as! Bool
+                
+                let assessmentTypeCategory = self.determineQuantityTypeIdentifier(selection: rawAssessmentTypeCategoryValue)
+                
+                ActionPlanAlteringManager().addQuantityAssessment(inputTitle: activityTitle, inputSummary: activitySummary, quantityAssessmentDesciption: activityDescription, quantityAssessmentTypeIdentifier: assessmentTypeCategory, optionalityChosen: optionalityChosen, completion: {
+                    (success) in
+                    
+                    FirebaseManager().removeRequest(requestID: self.selectedRequestID)
+                    
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                         self.dismiss(animated: true, completion: nil)
@@ -186,51 +235,27 @@ class ViewPatientRequestsTableViewController: UITableViewController {
         }
         
     }
- 
+    
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+
+extension ViewPatientRequestsTableViewController {
+    
+    func determineQuantityTypeIdentifier(selection: String) -> HKQuantityTypeIdentifier{
+        
+        var identifier = HKQuantityTypeIdentifier.respiratoryRate;     //default value
+        
+        if selection == "Exercise"{
+            identifier = HKQuantityTypeIdentifier.appleExerciseTime
+        }
+        else if selection == "Vital Capacity"{
+            identifier = HKQuantityTypeIdentifier.forcedVitalCapacity
+        }
+        else if selection == "Inhaler Tracking"{
+            identifier = HKQuantityTypeIdentifier.inhalerUsage
+        }
+        
+        return identifier
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

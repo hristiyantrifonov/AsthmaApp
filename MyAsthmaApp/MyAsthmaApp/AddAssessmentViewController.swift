@@ -117,38 +117,61 @@ class AddAssessmentViewController: UIViewController {
         let unitIndex = unitPickerView.selectedRow(inComponent: 0)
         let chosenCategory = categoryPickerDelegate.assessmentCategoryTypes[categoryIndex] //get the  string value
         let chosenUnit = unitPickerDelegate.unitTypes[unitIndex]
-
-        let myCarePlanStore = storeManager.myCarePlanStore
-
-        let activityBuilder = ActivityBuilder()
-
-        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: "", groupIdentifier: "")
-
-        let activity: OCKCarePlanActivity
-
-        if assessmentTypeChoiceSegmentedControl.selectedSegmentIndex == 0{
-
-            activity = activityBuilder.createAssessmentActivity(assessmentType: .scaleAssessment, assessmentDescription: scaleAssessmentDescriptionTextField.text!, maxValue: Int(maxValueTextField.text!)!, minValue: Int(minValueTextField.text!)!, optionality: optionalityChosen)
-        }else{
-
-            activity = activityBuilder.createAssessmentActivity(assessmentType: .quantityAssessment, assessmentDescription: quantityAssessmentDescriptionTextField.text!, quantityTypeIdentifier: determineQuantityTypeIdentifier(selection: chosenCategory), unit: "mg/dL", optionality: optionalityChosen)
-        }
-    
-        myCarePlanStore.add(activity) {
-            (success, error) in
-            if error != nil  {
-                print("Error adding the assessment activity \(error!)")
-            }
-            else{
-                print("Assessment Activity successfully added")
-
-                DispatchQueue.main.async { //Because we need to update these from the main thread not background one
-                    self.navigationController?.popViewController(animated: true)
-                    self.dismiss(animated: true, completion: nil)
-
+        
+        let assessmentTypeChoice = assessmentTypeChoiceSegmentedControl.selectedSegmentIndex
+        
+        let assessmentTypeIdentifier =  determineQuantityTypeIdentifier(selection: chosenCategory)
+        
+        
+        print("Configuration status: \(self.configurationStatus)")
+        
+        //If configuration have been finished on this profile
+        if self.configurationStatus == true{
+            
+            //We try to find patients doctor
+            FirebaseManager().findPatientDoctor(patientID: userID!) {
+                (doctor) in
+                
+                //If we find a doctor
+                if doctor != nil{
+                    
+                    print("Found Doctor")
+                    
+                    //We send a request for his/her approval based on the type of assessment (two different types of requests for the assessment activities)
+                    if assessmentTypeChoice == 0 {
+                        
+                        FirebaseManager().makeAlteringRequest(fromPatient: self.userID!, toDoctor: doctor as! String, requestIdentifier: "Add Scale Assessment", parameters:
+                            [inputTitle, inputSummary, self.scaleAssessmentDescriptionTextField.text!, Int(self.maxValueTextField.text!)!, Int(self.minValueTextField.text!)!, self.optionalityChosen ])
+                        
+                    }else {
+                        
+                        FirebaseManager().makeAlteringRequest(fromPatient: self.userID!, toDoctor: doctor as! String, requestIdentifier: "Add Quantity Assessment", parameters:
+                            [inputTitle, inputSummary, self.quantityAssessmentDescriptionTextField.text!, chosenCategory, chosenUnit, self.optionalityChosen ])
+                        
+                    }
+                    
+                }else{
+                    print("You do not have a profile-linked doctor.")
                 }
-
             }
+        }else{
+            
+            if assessmentTypeChoice == 0{ //Scale type of assessment is desired
+                
+                ActionPlanAlteringManager().addScaleAssessment(inputTitle: inputTitle, inputSummary: inputSummary, scaleAssessmentDescription: scaleAssessmentDescriptionTextField.text!,
+                    selectedMaxValue: Int(maxValueTextField.text!)!, selectedMinValue: Int(minValueTextField.text!)!, optionalityChosen: optionalityChosen, completion: {
+                    (success) in
+                    print("Action Plan Altering - \(success) (for Adding Scale Assessment)")
+                })
+                
+            }else{ //Quantity type of assessment is desired
+                
+                ActionPlanAlteringManager().addQuantityAssessment(inputTitle: inputTitle, inputSummary: inputSummary, quantityAssessmentDesciption: quantityAssessmentDescriptionTextField.text!, quantityAssessmentTypeIdentifier: assessmentTypeIdentifier, optionalityChosen: optionalityChosen, completion: {
+                    (success) in
+                    print("Action Plan Altering - \(success) (for Adding Quantity Assessment)")
+                })
+            }
+            
         }
     }
 
