@@ -25,6 +25,7 @@
 		843FED13208533BA00D5ED84 /* DoctorRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FED12208533BA00D5ED84 /* DoctorRootViewController.swift */; };
 		8446D2E220868D4600BFFE30 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8446D2E120868D4600BFFE30 /* FirebaseManager.swift */; };
 		8446D2E82086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8446D2E72086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift */; };
+		844D2748208CCB9A0033EB39 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D2747208CCB9A0033EB39 /* AddContactViewController.swift */; };
 		845708A92050D228007B49A8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708A82050D228007B49A8 /* WelcomeViewController.swift */; };
 		845708AB2050D431007B49A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708AA2050D431007B49A8 /* LoginViewController.swift */; };
 		84615A34206FCB76007CE6B6 /* AddActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */; };
@@ -158,6 +159,7 @@
 		843FED12208533BA00D5ED84 /* DoctorRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorRootViewController.swift; sourceTree = "<group>"; };
 		8446D2E120868D4600BFFE30 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8446D2E72086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeActionPlanTableViewController.swift; sourceTree = "<group>"; };
+		844D2747208CCB9A0033EB39 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		845708A82050D228007B49A8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		845708AA2050D431007B49A8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivitiesViewController.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */,
 				8446D2E72086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift */,
 				84F7E7A0208965F1004AB137 /* ViewPatientRequestsTableViewController.swift */,
+				844D2747208CCB9A0033EB39 /* AddContactViewController.swift */,
 			);
 			path = MyAsthmaApp;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				841E772B208933D30071D4F8 /* DoctorRequestsViewController.swift in Sources */,
 				84E17A372061F2290099631A /* ActivityBuilder.swift in Sources */,
 				84BD186E205C16A600B37E16 /* QueryActivityEventsOperation.swift in Sources */,
+				844D2748208CCB9A0033EB39 /* AddContactViewController.swift in Sources */,
 				84AEC14E2079804C00506323 /* TaskBuilder.swift in Sources */,
 				84615A34206FCB76007CE6B6 /* AddActivitiesViewController.swift in Sources */,
 				84920B202072F8CC004E8498 /* EndActivityViewController.swift in Sources */,

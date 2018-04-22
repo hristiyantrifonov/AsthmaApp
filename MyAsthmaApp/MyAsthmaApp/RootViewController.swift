@@ -9,6 +9,7 @@
 import UIKit
 import CareKit
 import ResearchKit
+import Firebase
 
 class RootViewController: UITabBarController {
 
@@ -23,6 +24,18 @@ class RootViewController: UITabBarController {
 
     fileprivate var connectViewController: OCKConnectViewController!
 
+    //MARK: - Patient and Connect Message Items
+    var patient : OCKPatient!
+    let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+    let replyDateString = DateFormatter.localizedString(from: Date().addingTimeInterval(1000), dateStyle: .short, timeStyle: .short)
+    var connectMessageItems = [OCKConnectMessageItem]()
+    var contactsWithMessageItems = [OCKContact]()
+    
+    //The array that is going to hold the contacts of the user
+    var contacts: [OCKContact] = []
+    
+    let patientID = Auth.auth().currentUser?.uid
+    
     fileprivate let carePlanData: CarePlanData
 
     //MARK: Initialisation
@@ -34,24 +47,21 @@ class RootViewController: UITabBarController {
         super.init(coder: aDecoder)
         self.navigationItem.setHidesBackButton(true, animated:true);
         
+        storeManager.delegate = self
         
-        
-        
-        
-
         let mainTabViewController = createMainTabViewController()
         careContentsViewController = createCareContentsViewController()
         insightsViewController = createInsightsViewController()
-        let connectViewController = createConnectViewController()
-
-
+        connectViewController = createConnectViewController()
+        
+        //Fetching all the contacts a patient has
+        fetchPatientContacts()
+        
         self.viewControllers = [
             mainTabViewController,
             UINavigationController(rootViewController: careContentsViewController),
             UINavigationController(rootViewController: insightsViewController),
-            connectViewController]
-        
-        storeManager.delegate = self
+            UINavigationController(rootViewController: connectViewController)]
         
     }
 
@@ -62,7 +72,6 @@ class RootViewController: UITabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         viewController = storyboard.instantiateViewController(withIdentifier: "main")
 
-//        viewController.tabBarItem = UITabBarItem(title: "Main")
         viewController.title = "Main"
 
         return UINavigationController(rootViewController: viewController)
@@ -99,12 +108,15 @@ class RootViewController: UITabBarController {
         return viewController
     }
 
-    fileprivate func createConnectViewController() -> UINavigationController {
-        let viewController = UIViewController()
-
+    fileprivate func createConnectViewController() -> OCKConnectViewController {
+        
+        let viewController = OCKConnectViewController.init(contacts: nil, patient: patient)
+        viewController.delegate = self
+        viewController.dataSource = self
+        
         viewController.tabBarItem = UITabBarItem(title: "Connect", image: UIImage(named: "connect"), selectedImage: UIImage.init(named: "connect-filled"))
         viewController.title = "Connect"
-        return UINavigationController(rootViewController: viewController)
+        return viewController
     }
 
 }
@@ -158,6 +170,7 @@ extension RootViewController: OCKCareContentsViewControllerDelegate {
 }
 
 extension RootViewController {
+    
     func buildResultForCarePlanEvent(_ event: OCKCarePlanEvent, taskResult: ORKTaskResult, upperBound: Int = 10) -> OCKCarePlanEventResult {
         // Get the first result for the first step of the task result.
         guard let firstResult = taskResult.firstResult as? ORKStepResult, let stepResult = firstResult.results?.first else { fatalError("Unexepected task results") }
@@ -172,6 +185,48 @@ extension RootViewController {
         
         fatalError("Unexpected task result type")
     }
+    
+    //Finds the contact list of the patient from the database and sets the Connect module
+    func fetchPatientContacts(){
+        
+        FirebaseManager().findPatientContacts(patientID: self.patientID!) {
+            (patientObject) in
+            
+            if patientObject != nil {
+                
+                let patientDict = patientObject as! NSDictionary
+                
+                let chosenName = patientDict["Name"] as! String
+                let relation = patientDict["Relation"] as! String
+                let phoneNumber = patientDict["Phone"] as! String
+                let emailAddress = patientDict["Email"] as! String
+                let type = patientDict["Contact-Type"] as! String
+                var chosenContactType : OCKContactType = OCKContactType.careTeam
+                if type == "Personal"{
+                    chosenContactType = OCKContactType.personal
+                }
+                
+                let contactObject = OCKContact(contactType: chosenContactType,
+                                               name: chosenName,
+                                               relation: relation,
+                                               contactInfoItems: [OCKContactInfo.phone(phoneNumber), OCKContactInfo.sms(phoneNumber), OCKContactInfo.email(emailAddress)],
+                                               tintColor: UIColor.blue,
+                                               monogram: nil,
+                                               image: nil)
+                
+                self.contacts.append(contactObject)
+                
+                self.patient = OCKPatient(identifier: "patient", carePlanStore: self.storeManager.myCarePlanStore, name: "John Doe", detailInfo: nil, careTeamContacts: self.contacts, tintColor: nil, monogram: "JD", image: nil, categories: nil, userInfo: ["Age": "21", "Gender": "M", "Phone":"888-555-5512"])
+                
+                self.connectViewController.contacts = self.contacts
+                
+            }else{
+                print("Contact of another user")
+            }
+        }
+        
+    }
+    
 }
 
 extension RootViewController: ORKTaskViewControllerDelegate {
@@ -263,10 +318,63 @@ extension RootViewController: ORKTaskViewControllerDelegate {
     }
 }
 
-//MARK: ConnectViewController Delegate
+// MARK: OCKConnectViewControllerDataSource
+
+extension RootViewController: OCKConnectViewControllerDataSource {
+
+    func connectViewControllerNumber(ofConnectMessageItems viewController: OCKConnectViewController, careTeamContact contact: OCKContact) -> Int {
+        return connectMessageItems.count
+    }
+
+    func connectViewControllerCareTeamConnections(_ viewController: OCKConnectViewController) -> [OCKContact] {
+        return contactsWithMessageItems
+    }
+
+    func connectViewController(_ viewController: OCKConnectViewController, connectMessageItemAt index: Int, careTeamContact contact: OCKContact) -> OCKConnectMessageItem {
+        return connectMessageItems[index]
+    }
+}
+
+// MARK: OCKConnectViewControllerDelegate
 
 extension RootViewController: OCKConnectViewControllerDelegate {
-
+    
+    /// Called when the user taps a contact in the `OCKConnectViewController`.
+    func connectViewController(_ connectViewController: OCKConnectViewController, didSelectShareButtonFor contact: OCKContact, presentationSourceView sourceView: UIView?) {
+//        let document = sampleData.generateSampleDocument()
+//        document.createPDFData {(data, error) in
+//            let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+//            DispatchQueue.main.async {
+//                self.present(activityViewController, animated: true, completion: nil)
+//            }
+        print("didSelectShareButtonFor \(contact.name)")
+        
+    }
+    
+    func connectViewController(_ connectViewController: OCKConnectViewController, titleForSharingCellFor contact: OCKContact) -> String? {
+        
+        let fullName = contact.name
+        let indexOfWhiteSpace = contact.name.index(of: " ")
+        var displayName = contact.name
+        if indexOfWhiteSpace != nil {
+            displayName = contact.name.substring(to: indexOfWhiteSpace!)
+        }
+        
+        return "Share Care Data with \(displayName)"
+    }
+//
+//        func connectViewController(_ viewController: OCKConnectViewController, didSendConnectMessage message: String, careTeamContact contact: OCKContact) {
+//            let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+//            let connectMessage = OCKConnectMessageItem(messageType: .sent, name: sampleData.patient.name, message: message, dateString: dateString)
+//            sampleData.connectMessageItems.append(connectMessage)
+//        }
+//    }
+//
+//    func connectViewController(_ viewController: OCKConnectViewController, didSendConnectMessage message: String, careTeamContact contact: OCKContact) {
+//        let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+//        let connectMessage = OCKConnectMessageItem(messageType: .sent, name: sampleData.patient.name, message: message, dateString: dateString)
+//        sampleData.connectMessageItems.append(connectMessage)
+//    }
 }
 
 // MARK: CarePlanStoreManagerDelegate
