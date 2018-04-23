@@ -39,6 +39,7 @@
 		84920B1C2072F53C004E8498 /* AddAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84920B1B2072F53C004E8498 /* AddAssessmentViewController.swift */; };
 		84920B1E2072F558004E8498 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84920B1D2072F558004E8498 /* AddNoteViewController.swift */; };
 		84920B202072F8CC004E8498 /* EndActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84920B1F2072F8CC004E8498 /* EndActivityViewController.swift */; };
+		8495B78E208D753F003113C0 /* DocumentExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495B78D208D753F003113C0 /* DocumentExporter.swift */; };
 		84A05352205DF9250025D039 /* BackPain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A05351205DF9250025D039 /* BackPain.swift */; };
 		84A7D63A20530BD4003343D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A7D63420530BD4003343D1 /* Main.storyboard */; };
 		84AEC14E2079804C00506323 /* TaskBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEC14D2079804C00506323 /* TaskBuilder.swift */; };
@@ -173,6 +174,7 @@
 		84920B1B2072F53C004E8498 /* AddAssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssessmentViewController.swift; sourceTree = "<group>"; };
 		84920B1D2072F558004E8498 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		84920B1F2072F8CC004E8498 /* EndActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndActivityViewController.swift; sourceTree = "<group>"; };
+		8495B78D208D753F003113C0 /* DocumentExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentExporter.swift; sourceTree = "<group>"; };
 		84A05351205DF9250025D039 /* BackPain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPain.swift; sourceTree = "<group>"; };
 		84A7D63520530BD4003343D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84AEC14D2079804C00506323 /* TaskBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBuilder.swift; sourceTree = "<group>"; };
@@ -308,6 +310,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8495B795208D7C80003113C0 /* Connect Module Classes */ = {
+			isa = PBXGroup;
+			children = (
+				844D2747208CCB9A0033EB39 /* AddContactViewController.swift */,
+				8495B78D208D753F003113C0 /* DocumentExporter.swift */,
+			);
+			name = "Connect Module Classes";
+			sourceTree = "<group>";
+		};
 		84DC88A0205B5FC0001BBB1F /* Insights */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,7 +410,7 @@
 				8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */,
 				8446D2E72086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift */,
 				84F7E7A0208965F1004AB137 /* ViewPatientRequestsTableViewController.swift */,
-				844D2747208CCB9A0033EB39 /* AddContactViewController.swift */,
+				8495B795208D7C80003113C0 /* Connect Module Classes */,
 			);
 			path = MyAsthmaApp;
 			sourceTree = "<group>";
@@ -777,6 +788,7 @@
 				84920B202072F8CC004E8498 /* EndActivityViewController.swift in Sources */,
 				84920B162072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift in Sources */,
 				DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */,
+				8495B78E208D753F003113C0 /* DocumentExporter.swift in Sources */,
 				843FED13208533BA00D5ED84 /* DoctorRootViewController.swift in Sources */,
 				DEB2BA9B20471093009D60B5 /* OutdoorWalk.swift in Sources */,
 				8446D2E82086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift in Sources */,

@@ -13,7 +13,7 @@ import Firebase
 
 class RootViewController: UITabBarController {
 
-    // MARK: Properties
+    // MARK: General Properties
 
     //pointer to the store from CarePlanStoreManager
     fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
@@ -23,13 +23,6 @@ class RootViewController: UITabBarController {
     fileprivate var insightsViewController: OCKInsightsViewController!
 
     fileprivate var connectViewController: OCKConnectViewController!
-
-    //MARK: - Patient and Connect Message Items
-    var patient : OCKPatient!
-    let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
-    let replyDateString = DateFormatter.localizedString(from: Date().addingTimeInterval(1000), dateStyle: .short, timeStyle: .short)
-    var connectMessageItems = [OCKConnectMessageItem]()
-    var contactsWithMessageItems = [OCKContact]()
     
     //The array that is going to hold the contacts of the user
     var contacts: [OCKContact] = []
@@ -37,6 +30,16 @@ class RootViewController: UITabBarController {
     let patientID = Auth.auth().currentUser?.uid
     
     fileprivate let carePlanData: CarePlanData
+    
+
+    //MARK: - Patient Object and Connect Message Items
+    var patient : OCKPatient!
+    let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
+    let replyDateString = DateFormatter.localizedString(from: Date().addingTimeInterval(1000), dateStyle: .short, timeStyle: .short)
+    var connectMessageItems = [OCKConnectMessageItem]()
+    var contactsWithMessageItems = [OCKContact]()
+    
+    
 
     //MARK: Initialisation
 
@@ -45,7 +48,8 @@ class RootViewController: UITabBarController {
         carePlanData = CarePlanData(carePlanStore: storeManager.myCarePlanStore)
 
         super.init(coder: aDecoder)
-        self.navigationItem.setHidesBackButton(true, animated:true);
+//        self.navigationItem.setHidesBackButton(true, animated:true);
+        
         
         storeManager.delegate = self
         
@@ -117,6 +121,15 @@ class RootViewController: UITabBarController {
         viewController.tabBarItem = UITabBarItem(title: "Connect", image: UIImage(named: "connect"), selectedImage: UIImage.init(named: "connect-filled"))
         viewController.title = "Connect"
         return viewController
+    }
+    
+    @IBAction func unwindToRoot(segue: UIStoryboardSegue) {
+        if let sourceVC = segue.source as? AddContactViewController{
+            print("YEEES BABY")
+            contacts.append(sourceVC.contact)
+            print(contacts)
+            self.connectViewController.contacts = self.contacts
+        }
     }
 
 }
@@ -219,6 +232,7 @@ extension RootViewController {
                 self.patient = OCKPatient(identifier: "patient", carePlanStore: self.storeManager.myCarePlanStore, name: "John Doe", detailInfo: nil, careTeamContacts: self.contacts, tintColor: nil, monogram: "JD", image: nil, categories: nil, userInfo: ["Age": "21", "Gender": "M", "Phone":"888-555-5512"])
                 
                 self.connectViewController.contacts = self.contacts
+                
                 
             }else{
                 print("Contact of another user")

@@ -19,6 +19,8 @@ class AddContactViewController: UIViewController {
     
     @IBOutlet weak var contactTypeChooser: UISegmentedControl!
     
+    var contact : OCKContact!
+    
     let userID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
@@ -48,9 +50,21 @@ class AddContactViewController: UIViewController {
         
         let contactDictionary = ["Name" : name, "Relation" : relation, "Phone" : phone, "Email" : email, "Contact-Type" : type]
         
+        var contactType = OCKContactType.careTeam
+        if type == "Personal"{
+            contactType = OCKContactType.personal
+        }
         
         print(phone)
         print(contactDictionary)
+        
+        contact = OCKContact(contactType: contactType,
+                             name: name,
+                             relation: relation,
+                             contactInfoItems: [OCKContactInfo.phone(phone), OCKContactInfo.sms(phone), OCKContactInfo.email(email)],
+                             tintColor: UIColor.blue,
+                             monogram: nil,
+                             image: nil)
         
         FirebaseManager().addNewContact(patientID: userID!, contactDetails: contactDictionary) {
             (success) in
@@ -58,6 +72,8 @@ class AddContactViewController: UIViewController {
             if (success != nil){
                 
                 print("Contact saved")
+                self.performSegue(withIdentifier: "unwindToRoot", sender: self)
+                
                 self.navigationController?.popViewController(animated: true)
                 self.dismiss(animated: true, completion: nil)
             }else{
@@ -66,6 +82,14 @@ class AddContactViewController: UIViewController {
 
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "unwindToRoot"{
+//            print("YAAAAAAZ")
+//            let destinationVC = segue.destination as! RootViewController
+//            destinationVC.connectViewController.contacts?.append(contact)
+//        }
+//    }
     
    
     //TODO
