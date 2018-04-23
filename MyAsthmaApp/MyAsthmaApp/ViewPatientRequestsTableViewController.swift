@@ -14,7 +14,7 @@ class PatientSideRequestCell: UITableViewCell {
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    
+    @IBOutlet weak var status: UILabel!
     
 }
 
@@ -72,32 +72,60 @@ class ViewPatientRequestsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return requests.count
+        var count = 1
+        if requests.count > 0{
+            count = requests.count
+        }
+
+        return count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "patientSideRequestCell", for: indexPath) as! PatientSideRequestCell
+        cell.statusLabel.isHidden = false
+        cell.status.isHidden = false
         
-        // Configure the cell...
-        let requestID = requests[indexPath.row]
-        cell.descriptionLabel?.text = requestID as! String
-        
-        FirebaseManager().getRequestStatus(requestID: requestID as! String) {
-            (status) in
-            print("here")
-            print(status)
-            if status as! Bool == false{
-                cell.statusLabel.text = "Pending"
-                cell.statusLabel.textColor = UIColor(red: 204/255, green: 102/255, blue: 0/255, alpha: 1)
-            }else{
-                cell.statusLabel.text = "Authorised"
-                cell.statusLabel.textColor = UIColor(red: 0/255, green: 179/255, blue: 60/255, alpha: 1)
+        if requests.count > 0{
+            
+            // Configure the cell...
+            let requestID = requests[indexPath.row]
+            
+            FirebaseManager().getRequestFields(requestID: requestID as! String) {
+                (requestObject) in
+                let request = requestObject as! NSDictionary
+                let requestIdentifier = request["Identifier"] as! String
+                
+                let parametersObject = request["Parameters"] as! NSDictionary
+                
+                if requestIdentifier == "End Activity"{
+                    let target = parametersObject["Target"] as! String
+                    cell.descriptionLabel?.text = "\(requestIdentifier) - \(target)"
+                }else{
+                    let activityTitle = parametersObject["Title"] as! String
+                    cell.descriptionLabel?.text = "\(requestIdentifier) - \(activityTitle)"
+                }
             }
             
+            FirebaseManager().getRequestStatus(requestID: requestID as! String) {
+                (status) in
+                print("here")
+                print(status)
+                if status as! Bool == false{
+                    cell.statusLabel.text = "Pending"
+                    cell.statusLabel.textColor = UIColor(red: 204/255, green: 102/255, blue: 0/255, alpha: 1)
+                }else{
+                    cell.statusLabel.text = "Authorised"
+                    cell.statusLabel.textColor = UIColor(red: 0/255, green: 179/255, blue: 60/255, alpha: 1)
+                }
+                
+            }
+            
+        }else{
+            cell.descriptionLabel.text = "No requests to show..."
+            cell.statusLabel.isHidden = true
+            cell.status.isHidden = true
         }
-        
-        //        cell.submitButton.tag = indexPath.row
         
         return cell
     }
@@ -105,15 +133,17 @@ class ViewPatientRequestsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected \(indexPath.row)")
         
-        let selectedCell = tableView.cellForRow(at: indexPath) as! PatientSideRequestCell
-        self.selectedRequestID = requests[indexPath.row] as! String
-        let status = selectedCell.statusLabel?.text
-        
-        if status == "Pending"{
-            disableSubmitButton()
-        }
-        else if status == "Authorised"{
-            enableSubmitButton()
+        if requests.count > 0{
+            let selectedCell = tableView.cellForRow(at: indexPath) as! PatientSideRequestCell
+            self.selectedRequestID = requests[indexPath.row] as! String
+            let status = selectedCell.statusLabel?.text
+            
+            if status == "Pending"{
+                disableSubmitButton()
+            }
+            else if status == "Authorised"{
+                enableSubmitButton()
+            }
         }
         
     }
@@ -196,7 +226,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
                 
                 let assessmentTypeCategory = self.determineQuantityTypeIdentifier(selection: rawAssessmentTypeCategoryValue)
                 
-                ActionPlanAlteringManager().addQuantityAssessment(inputTitle: activityTitle, inputSummary: activitySummary, quantityAssessmentDesciption: activityDescription, quantityAssessmentTypeIdentifier: assessmentTypeCategory, optionalityChosen: optionalityChosen, completion: {
+                ActionPlanAlteringManager().addQuantityAssessment(inputTitle: activityTitle, inputSummary: activitySummary, quantityAssessmentDesciption: activityDescription, quantityAssessmentTypeIdentifier: assessmentTypeCategory, unitChosen: rawAssessmentUnit, optionalityChosen: optionalityChosen, completion: {
                     (success) in
                     
                     FirebaseManager().removeRequest(requestID: self.selectedRequestID)

@@ -185,6 +185,8 @@ class AddActivitiesViewController: UIViewController {
                     FirebaseManager().makeAlteringRequest(fromPatient: self.userID!, toDoctor: doctor as! String, requestIdentifier: "Add Activity",
                                                           parameters: [inputTitle, inputSummary, inputInstructions, inputGroupIdentifier, schedule, self.optionalChosen])
                     
+                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
                     
                 }else{
                     print("You do not have a profile-linked doctor.")

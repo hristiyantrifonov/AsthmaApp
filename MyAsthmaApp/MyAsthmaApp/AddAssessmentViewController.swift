@@ -116,7 +116,7 @@ class AddAssessmentViewController: UIViewController {
         let categoryIndex = categoryTypePickerView.selectedRow(inComponent: 0) //index of selected row
         let unitIndex = unitPickerView.selectedRow(inComponent: 0)
         let chosenCategory = categoryPickerDelegate.assessmentCategoryTypes[categoryIndex] //get the  string value
-        let chosenUnit = unitPickerDelegate.unitTypes[unitIndex]
+        let chosenUnit = determineUnitIdentifier(rawValue: unitPickerDelegate.unitTypes[unitIndex])
         
         let assessmentTypeChoice = assessmentTypeChoiceSegmentedControl.selectedSegmentIndex
         
@@ -143,10 +143,16 @@ class AddAssessmentViewController: UIViewController {
                         FirebaseManager().makeAlteringRequest(fromPatient: self.userID!, toDoctor: doctor as! String, requestIdentifier: "Add Scale Assessment", parameters:
                             [inputTitle, inputSummary, self.scaleAssessmentDescriptionTextField.text!, Int(self.maxValueTextField.text!)!, Int(self.minValueTextField.text!)!, self.optionalityChosen ])
                         
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                        
                     }else {
                         
                         FirebaseManager().makeAlteringRequest(fromPatient: self.userID!, toDoctor: doctor as! String, requestIdentifier: "Add Quantity Assessment", parameters:
                             [inputTitle, inputSummary, self.quantityAssessmentDescriptionTextField.text!, chosenCategory, chosenUnit, self.optionalityChosen ])
+                        
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
                         
                     }
                     
@@ -166,7 +172,7 @@ class AddAssessmentViewController: UIViewController {
                 
             }else{ //Quantity type of assessment is desired
                 
-                ActionPlanAlteringManager().addQuantityAssessment(inputTitle: inputTitle, inputSummary: inputSummary, quantityAssessmentDesciption: quantityAssessmentDescriptionTextField.text!, quantityAssessmentTypeIdentifier: assessmentTypeIdentifier, optionalityChosen: optionalityChosen, completion: {
+                ActionPlanAlteringManager().addQuantityAssessment(inputTitle: inputTitle, inputSummary: inputSummary, quantityAssessmentDesciption: quantityAssessmentDescriptionTextField.text!, quantityAssessmentTypeIdentifier: assessmentTypeIdentifier, unitChosen: chosenUnit, optionalityChosen: optionalityChosen, completion: {
                     (success) in
                     print("Action Plan Altering - \(success) (for Adding Quantity Assessment)")
                 })
@@ -179,7 +185,7 @@ class AddAssessmentViewController: UIViewController {
     //MARK: - Helper Functions
     func determineQuantityTypeIdentifier(selection: String) -> HKQuantityTypeIdentifier{
         
-        var identifier = HKQuantityTypeIdentifier.respiratoryRate;     //default value
+        var identifier = HKQuantityTypeIdentifier.respiratoryRate     //default value
         
         if selection == "Exercise"{
             identifier = HKQuantityTypeIdentifier.appleExerciseTime
@@ -192,6 +198,38 @@ class AddAssessmentViewController: UIViewController {
         }
         
         return identifier
+    }
+    
+//    let unitTypes = ["---", "seconds", "minutes", "calories","liters", "liters/min", "count","meter","mile"]
+    func determineUnitIdentifier(rawValue: String) -> String{
+        var unitIdentifier = "count"    //default value
+        
+        if rawValue == "seconds"{
+            unitIdentifier = "s"
+        }
+        else if rawValue == "minutes"{
+            unitIdentifier = "min"
+        }
+        else if rawValue == "calories"{
+            unitIdentifier = "cal"
+        }
+        else if rawValue == "liters"{
+            unitIdentifier = "l"
+        }
+        else if rawValue == "liters/min"{
+            unitIdentifier = "l/min"
+        }
+        else if rawValue == "meter"{
+            unitIdentifier = "m"
+        }
+        else if rawValue == "kilometers"{
+            unitIdentifier = "km"
+        }
+        else if rawValue == "mile"{
+            unitIdentifier = "mi"
+        }
+        
+        return unitIdentifier
     }
     
 }

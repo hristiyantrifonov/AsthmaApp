@@ -61,13 +61,59 @@ class RequestReviewViewController: UIViewController {
         requestDescriptionLabel.lineBreakMode = .byWordWrapping
         requestDescriptionLabel.numberOfLines = 0;
         
-        if requestIdentifier == "End Activity"{
+        if requestIdentifier == "Add Activity"{ //intervention activity
+            let activityTitle = requestParameterFields["Title"] as! String
+            let groupType = requestParameterFields["Group-Identifier"] as! String
+            let schedule = requestParameterFields["Schedule"] as! NSArray
+            let optionality = requestParameterFields["Optionality"] as! Bool
+            
+            var optional = "optional"
+            if optionality{
+                optional = "compulsory"
+            }
+            
+            //Make the schedule presentable in the view by making a custom String
+            let labels = ["Su","Mo","Tu","We","Th","Fr","Sa"]
+            var scheduleString = "\n"
+            for (index,num) in schedule.enumerated(){
+                let dayLabel = labels[index]
+                let finalItem = "\(dayLabel): \(num) "
+                scheduleString.append(finalItem)
+            }
+            print(scheduleString)
+            
+            requestDescriptionLabel.text = "Patients requests to add \(optional) \(groupType) activity named \(activityTitle) with schedule : \(scheduleString)"
+            
+        }
+        else if requestIdentifier == "End Activity"{
             let targetActivity = requestParameterFields["Target"] as! String
             let endDay = requestParameterFields["End-Day"] ?? 0
             let endMonth = requestParameterFields["End-Month"] ?? 0
             let endYear = requestParameterFields["End-Year"] ?? 0
             requestDescriptionLabel.text = "Patients requests to stop doing \(targetActivity.uppercased()) from \(endDay)/\(endMonth)/\(endYear) "
-
+        }
+        else{   //It is some kind of assessment activity
+            let activityTitle = requestParameterFields["Title"] as! String
+            let activitySummary = requestParameterFields["Summary"] as! String
+            let activityDescription = requestParameterFields["Description"] as! String
+            let optionality = requestParameterFields["Optionality"] as! Bool
+            
+            var optional = "optional"
+            if optionality{
+                optional = "compulsory"
+            }
+            
+            if requestIdentifier == "Add Scale Assessment"{
+                
+                let range = "\nValue Range: \(requestParameterFields["Min"] as! Int)-\(requestParameterFields["Max"] as! Int)"
+                requestDescriptionLabel.text = "Patient requests to add \(optional) scale asssessment named \(activityTitle) with Description: \n \"\(activityDescription)\" \(range)"
+                
+            }else if requestIdentifier == "Add Quantity Assessment"{
+                let category = requestParameterFields["Type-Category"] as! String
+                let unit = requestParameterFields["Unit"] as! String
+                requestDescriptionLabel.text = "Patient requests to add \(optional) quantity assessment named \(activityTitle) \nfor assessing \(category) in \(unit)"
+            }
+            
         }
 
     }
@@ -103,3 +149,4 @@ class RequestReviewViewController: UIViewController {
     */
 
 }
+

@@ -139,6 +139,9 @@ class EndActivityViewController: UIViewController {
                     FirebaseManager().makeAlteringRequest(fromPatient: self.userID!, toDoctor: doctor as! String,
                                                           requestIdentifier: "End Activity", parameters: [self.selectedActivity.lowercased(), endDateDay, endDateMonth, endDateYear])
                     
+                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                    
                 }else{
                     print("You do not have a profile-linked doctor.")
                 }

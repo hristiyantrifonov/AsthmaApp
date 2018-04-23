@@ -126,7 +126,7 @@ class ActionPlanAlteringManager {
     }
     
     func addQuantityAssessment(inputTitle : String, inputSummary : String, quantityAssessmentDesciption : String, quantityAssessmentTypeIdentifier : HKQuantityTypeIdentifier,
-                               optionalityChosen : Bool, completion: @escaping Value){
+                               unitChosen: String ,optionalityChosen : Bool, completion: @escaping Value){
         
         let myCarePlanStore = storeManager.myCarePlanStore
         
@@ -136,7 +136,7 @@ class ActionPlanAlteringManager {
         
         let activity: OCKCarePlanActivity
         
-        activity = activityBuilder.createAssessmentActivity(assessmentType: .quantityAssessment, assessmentDescription: quantityAssessmentDesciption, quantityTypeIdentifier: quantityAssessmentTypeIdentifier, unit: "mg/dL", optionality: optionalityChosen)
+        activity = activityBuilder.createAssessmentActivity(assessmentType: .quantityAssessment, assessmentDescription: quantityAssessmentDesciption, quantityTypeIdentifier: quantityAssessmentTypeIdentifier, unit: unitChosen, optionality: optionalityChosen)
         
         
         myCarePlanStore.add(activity) {

@@ -34,7 +34,7 @@ class UnitTypePickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSo
     /*
      Main Guidance:
      HKQuantityTypeIdentifier AppleExerciseTime - measured in SECOND/ MINUTE / CALORIE / TIME
-     HKQuantityTypeIdentifier ForcedVitalCapacity - measured in LITER
+     HKQuantityTypeIdentifier ForcedVitalCapacity - measured in LITER / LITERS PER MIN
      HKQuantityTypeIdentifier InhalerUsage - measured in COUNT
      HKQuantityTypeIdentifier RespiratoryRate - measured in COUNT / TIME
      
@@ -42,7 +42,7 @@ class UnitTypePickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSo
         meter
         mile
     */
-    let unitTypes = ["---", "second", "minute", "calorie", "liter", "count", "time" , "meter", "mile"]
+    let unitTypes = ["---", "seconds", "minutes", "calories","liters", "liters/min", "count","meter", "kilometers","mile"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

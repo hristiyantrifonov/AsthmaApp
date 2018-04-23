@@ -76,8 +76,6 @@ extension DoctorRequestsViewController: UITableViewDataSource {
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath)
         
-        print("cellForRowAt")
-        
         // Configure the cell...
         FirebaseManager().getRequestFields(requestID: requestsArray[indexPath.row] as! String) {
             (returnedRequestDictionary) in
@@ -101,9 +99,7 @@ extension DoctorRequestsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        let indexPath = tableView.indexPathForSelectedRow
-//        let currentCell = tableView.cellForRow(at: indexPath!) as! PatientSideRequestCell
+
         requestID = requestsArray[indexPath.row] as! String
         FirebaseManager().getRequestFields(requestID: self.requestID) {
             (returnedRequestFieldsDictionary) in
