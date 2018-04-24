@@ -24,6 +24,7 @@ class InsightsBuilder {
     
     //here we instantiate a queue that will regulate the execution of a set of operations.
     fileprivate let updateOperationQueue = OperationQueue()
+    let myGroup = DispatchGroup()
     
     required init(carePlanStore: OCKCarePlanStore){
         self.carePlanStore = carePlanStore
@@ -37,6 +38,7 @@ class InsightsBuilder {
      */
     func updateInsights(_ completion: ((Bool, [OCKInsightItem]?) -> Void)?){
         //Cancel all queued or executing (in-progress) operations
+        myGroup.enter()
         updateOperationQueue.cancelAllOperations()
         
         //Get the dates of current and previous weeks
@@ -48,20 +50,34 @@ class InsightsBuilder {
         
         //Define operations to query for events for the previous week of every activity/assessment
         //Gives us data in the form of enumerated events for activities with particular identifiers - This is our first operation
-        let identifiersArray = ["test", "mb1", "mb2"]
+        var identifiersArray = ["--none--", "mb1", "mb2"]
+        var medicationArraySettingOne = ["mmmmm", "outdoorWalk"]
+        var medicationArraySettingTwo = ["mb2", "outdoorWalk"]
+        var medicationArraySettingThree = ["mmmmm", "mb1"]
         
         print("------")
+//        ["Identifiers" : identifiersDict, "first-meds" : firstSettingMedications, "second-meds" : secondSettingMedications, "third-meds" : thirdSettingMedications]
         FirebaseManager().getPatientMainSettings(patientID: self.patientID!) {
             (settingsDict) in
-            print(settingsDict)
+            
+            let dict = settingsDict as! [String : [String]]
+            
+            identifiersArray = dict["Identifiers"]!
+            medicationArraySettingOne = dict["first-meds"]!
+            medicationArraySettingTwo = dict["second-meds"]!
+            medicationArraySettingThree = dict["third-meds"]!
+            
+            self.myGroup.leave()
         }
         print("------")
         
-        let medicationArraySettingOne = ["mmmmm", "outdoorWalk"]
-        let medicationArraySettingTwo = ["mb2", "outdoorWalk"]
-        let medicationArraySettingThree = ["mmmmm", "mb1"]
+//
         
-        
+        myGroup.notify(queue: .main) {
+            print(identifiersArray)
+            print(medicationArraySettingOne)
+            print(medicationArraySettingTwo)
+            print(medicationArraySettingThree)
         /*******  BUILD OPERATIONS  *******/
         
         //Now we create "BuildInsightsOperation" to actually make insights from the data collected
@@ -166,7 +182,7 @@ class InsightsBuilder {
         
         
         //Finally add all operations to the operational queue
-        updateOperationQueue.addOperations([
+        self.updateOperationQueue.addOperations([
             insightSettingOneEventsOperation,
             settingOneFirstSubsetting,
             settingOneSecondSubsetting,
@@ -179,7 +195,7 @@ class InsightsBuilder {
             feedDataOperation,
             buildInsightsOperation
             ], waitUntilFinished: false)
-        
+        }
     }
     
     //MARK: - Helper Functions

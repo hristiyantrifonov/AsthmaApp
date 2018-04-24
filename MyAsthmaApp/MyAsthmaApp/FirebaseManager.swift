@@ -232,7 +232,7 @@ class FirebaseManager {
         
     }
     
-    func getPatientMainSettings(patientID : String, completion : @escaping Value){
+    func getPatientMainSettings(patientID : String, completion : @escaping Value ){
         ref.child("settings").child(patientID).observeSingleEvent(of: .value, with: {
             (snapshot) in
             let settingsObject = snapshot.value as! NSDictionary
@@ -242,12 +242,24 @@ class FirebaseManager {
             let thirdSetting = settingsObject["Third"] as! NSDictionary
             
             let firstSettingIdentifier = firstSetting["Main-Setting"] as! String
+            let firstSettingFirstMedication = firstSetting["First-Subsetting1"] as! String
+            let firstSettingSecondMedication = firstSetting["Second-Subsetting"] as! String
             
             let secondSettingIdentifier = secondSetting["Main-Setting"] as! String
+            let secondSettingFirstMedication = secondSetting["First-Subsetting1"] as! String
+            let secondSettingSecondMedication = secondSetting["Second-Subsetting"] as! String
+            
             let thirdSettingIdentifier = thirdSetting["Main-Setting"] as! String
+            let thirdSettingFirstMedication = thirdSetting["First-Subsetting1"] as! String
+            let thirdSettingSecondMedication = thirdSetting["Second-Subsetting"] as! String
             
             let identifiersDict = [firstSettingIdentifier, secondSettingIdentifier, thirdSettingIdentifier]
-            completion(identifiersDict)
+            let firstSettingMedications = [firstSettingFirstMedication, firstSettingSecondMedication]
+            let secondSettingMedications = [secondSettingFirstMedication, secondSettingSecondMedication]
+            let thirdSettingMedications = [thirdSettingFirstMedication, thirdSettingSecondMedication]
+            
+            let dict = ["Identifiers" : identifiersDict, "first-meds" : firstSettingMedications, "second-meds" : secondSettingMedications, "third-meds" : thirdSettingMedications]
+            completion(dict)
         })
     }
     
