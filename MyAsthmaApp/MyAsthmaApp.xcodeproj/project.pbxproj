@@ -28,12 +28,14 @@
 		844D2748208CCB9A0033EB39 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D2747208CCB9A0033EB39 /* AddContactViewController.swift */; };
 		845708A92050D228007B49A8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708A82050D228007B49A8 /* WelcomeViewController.swift */; };
 		845708AB2050D431007B49A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708AA2050D431007B49A8 /* LoginViewController.swift */; };
+		84602C92208FC1B40088B989 /* InsightSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84602C91208FC1B40088B989 /* InsightSettingsViewController.swift */; };
 		84615A34206FCB76007CE6B6 /* AddActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */; };
 		846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA336204F663200AADA1A /* HealthBuilder.swift */; };
 		846CA33F204F7A3D00AADA1A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */; };
 		846CA364204F7CFA00AADA1A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846CA363204F7CFA00AADA1A /* HealthKit.framework */; };
 		84723122207252860001582F /* ConfigurationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84723121207252860001582F /* ConfigurationTableViewController.swift */; };
 		8482C2F4208AA76300D2EDDF /* ActionPlanAlteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */; };
+		84860903208FD7F800AE5188 /* InsightSettingsPickerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84860902208FD7F800AE5188 /* InsightSettingsPickerDelegates.swift */; };
 		848FC3B2205C890B008429EE /* BuildInsightsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FC3B1205C890B008429EE /* BuildInsightsOperation.swift */; };
 		84920B162072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84920B152072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift */; };
 		84920B1C2072F53C004E8498 /* AddAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84920B1B2072F53C004E8498 /* AddAssessmentViewController.swift */; };
@@ -163,12 +165,14 @@
 		844D2747208CCB9A0033EB39 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		845708A82050D228007B49A8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		845708AA2050D431007B49A8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84602C91208FC1B40088B989 /* InsightSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSettingsViewController.swift; sourceTree = "<group>"; };
 		84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivitiesViewController.swift; sourceTree = "<group>"; };
 		846CA336204F663200AADA1A /* HealthBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBuilder.swift; sourceTree = "<group>"; };
 		846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		846CA363204F7CFA00AADA1A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		84723121207252860001582F /* ConfigurationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewController.swift; sourceTree = "<group>"; };
 		8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPlanAlteringManager.swift; sourceTree = "<group>"; };
+		84860902208FD7F800AE5188 /* InsightSettingsPickerDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSettingsPickerDelegates.swift; sourceTree = "<group>"; };
 		848FC3B1205C890B008429EE /* BuildInsightsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInsightsOperation.swift; sourceTree = "<group>"; };
 		84920B152072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDoctorCredentialsViewController.swift; sourceTree = "<group>"; };
 		84920B1B2072F53C004E8498 /* AddAssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssessmentViewController.swift; sourceTree = "<group>"; };
@@ -405,6 +409,8 @@
 				84920B1D2072F558004E8498 /* AddNoteViewController.swift */,
 				84920B1F2072F8CC004E8498 /* EndActivityViewController.swift */,
 				840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */,
+				84602C91208FC1B40088B989 /* InsightSettingsViewController.swift */,
+				84860902208FD7F800AE5188 /* InsightSettingsPickerDelegates.swift */,
 				843FED1120852AA100D5ED84 /* Doctor's Interface Side */,
 				8446D2E120868D4600BFFE30 /* FirebaseManager.swift */,
 				8482C2F3208AA76200D2EDDF /* ActionPlanAlteringManager.swift */,
@@ -785,6 +791,7 @@
 				844D2748208CCB9A0033EB39 /* AddContactViewController.swift in Sources */,
 				84AEC14E2079804C00506323 /* TaskBuilder.swift in Sources */,
 				84615A34206FCB76007CE6B6 /* AddActivitiesViewController.swift in Sources */,
+				84860903208FD7F800AE5188 /* InsightSettingsPickerDelegates.swift in Sources */,
 				84920B202072F8CC004E8498 /* EndActivityViewController.swift in Sources */,
 				84920B162072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift in Sources */,
 				DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */,
@@ -796,6 +803,7 @@
 				8426E2F8205E04AE001FD646 /* CarePlanData.swift in Sources */,
 				DEB2BA9920470FFE009D60B5 /* Activity.swift in Sources */,
 				845708AB2050D431007B49A8 /* LoginViewController.swift in Sources */,
+				84602C92208FC1B40088B989 /* InsightSettingsViewController.swift in Sources */,
 				DE1E33ED2042394E000E07F7 /* CarePlanStoreManager.swift in Sources */,
 				8482C2F4208AA76300D2EDDF /* ActionPlanAlteringManager.swift in Sources */,
 				DE7A099220499C27005A1593 /* TakeNurofen.swift in Sources */,

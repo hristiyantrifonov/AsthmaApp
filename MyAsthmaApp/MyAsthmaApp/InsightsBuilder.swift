@@ -8,12 +8,15 @@
 
 import Foundation
 import CareKit
+import Firebase
 
 class InsightsBuilder {
     
     fileprivate(set) var insights = [OCKInsightItem.noInsightsToShowMessage()]
     
     fileprivate let carePlanStore: OCKCarePlanStore
+    
+    let patientID = Auth.auth().currentUser?.uid
     
     //Operation queue will help assign tasks to different threads, or different queues other than the main one
     //Thus any time-consuming or CPU demanding tasks should run on concurrent or background queues. (and not
@@ -45,19 +48,18 @@ class InsightsBuilder {
         
         //Define operations to query for events for the previous week of every activity/assessment
         //Gives us data in the form of enumerated events for activities with particular identifiers - This is our first operation
+        let identifiersArray = ["test", "mb1", "mb2"]
         
-        let outdoorWalkEventsOperation = QueryActivityEventsOperation(store: carePlanStore,
-                                                                      startDate: dateRange.start, endDate: dateRange.end,
-                                                                      activityIdentifier: ActivityType.outdoorWalk.rawValue)
+        print("------")
+        FirebaseManager().getPatientMainSettings(patientID: self.patientID!) {
+            (settingsDict) in
+            print(settingsDict)
+        }
+        print("------")
         
-        let takeNurofenEventsOperation = QueryActivityEventsOperation(store: carePlanStore,
-                                                                      startDate: dateRange.start, endDate: dateRange.end,
-                                                                      activityIdentifier: ActivityType.takeNurofen.rawValue)
-        
-        let bloodGlucoseEventsOperation = QueryActivityEventsOperation(store: carePlanStore,
-                                                                       startDate: dateRange.start, endDate: dateRange.end,
-                                                                       activityIdentifier: ActivityType.bloodGlucose.rawValue)
-        
+        let medicationArraySettingOne = ["mmmmm", "outdoorWalk"]
+        let medicationArraySettingTwo = ["mb2", "outdoorWalk"]
+        let medicationArraySettingThree = ["mmmmm", "mb1"]
         
         
         /*******  BUILD OPERATIONS  *******/
@@ -65,13 +67,64 @@ class InsightsBuilder {
         //Now we create "BuildInsightsOperation" to actually make insights from the data collected
         let buildInsightsOperation = BuildInsightsOperation()
         
+        
+        //MARK: - First Setting
+        let insightSettingOneEventsOperation = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                  startDate: dateRange.start, endDate: dateRange.end,
+                                                                  activityIdentifier: identifiersArray[0])
+            //Subsetings - for first setting
+        let settingOneFirstSubsetting = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                     startDate: dateRange.start, endDate: dateRange.end,
+                                                                     activityIdentifier: medicationArraySettingOne[0])
+        
+        let settingOneSecondSubsetting = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                      startDate: dateRange.start, endDate: dateRange.end,
+                                                                      activityIdentifier: medicationArraySettingOne[1])
+        
+        //MARK: - Second Setting
+        let insightSettingTwoEventsOperation = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                  startDate: dateRange.start, endDate: dateRange.end,
+                                                                  activityIdentifier: identifiersArray[1])
+        //Subsetings - for second setting
+        let settingTwoFirstSubsetting = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                     startDate: dateRange.start, endDate: dateRange.end,
+                                                                     activityIdentifier: medicationArraySettingTwo[0])
+        
+        let settingTwoSecondSubsetting = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                      startDate: dateRange.start, endDate: dateRange.end,
+                                                                      activityIdentifier: medicationArraySettingTwo[1])
+        
+        //MARK: - Third Setting
+        let insightSettingThreeEventsOperation = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                  startDate: dateRange.start, endDate: dateRange.end,
+                                                                  activityIdentifier: identifiersArray[2])
+        
+        //Subsetings - for second setting
+        let settingThreeFirstSubsetting = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                     startDate: dateRange.start, endDate: dateRange.end,
+                                                                     activityIdentifier: medicationArraySettingThree[0])
+        
+        let settingThreeSecondSubsetting = QueryActivityEventsOperation(store: self.carePlanStore,
+                                                                      startDate: dateRange.start, endDate: dateRange.end,
+                                                                      activityIdentifier: medicationArraySettingThree[1])
+        
 
         
         //Operation to feed the data from the queries to the BuildInsightsOperation
         let feedDataOperation = BlockOperation {
-            buildInsightsOperation.outdoorWalkEvents = outdoorWalkEventsOperation.dailyEvents
-            buildInsightsOperation.takeNurofenEvents = takeNurofenEventsOperation.dailyEvents
-            buildInsightsOperation.bloodGlucoseEvents = bloodGlucoseEventsOperation.dailyEvents
+            
+            buildInsightsOperation.settingOneEvents = insightSettingOneEventsOperation.dailyEvents
+            buildInsightsOperation.settingOneFirstSubsettingEvents = settingOneFirstSubsetting.dailyEvents
+            buildInsightsOperation.settingOneSecondSubsettingEvents = settingOneSecondSubsetting.dailyEvents
+            
+            buildInsightsOperation.settingTwoEvents = insightSettingTwoEventsOperation.dailyEvents
+            buildInsightsOperation.settingTwoFirstSubsettingEvents = settingTwoFirstSubsetting.dailyEvents
+            buildInsightsOperation.settingTwoSecondSubsettingEvents = settingTwoSecondSubsetting.dailyEvents
+            
+            buildInsightsOperation.settingThreeEvents = insightSettingThreeEventsOperation.dailyEvents
+            buildInsightsOperation.settingThreeFirstSubsettingEvents = settingThreeFirstSubsetting.dailyEvents
+            buildInsightsOperation.settingThreeSecondSubsettingEvents = settingThreeSecondSubsetting.dailyEvents
+            
         }
         
         //Use the completion block of the "BuildInsightsOperation" to store the new insights
@@ -95,9 +148,18 @@ class InsightsBuilder {
         
         //addDependency - make the receiver (feedDataOperation) dependent on the completion of the argument in brackets
         //feedDataOperation is dependent on the QUERY OPERATIONS
-        feedDataOperation.addDependency(outdoorWalkEventsOperation)
-        feedDataOperation.addDependency(takeNurofenEventsOperation)
-        feedDataOperation.addDependency(bloodGlucoseEventsOperation)
+        feedDataOperation.addDependency(insightSettingOneEventsOperation)
+        feedDataOperation.addDependency(settingOneFirstSubsetting)
+        feedDataOperation.addDependency(settingOneSecondSubsetting)
+        
+        feedDataOperation.addDependency(insightSettingTwoEventsOperation)
+        feedDataOperation.addDependency(settingTwoFirstSubsetting)
+        feedDataOperation.addDependency(settingTwoSecondSubsetting)
+        
+        feedDataOperation.addDependency(insightSettingThreeEventsOperation)
+        feedDataOperation.addDependency(settingThreeFirstSubsetting)
+        feedDataOperation.addDependency(settingThreeSecondSubsetting)
+        
         
         //"BuildInsightsOperation" is dependent on the completion of the data feeding
         buildInsightsOperation.addDependency(feedDataOperation)
@@ -105,9 +167,15 @@ class InsightsBuilder {
         
         //Finally add all operations to the operational queue
         updateOperationQueue.addOperations([
-            outdoorWalkEventsOperation,
-            takeNurofenEventsOperation,
-            bloodGlucoseEventsOperation,
+            insightSettingOneEventsOperation,
+            settingOneFirstSubsetting,
+            settingOneSecondSubsetting,
+            insightSettingTwoEventsOperation,
+            settingTwoFirstSubsetting,
+            settingTwoSecondSubsetting,
+            insightSettingThreeEventsOperation,
+            settingThreeFirstSubsetting,
+            settingThreeSecondSubsetting,
             feedDataOperation,
             buildInsightsOperation
             ], waitUntilFinished: false)

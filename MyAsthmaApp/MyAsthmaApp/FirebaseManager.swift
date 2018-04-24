@@ -232,6 +232,25 @@ class FirebaseManager {
         
     }
     
+    func getPatientMainSettings(patientID : String, completion : @escaping Value){
+        ref.child("settings").child(patientID).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let settingsObject = snapshot.value as! NSDictionary
+            
+            let firstSetting = settingsObject["First"] as! NSDictionary
+            let secondSetting = settingsObject["Second"] as! NSDictionary
+            let thirdSetting = settingsObject["Third"] as! NSDictionary
+            
+            let firstSettingIdentifier = firstSetting["Main-Setting"] as! String
+            
+            let secondSettingIdentifier = secondSetting["Main-Setting"] as! String
+            let thirdSettingIdentifier = thirdSetting["Main-Setting"] as! String
+            
+            let identifiersDict = [firstSettingIdentifier, secondSettingIdentifier, thirdSettingIdentifier]
+            completion(identifiersDict)
+        })
+    }
+    
     
     
     //MARK: - Requests-Specific Methods

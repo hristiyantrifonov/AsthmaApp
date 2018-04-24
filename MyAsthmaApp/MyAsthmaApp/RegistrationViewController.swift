@@ -117,7 +117,11 @@ class RegistrationViewController: UIViewController {
                 //Send the additional data (forename, surname) to the server
                 //User's type is automatically assigned to be a patient, becoming a doctor is only done manually
                 reference.child("users").child(user!.uid).setValue(["Forename": self.forenameField.text!, "Surname": self.surnameField.text!,
-                                                                    "Email": self.emailField.text!, "User_Type": "Patient", "Profile_Configured" : false])
+                                                                    "Email": self.emailField.text!, "User_Type": "Patient",
+                                                                    "Profile_Configured" : false])
+                
+                reference.child("settings").child(user!.uid).setValue(["First" : (["Main-Setting" : "peak flow", "First-Subsetting1" : "--none--", "Second-Subsetting" : "--none--"]),     "Second" : (["Main-Setting" : "--none--", "First-Subsetting1" : "--none--", "Second-Subsetting" : "--none--"]),
+                    "Third" : (["Main-Setting" : "--none--", "First-Subsetting1" : "--none--", "Second-Subsetting" : "--none--"]) ])
                 print("Registration Successful!")
                 SVProgressHUD.dismiss()
                 
