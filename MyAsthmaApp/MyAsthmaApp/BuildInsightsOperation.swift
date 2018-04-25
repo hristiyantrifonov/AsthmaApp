@@ -11,6 +11,10 @@ import CareKit
 class BuildInsightsOperation: Operation {
     
     //MARK: - Properties
+    var mainSettingsIdentifiers : [String]?
+    var firstSettingMedicationsIdentifiers : [String]?
+    var secondSettingMedicationsIdentifiers : [String]?
+    var thirdSettingMedicationsIdentifiers : [String]?
     
     var settingOneEvents: DailyEvents?
     var settingOneFirstSubsettingEvents : DailyEvents?
@@ -25,7 +29,7 @@ class BuildInsightsOperation: Operation {
     var settingThreeSecondSubsettingEvents : DailyEvents?
     
     fileprivate(set) var insights = [OCKInsightItem.noInsightsToShowMessage()]   //we start off with array of empty insights
-    
+    fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
     //MARK: - The Operation
     
     override func main() {
@@ -35,6 +39,10 @@ class BuildInsightsOperation: Operation {
         
         //Create an array of insights
         var newInsights = [OCKInsightItem]()
+        
+        if let insight = createCarePlanAdherenceInsight() {
+            newInsights.append(insight)
+        }
         
         if let insight = createFirstSettingInsight() {
             newInsights.append(insight)
@@ -61,6 +69,66 @@ class BuildInsightsOperation: Operation {
     
     //TODO - The CarePlan Adherence part of the Insights window
     
+    func createCarePlanAdherenceInsight() -> OCKInsightItem? {
+        // Make sure there are events to parse.
+        guard let settingOneEvents = settingOneEvents,
+            let settingOneFirstSubsettingEvents = settingOneFirstSubsettingEvents,
+            let settingOneSecondSubsettingEvents = settingOneSecondSubsettingEvents,
+            let settingTwoEvents = settingTwoEvents,
+            let settingTwoFirstSubsettingEvents = settingTwoFirstSubsettingEvents,
+            let settingTwoSecondSubsettingEvents = settingTwoSecondSubsettingEvents,
+            let settingThreeEvents = settingThreeEvents,
+            let settingThreeFirstSubsettingEvents = settingThreeFirstSubsettingEvents,
+            let settingThreeSecondSubsettingEvents = settingThreeSecondSubsettingEvents
+            else { return nil }
+        
+        // Determine the start date for the previous week.
+        let calendar = Calendar.current
+        let now = Date()
+        
+        var components = DateComponents()
+        components.day = -7
+        let startDate = calendar.weekDatesForDate(calendar.date(byAdding: components as DateComponents, to: now)!).start
+        
+        var totalEventCount = 0
+        var completedEventCount = 0
+        
+        for offset in 0..<7 {
+            components.day = offset
+            let dayDate = calendar.date(byAdding: components as DateComponents, to: startDate)!
+            let dayComponents = calendar.dateComponents([.year, .month, .day, .era], from: dayDate)
+            
+            for events in [settingOneEvents, settingOneFirstSubsettingEvents, settingOneSecondSubsettingEvents, settingTwoEvents, settingTwoFirstSubsettingEvents, settingTwoSecondSubsettingEvents, settingThreeEvents, settingThreeFirstSubsettingEvents, settingThreeSecondSubsettingEvents] {
+                let eventsForDay = events[dayComponents]
+                
+                totalEventCount += eventsForDay.count
+                
+                for event in eventsForDay {
+                    if event.state == .completed {
+                        completedEventCount += 1
+                    }
+                }
+            }
+        }
+        
+        guard totalEventCount > 0 else { return nil }
+        
+        // Calculate the percentage of completed events.
+        let carePlanAdherence = Float(completedEventCount) / Float(totalEventCount)
+        
+        // Create an `OCKMessageItem` describing medical adherence.
+        let percentageFormatter = NumberFormatter()
+        percentageFormatter.numberStyle = .percent
+        let formattedAdherence = percentageFormatter.string(from: NSNumber(value: carePlanAdherence))!
+        
+        let insight = OCKMessageItem(title: "Care Plan Adherence", text: "Your care plan adherence was \(formattedAdherence) last week.",
+            tintColor: UIColor.init(red: 95/255, green: 140/255, blue: 123/255, alpha: 0.9), messageType: .tip)
+        
+        return insight
+    }
+    
+    
+    
     func createFirstSettingInsight() -> OCKInsightItem? {
         
         //Make sure there are events to begin with (usually it is sensible to do couples - pain & medication)
@@ -71,6 +139,18 @@ class BuildInsightsOperation: Operation {
         let subsettingOneEvents = settingOneFirstSubsettingEvents
     
         let subsettingTwoEvents = settingOneSecondSubsettingEvents
+        
+        let mainSettingIdentifier = mainSettingsIdentifiers?[0]
+        let myGroup = DispatchGroup()
+        
+        myGroup.enter()
+        var mainSettingUnit = ""
+        
+        storeManager.findActivityUnit(identifier: mainSettingIdentifier!, completion: { unit in
+            
+            mainSettingUnit = unit as! String
+            myGroup.leave()
+        })
         
         //The date to start pain/medication comparison from
         let calendar = Calendar.current
@@ -139,7 +219,7 @@ class BuildInsightsOperation: Operation {
                     firstMedicationLabels.append(NSLocalizedString("0", comment: ""))
                 }
 
-                firstMedicationBarSeries = OCKBarSeries(title: "Medication 1", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
+                firstMedicationBarSeries = OCKBarSeries(title: firstSettingMedicationsIdentifiers?[0] ?? "Unknown", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
             }
             
             if subsettingTwoEvents != nil {
@@ -156,7 +236,7 @@ class BuildInsightsOperation: Operation {
                     secondMedicationLabels.append(NSLocalizedString("0", comment: ""))
                 }
                 
-                secondMedicationBarSeries = OCKBarSeries(title: "Medication 2", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
+                secondMedicationBarSeries = OCKBarSeries(title: firstSettingMedicationsIdentifiers?[1] ?? "Unknown", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
             }
             
             
@@ -168,8 +248,13 @@ class BuildInsightsOperation: Operation {
          Displaying - Create the bar chart
          */
         
+        
+        
+        
+        
+        
         //bars for each set of data
-        let painBarSeries = OCKBarSeries(title: "mg/dL", values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
+        let painBarSeries = OCKBarSeries(title: mainSettingUnit, values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
         
         
         var insightDataSeries : [OCKBarSeries]
@@ -185,7 +270,7 @@ class BuildInsightsOperation: Operation {
             insightDataSeries = [painBarSeries, firstMedicationBarSeries!, secondMedicationBarSeries!]
         }
         
-        let chart = OCKBarChart(title: "Blood Glucose",
+        let chart = OCKBarChart(title: mainSettingIdentifier,
                                 text: nil,
                                 tintColor: UIColor.blue,
                                 axisTitles: axisTitles,
@@ -208,6 +293,18 @@ class BuildInsightsOperation: Operation {
         let subsettingOneEvents = settingTwoFirstSubsettingEvents
         
         let subsettingTwoEvents = settingTwoSecondSubsettingEvents
+        
+        let mainSettingIdentifier = mainSettingsIdentifiers?[1]
+        let myGroup = DispatchGroup()
+        
+        myGroup.enter()
+        var mainSettingUnit = ""
+        
+        storeManager.findActivityUnit(identifier: mainSettingIdentifier!, completion: { unit in
+            
+            mainSettingUnit = unit as! String
+            myGroup.leave()
+        })
         
         //The date to start pain/medication comparison from
         let calendar = Calendar.current
@@ -276,7 +373,7 @@ class BuildInsightsOperation: Operation {
                     firstMedicationLabels.append(NSLocalizedString("0", comment: ""))
                 }
                 
-                firstMedicationBarSeries = OCKBarSeries(title: "Medication 1", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
+                firstMedicationBarSeries = OCKBarSeries(title: secondSettingMedicationsIdentifiers?[0] ?? "Unknown", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
             }
             
             if subsettingTwoEvents != nil {
@@ -293,7 +390,7 @@ class BuildInsightsOperation: Operation {
                     secondMedicationLabels.append(NSLocalizedString("0", comment: ""))
                 }
                 
-                secondMedicationBarSeries = OCKBarSeries(title: "Medication 2", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
+                secondMedicationBarSeries = OCKBarSeries(title: secondSettingMedicationsIdentifiers?[1] ?? "Unknown", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
             }
             
             
@@ -307,7 +404,7 @@ class BuildInsightsOperation: Operation {
          */
         
         //bars for each set of data
-        let painBarSeries = OCKBarSeries(title: "sec", values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
+        let painBarSeries = OCKBarSeries(title: mainSettingUnit, values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
         
         var insightDataSeries : [OCKBarSeries]
         
@@ -322,7 +419,7 @@ class BuildInsightsOperation: Operation {
             insightDataSeries = [painBarSeries, firstMedicationBarSeries!, secondMedicationBarSeries!]
         }
         
-        let chart = OCKBarChart(title: "Something else",
+        let chart = OCKBarChart(title: mainSettingIdentifier,
                                 text: nil,
                                 tintColor: UIColor.blue,
                                 axisTitles: axisTitles,
@@ -344,6 +441,18 @@ class BuildInsightsOperation: Operation {
         let subsettingOneEvents = settingThreeFirstSubsettingEvents
         
         let subsettingTwoEvents = settingThreeSecondSubsettingEvents
+        
+        let mainSettingIdentifier = mainSettingsIdentifiers?[2]
+        let myGroup = DispatchGroup()
+        
+        myGroup.enter()
+        var mainSettingUnit = ""
+        
+        storeManager.findActivityUnit(identifier: mainSettingIdentifier!, completion: { unit in
+            
+            mainSettingUnit = unit as! String
+            myGroup.leave()
+        })
         
         //The date to start pain/medication comparison from
         let calendar = Calendar.current
@@ -412,7 +521,7 @@ class BuildInsightsOperation: Operation {
                     firstMedicationLabels.append(NSLocalizedString("0", comment: ""))
                 }
                 
-                firstMedicationBarSeries = OCKBarSeries(title: "Medication 1", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
+                firstMedicationBarSeries = OCKBarSeries(title: thirdSettingMedicationsIdentifiers?[0] ?? "Unknown", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
             }
             
             if subsettingTwoEvents != nil {
@@ -429,7 +538,7 @@ class BuildInsightsOperation: Operation {
                     secondMedicationLabels.append(NSLocalizedString("0", comment: ""))
                 }
                 
-                secondMedicationBarSeries = OCKBarSeries(title: "Medication 2", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
+                secondMedicationBarSeries = OCKBarSeries(title: firstSettingMedicationsIdentifiers?[1] ?? "Unknown", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
             }
             
             
@@ -442,7 +551,7 @@ class BuildInsightsOperation: Operation {
          */
         
         //bars for each set of data
-        let painBarSeries = OCKBarSeries(title: "l/min", values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
+        let painBarSeries = OCKBarSeries(title: mainSettingUnit, values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
         
         var insightDataSeries : [OCKBarSeries]
         
@@ -457,7 +566,7 @@ class BuildInsightsOperation: Operation {
             insightDataSeries = [painBarSeries, firstMedicationBarSeries!, secondMedicationBarSeries!]
         }
         
-        let chart = OCKBarChart(title: "Something",
+        let chart = OCKBarChart(title: mainSettingIdentifier,
                                 text: nil,
                                 tintColor: UIColor.blue,
                                 axisTitles: axisTitles,

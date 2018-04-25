@@ -263,6 +263,23 @@ class FirebaseManager {
         })
     }
     
+    func updatePatientSettings(patientID : String, settingIdentifier: String, newMain : String, newFirst : String, newSecond : String, completion: @escaping Value){
+        
+        ref.child("settings").child(patientID).child(settingIdentifier).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let settingObject = snapshot.value as! NSDictionary
+            
+            settingObject.setValue(newMain, forKey: "Main-Setting")
+            settingObject.setValue(newFirst, forKey: "First-Subsetting1")
+            settingObject.setValue(newSecond, forKey: "Second-Subsetting")
+            
+            self.ref.child("settings").child(patientID).child(settingIdentifier).setValue(settingObject)
+            completion(true)
+            
+            
+        })
+    }
+    
     
     
     //MARK: - Requests-Specific Methods

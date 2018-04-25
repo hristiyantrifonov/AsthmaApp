@@ -8,9 +8,8 @@
 
 import UIKit
 
-
 class MainInsightPickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
-    let assessmentCategoryTypes = ["--none--", "Vital Capacity", "Inhaler Tracking", "Respiratory Rate"]
+    var mainInsightOptions = ["--none--"]
     fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -18,57 +17,98 @@ class MainInsightPickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return assessmentCategoryTypes.count
+        return mainInsightOptions.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return assessmentCategoryTypes[row]
+        
+        storeManager.myCarePlanStore.activities(with: .assessment) { (success, activities, errorOrNil) in
+            guard success else {
+                // perform proper error handling here
+                fatalError(errorOrNil!.localizedDescription)
+            }
+            
+            for i in activities{
+                self.mainInsightOptions.append(i.identifier)
+            }
+            
+        }
+        
+        return mainInsightOptions[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("VALUE IN PICKER SELECTED: " + self.assessmentCategoryTypes[row])
+        print("VALUE IN PICKER SELECTED: " + self.mainInsightOptions[row])
     }
     
 }
 
 class FirstMedicationInsightPickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
-    let assessmentCategoryTypes = ["--none--", "Inhaler Tracking", "Respiratory Rate"]
+    var firstMedicationOptions = ["--none--"]
+    fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return assessmentCategoryTypes.count
+        return firstMedicationOptions.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return assessmentCategoryTypes[row]
+        
+        storeManager.myCarePlanStore.activities(with: .intervention ) { (success, activities, errorOrNil) in
+            guard success else {
+                // perform proper error handling here
+                fatalError(errorOrNil!.localizedDescription)
+            }
+            
+            for i in activities{
+                self.firstMedicationOptions.append(i.identifier)
+            }
+            
+        }
+        
+        return firstMedicationOptions[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("VALUE IN PICKER SELECTED: " + self.assessmentCategoryTypes[row])
+        print("VALUE IN PICKER SELECTED: " + self.firstMedicationOptions[row])
     }
     
 }
 
 class SecondMedicationInsightPickerDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
-    let assessmentCategoryTypes = ["--none--", "Exercise", "Vital Capacity", "Inhaler Tracking", "Respiratory Rate"]
+    var secondMedicationOptions = ["--none--"]
+    fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return assessmentCategoryTypes.count
+        return secondMedicationOptions.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return assessmentCategoryTypes[row]
+        
+        storeManager.myCarePlanStore.activities(with: .intervention ) { (success, activities, errorOrNil) in
+            guard success else {
+                // perform proper error handling here
+                fatalError(errorOrNil!.localizedDescription)
+            }
+            
+            for i in activities{
+                self.secondMedicationOptions.append(i.identifier)
+            }
+            
+        }
+        
+        return secondMedicationOptions[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("VALUE IN PICKER SELECTED: " + self.assessmentCategoryTypes[row])
+        print("VALUE IN PICKER SELECTED: " + self.secondMedicationOptions[row])
     }
     
 }

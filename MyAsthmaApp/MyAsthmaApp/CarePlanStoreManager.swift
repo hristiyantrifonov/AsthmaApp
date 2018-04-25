@@ -55,6 +55,7 @@ class CarePlanStoreManager: NSObject {
     }
     
     func updateInsights() {
+        print("LO PASE BIEN")
         insightsBuilder.updateInsights { [weak self] completed, newInsights in
             // If new insights have been created, notifiy the delegate.
             guard let storeManager = self, let newInsights = newInsights , completed else { return }
@@ -92,4 +93,32 @@ protocol CarePlanStoreManagerDelegate: class {
     
 }
 
-
+extension CarePlanStoreManager {
+    
+    typealias Value = (Any?) -> Void
+    
+    func findActivityUnit(identifier: String, completion: @escaping Value ) {
+        
+        var unitToBeReturned = "a"
+        
+        myCarePlanStore.activity(forIdentifier: identifier) { (success, activity, error) in
+            guard success else {
+                fatalError(error!.localizedDescription)
+            }
+            
+            if let unit = activity?.userInfo!["unit"]{
+                print("molq")
+                if unit as! String == ""{
+                    unitToBeReturned = activity?.identifier as! String
+                    completion(unitToBeReturned)
+                }else{
+                    unitToBeReturned = unit as! String
+                    completion(unitToBeReturned)
+                }
+            }
+    
+        }
+        
+    }
+    
+}

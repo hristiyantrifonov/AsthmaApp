@@ -99,5 +99,8 @@ class LoginViewController: UIViewController {
         
     }
     
-
+    @IBAction func unwindToLoginFromInsights(segue: UIStoryboardSegue) {
+        
+    }
+    
 }

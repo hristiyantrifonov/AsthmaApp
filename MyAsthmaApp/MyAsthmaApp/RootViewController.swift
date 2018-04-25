@@ -100,11 +100,13 @@ class RootViewController: UITabBarController {
 
         let activityType1: ActivityType = .bloodGlucose
         let activityType2: ActivityType = .backPain
-
+        let activityType3 = "peak flow"
+        
         let widget1 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType1.rawValue, tintColor: UIColor.blue)
         let widget2 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType2.rawValue, tintColor: UIColor.blue)
+        let widget3 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType3, tintColor: UIColor.blue)
 
-        let viewController = OCKInsightsViewController(insightItems: storeManager.insights, patientWidgets: [widget1, widget2], thresholds: nil, store: storeManager.myCarePlanStore)
+        let viewController = OCKInsightsViewController(insightItems: storeManager.insights, patientWidgets: [widget1, widget2, widget3], thresholds: nil, store: storeManager.myCarePlanStore)
 
         viewController.tabBarItem = UITabBarItem(title: "Insights", image: UIImage(named: "insights"), selectedImage: UIImage.init(named: "insights-filled"))
         viewController.title = "Insights"
@@ -123,6 +125,7 @@ class RootViewController: UITabBarController {
         return viewController
     }
     
+    //Unwind segue
     @IBAction func unwindToRoot(segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? AddContactViewController{
             print("YEEES BABY")
@@ -367,7 +370,6 @@ extension RootViewController: OCKConnectViewControllerDelegate {
     
     func connectViewController(_ connectViewController: OCKConnectViewController, titleForSharingCellFor contact: OCKContact) -> String? {
         
-        let fullName = contact.name
         let indexOfWhiteSpace = contact.name.index(of: " ")
         var displayName = contact.name
         if indexOfWhiteSpace != nil {
@@ -376,19 +378,7 @@ extension RootViewController: OCKConnectViewControllerDelegate {
         
         return "Share Care Data with \(displayName)"
     }
-//
-//        func connectViewController(_ viewController: OCKConnectViewController, didSendConnectMessage message: String, careTeamContact contact: OCKContact) {
-//            let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
-//            let connectMessage = OCKConnectMessageItem(messageType: .sent, name: sampleData.patient.name, message: message, dateString: dateString)
-//            sampleData.connectMessageItems.append(connectMessage)
-//        }
-//    }
-//
-//    func connectViewController(_ viewController: OCKConnectViewController, didSendConnectMessage message: String, careTeamContact contact: OCKContact) {
-//        let dateString = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
-//        let connectMessage = OCKConnectMessageItem(messageType: .sent, name: sampleData.patient.name, message: message, dateString: dateString)
-//        sampleData.connectMessageItems.append(connectMessage)
-//    }
+
 }
 
 // MARK: CarePlanStoreManagerDelegate

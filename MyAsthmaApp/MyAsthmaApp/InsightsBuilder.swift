@@ -50,13 +50,11 @@ class InsightsBuilder {
         
         //Define operations to query for events for the previous week of every activity/assessment
         //Gives us data in the form of enumerated events for activities with particular identifiers - This is our first operation
-        var identifiersArray = ["--none--", "mb1", "mb2"]
-        var medicationArraySettingOne = ["mmmmm", "outdoorWalk"]
-        var medicationArraySettingTwo = ["mb2", "outdoorWalk"]
-        var medicationArraySettingThree = ["mmmmm", "mb1"]
+        var identifiersArray = ["--none--"]
+        var medicationArraySettingOne = ["--none--", "--none--"]
+        var medicationArraySettingTwo = ["--none--", "--none--"]
+        var medicationArraySettingThree = ["--none--", "--none--"]
         
-        print("------")
-//        ["Identifiers" : identifiersDict, "first-meds" : firstSettingMedications, "second-meds" : secondSettingMedications, "third-meds" : thirdSettingMedications]
         FirebaseManager().getPatientMainSettings(patientID: self.patientID!) {
             (settingsDict) in
             
@@ -69,9 +67,6 @@ class InsightsBuilder {
             
             self.myGroup.leave()
         }
-        print("------")
-        
-//
         
         myGroup.notify(queue: .main) {
             print(identifiersArray)
@@ -83,6 +78,10 @@ class InsightsBuilder {
         //Now we create "BuildInsightsOperation" to actually make insights from the data collected
         let buildInsightsOperation = BuildInsightsOperation()
         
+        buildInsightsOperation.mainSettingsIdentifiers = identifiersArray
+        buildInsightsOperation.firstSettingMedicationsIdentifiers = medicationArraySettingOne
+        buildInsightsOperation.secondSettingMedicationsIdentifiers = medicationArraySettingTwo
+        buildInsightsOperation.thirdSettingMedicationsIdentifiers = medicationArraySettingThree
         
         //MARK: - First Setting
         let insightSettingOneEventsOperation = QueryActivityEventsOperation(store: self.carePlanStore,

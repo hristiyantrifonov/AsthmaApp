@@ -32,6 +32,8 @@ class MainTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        storeManager.updateInsights()
+        
         ref = Database.database().reference()
         print(userID!)
         self.beginConfigurationButton.isHidden = true
@@ -65,6 +67,11 @@ class MainTabViewController: UIViewController {
             print(error.localizedDescription)
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        storeManager.updateInsights()
     }
     
     override func didReceiveMemoryWarning() {
