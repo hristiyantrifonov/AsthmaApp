@@ -32,9 +32,6 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func changeBackground(_ sender: Any) {
-         view.backgroundColor = UIColor.blue
-    }
     @IBAction func loginButtonPressed(_ sender: Any) {
         
         SVProgressHUD.show()

@@ -80,7 +80,7 @@ class RootViewController: UITabBarController {
         viewController = storyboard.instantiateViewController(withIdentifier: "main")
 
         viewController.title = "Main"
-
+        viewController.tabBarItem = UITabBarItem(title: viewController.title, image: UIImage(named: "main"), selectedImage: UIImage.init(named: "main-filled"))
         return UINavigationController(rootViewController: viewController)
     }
 
