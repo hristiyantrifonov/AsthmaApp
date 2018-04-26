@@ -31,6 +31,9 @@ class RootViewController: UITabBarController {
     
     fileprivate let carePlanData: CarePlanData
     
+    //For document exporter
+    fileprivate var insightChart: OCKBarChart? = nil
+    
 
     //MARK: - Patient Object and Connect Message Items
     var patient : OCKPatient!
@@ -268,9 +271,9 @@ extension RootViewController: ORKTaskViewControllerDelegate {
             if error != nil {
                 return
             }else{
-                print(activity)
+                
                 theActivity = activity
-                print(theActivity)
+                
                 
             }
             
@@ -358,14 +361,18 @@ extension RootViewController: OCKConnectViewControllerDelegate {
     
     /// Called when the user taps a contact in the `OCKConnectViewController`.
     func connectViewController(_ connectViewController: OCKConnectViewController, didSelectShareButtonFor contact: OCKContact, presentationSourceView sourceView: UIView?) {
-//        let document = sampleData.generateSampleDocument()
-//        document.createPDFData {(data, error) in
-//            let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-//            DispatchQueue.main.async {
-//                self.present(activityViewController, animated: true, completion: nil)
-//            }
         print("didSelectShareButtonFor \(contact.name)")
+        let document = carePlanData.generateSampleDocument()
         
+        document.elements?.append(OCKDocumentElementChart(chart: insightChart!))
+        
+        document.createPDFData {(data, error) in
+            let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            
+            DispatchQueue.main.async {
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     func connectViewController(_ connectViewController: OCKConnectViewController, titleForSharingCellFor contact: OCKContact) -> String? {
@@ -389,6 +396,12 @@ extension RootViewController: CarePlanStoreManagerDelegate {
     func carePlanStoreManager(_ manager: CarePlanStoreManager, didUpdateInsights insights: [OCKInsightItem]) {
         // Update the insights view controller with the new insights.
         insightsViewController.items = insights
+        
+        if let trainingPlan = (insights.last) {
+            
+            insightChart = trainingPlan as? OCKBarChart
+        }
+        
     }
 }
 

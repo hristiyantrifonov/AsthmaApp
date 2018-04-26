@@ -61,4 +61,14 @@ class CarePlanData: NSObject {
         return nil
     }
     
+    func generateSampleDocument() -> OCKDocument {
+        let subtitle = OCKDocumentElementSubtitle(subtitle: "Weekly Report of Action Plan Adherence")
+        
+        let paragraph = OCKDocumentElementParagraph(content: "To keep you informed of my action plan progress and adherence I attach my medical data for this week's activites. The charts show the results of both my assessments and intervention activities. Please note I also include the summary of my overall medical adherence percentage for your review.")
+        
+        let document = OCKDocument(title: "My Care Data", elements: [subtitle, paragraph])
+        
+        return document
+    }
+    
 }
