@@ -93,6 +93,7 @@ class RootViewController: UITabBarController {
         let viewController = OCKCareContentsViewController(carePlanStore: storeManager.myCarePlanStore)
 
         viewController.glyphType = .respiratoryHealth
+        viewController.glyphTintColor = Colors.menuBlue.color
         viewController.title = NSLocalizedString("Care Contents", comment: "")
         viewController.tabBarItem = UITabBarItem(title: viewController.title, image: UIImage(named:"carecard"), selectedImage: UIImage(named: "carecard-filled"))
         viewController.delegate = self;

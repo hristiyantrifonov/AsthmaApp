@@ -21,6 +21,15 @@ class MainTabViewController: UIViewController {
     @IBOutlet weak var beginConfigurationButton: UIButton!
     
     @IBOutlet weak var changeActionPlanButton: UIButton!
+    @IBOutlet weak var insightsSettingsButton: UIButton!
+    @IBOutlet weak var viewRequestsButton: UIButton!
+    @IBOutlet weak var addContactButton: UIButton!
+    @IBOutlet weak var knowledgeBookButton: UIButton!
+    
+    @IBOutlet weak var nameContainer: UIView!
+    @IBOutlet weak var alteringOptionsContainer: UIView!
+    @IBOutlet weak var generalOptionsContainer: UIView!
+    @IBOutlet weak var logOutContainer: UIView!
     
     var ref: DatabaseReference!
     let userID = Auth.auth().currentUser?.uid
@@ -31,6 +40,17 @@ class MainTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Styles of the Main Tab
+        self.view.backgroundColor = UIColor.init(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
+        nameContainer.layer.borderWidth = 1
+        nameContainer.layer.borderColor = Colors.borderGrey.color.cgColor
+        alteringOptionsContainer.layer.borderWidth = 1
+        alteringOptionsContainer.layer.borderColor = Colors.borderGrey.color.cgColor
+        generalOptionsContainer.layer.borderWidth = 1
+        generalOptionsContainer.layer.borderColor = Colors.borderGrey.color.cgColor
+        logOutContainer.layer.borderWidth = 1
+        logOutContainer.layer.borderColor = Colors.borderGrey.color.cgColor
         
         storeManager.updateInsights()
         
@@ -56,7 +76,7 @@ class MainTabViewController: UIViewController {
             
             self.user = User(withForename: forename,withSurname: surname, withEmail: email)
             
-            self.greetingLabel.text = "Hello " + (self.user?.forename!)! + " " + (self.user?.surname!)!
+            self.greetingLabel.text = " " + (self.user?.forename!)! + " " + (self.user?.surname!)!
             
             //Only show the Begin Configuration Button if the profile is not configured
             //This is checked by a boolean field in the Firebase database record for the user
@@ -92,37 +112,6 @@ class MainTabViewController: UIViewController {
         
     }
     
-    
-    //Ending an activity by setting an End Date to it - this is to preserve the previous date obtained from the activity
-    //instead of just deleting it
-//    @IBAction func endActivityRequest(_ sender: Any) {
-//        print("End Activity Request")
-//        let myCarePlanStore = storeManager.myCarePlanStore
-//    
-//        storeManager.myCarePlanStore.activities {
-//            (success, activitiesArray, error) in
-//            if success {
-//                var identifier = activitiesArray[activitiesArray.count-1].identifier
-//                print(identifier)
-//                
-//                myCarePlanStore.activity(forIdentifier: identifier) { (success, chosenActivity, error ) in
-//                    if success {
-//                        print("founds activity - \(identifier)")
-//                        var endDate = DateComponents(year: 2018, month: 04, day: 03)
-//                        chosenActivity?.schedule.setValue(endDate, forKey: "endDate")
-//                        print("successfuly changed")
-//                    }else{
-//                        print(error!)
-//                    }
-//                }
-//                
-//                print(activitiesArray[activitiesArray.count-1].schedule.startDate)
-//                print(activitiesArray[activitiesArray.count-1].schedule.endDate)
-//            }else{
-//                print(error!)
-//            }
-//        }
-//    }
     //Logout button to clear session
     @IBAction func logOutPressed(_ sender: Any) {
         do{
@@ -140,4 +129,5 @@ class MainTabViewController: UIViewController {
     
     
 }
+
 

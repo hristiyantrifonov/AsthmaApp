@@ -17,11 +17,25 @@ class PopUpDoctorCredentialsViewController: UIViewController {
     @IBOutlet weak var GMCNumberTextFIeld: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var authoriseButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
+    
     var ref: DatabaseReference!
     let patientID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        authoriseButton.backgroundColor = .clear
+        authoriseButton.layer.cornerRadius = 7
+        authoriseButton.layer.borderWidth = 1
+        authoriseButton.layer.borderColor = UIColor.black.cgColor
+        closeButton.backgroundColor = .clear
+        closeButton.layer.cornerRadius = 7
+        closeButton.layer.borderWidth = 1
+        closeButton.layer.borderColor = UIColor.black.cgColor
         
         ref = Database.database().reference()
         showAnimate()

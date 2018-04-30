@@ -17,6 +17,7 @@ class InsightSettingsViewController: UIViewController {
     @IBOutlet weak var secondMedicationPickerView: UIPickerView!
     
     @IBOutlet weak var settingChooser: UISegmentedControl!
+    @IBOutlet weak var updateButton: UIButton!
     
     //Picker View Delegate Classes
     let mainInsightPickerDelegate = MainInsightPickerDelegate()
@@ -29,6 +30,11 @@ class InsightSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateButton.backgroundColor = .clear
+        updateButton.layer.cornerRadius = 7
+        updateButton.layer.borderWidth = 1
+        updateButton.layer.borderColor = UIColor.black.cgColor
         
         mainInsightPickerView.delegate = mainInsightPickerDelegate
         mainInsightPickerView.dataSource = mainInsightPickerDelegate

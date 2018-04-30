@@ -15,7 +15,7 @@ class KnowledgeBookViewController: UIViewController {
     
     @IBOutlet weak var informationTableView: UITableView!
     
-    let informationCells = ["My Inhaler", "Asthma Assessments"]
+    let informationCells = ["Understanding My Asthma", "Asthma Triggers" ,"My Inhalers", "Asthma Assessments", "Asthma Attacks"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,11 @@ extension KnowledgeBookViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        var indexOfSelectedRow = indexPath.row
+        
+        if indexOfSelectedRow == 0{
+            performSegue(withIdentifier: "goToUnderstandAsthma", sender: self)
+        }
     }
     
     

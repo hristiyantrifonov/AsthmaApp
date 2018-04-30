@@ -17,6 +17,9 @@ class AddContactViewController: UIViewController {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var submitAnotherButton: UIButton!
+    
     @IBOutlet weak var contactTypeChooser: UISegmentedControl!
     
     var contact : OCKContact!
@@ -25,6 +28,16 @@ class AddContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        submitButton.backgroundColor = .clear
+        submitButton.layer.cornerRadius = 7
+        submitButton.layer.borderWidth = 1
+        submitButton.layer.borderColor = UIColor.black.cgColor
+        submitAnotherButton.backgroundColor = .clear
+        submitAnotherButton.layer.cornerRadius = 7
+        submitAnotherButton.layer.borderWidth = 1
+        submitAnotherButton.layer.borderColor = UIColor.black.cgColor
         
         // Do any additional setup after loading the view.
     }
