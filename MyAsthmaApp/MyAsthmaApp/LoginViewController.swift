@@ -35,10 +35,9 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         
         SVProgressHUD.show()
-        
+    
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) {
             (user, error) in
-            
             
             if error != nil {
                 print(error!)
@@ -50,10 +49,6 @@ class LoginViewController: UIViewController {
                 print("Login Successful!")
                 SVProgressHUD.dismiss()
                 
-                print("JA")
-                print(user?.uid)
-        
-                
                 if let userID = user?.uid {
                     
                     //Finds the current user in the RealTime Database in Firebase and
@@ -64,9 +59,6 @@ class LoginViewController: UIViewController {
                         
                         let userType = userObject?["User_Type"] as? String ?? ""
                         let firstLogin = userObject?["First_Login"] as? Bool 
-                        
-                        print("DA")
-                        print(userType)
                         
                         if userType == "Doctor"{
                             if firstLogin == true{
@@ -85,10 +77,8 @@ class LoginViewController: UIViewController {
                     
                 }
                 
-//                self.performSegue(withIdentifier: "goToRoot", sender: self)
             }
             
-        
         }
     }
     

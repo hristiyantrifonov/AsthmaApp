@@ -29,7 +29,7 @@ struct OutdoorWalk: Activity {
         
         // Create the intervention activity.
         let activity = OCKCarePlanActivity.intervention(
-            withIdentifier: activityType.rawValue,
+            withIdentifier: "outdoorWalk",
             groupIdentifier: "Physical Activity",
             title: title,
             text: summary,

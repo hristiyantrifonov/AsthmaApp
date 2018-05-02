@@ -202,32 +202,7 @@ class AddActivitiesViewController: UIViewController {
             })
             
         }
-        
-        //Adding the activity with the specified parameters
-//        let myCarePlanStore = storeManager.myCarePlanStore
-//
-//        let activityBuilder = ActivityBuilder()
-//
-//        activityBuilder.setActivityDefinitions(title: inputTitle, summary: inputSummary, instructions: inputInstructions, groupIdentifier: "\(inputGroupIdentifier)")
-//
-//        let chosenSchedule = activityBuilder.constructSchedule(occurencesArray: schedule)
-//
-//        let activity = activityBuilder.createInterventionActivity(schedule: chosenSchedule, optionality: self.optionalChosen)
-//        myCarePlanStore.add(activity) {
-//            (success, error) in
-//            if error != nil  {
-//                print("Error adding an activity \(error!)")
-//            }
-//            else{
-//                print("Activity successfully added")
-//                self.successAddition = true
-//                DispatchQueue.main.async { //Because the navigation controller must be updated from the main thread
-//                    self.navigationController?.popViewController(animated: true)
-//                    self.dismiss(animated: true, completion: nil)
-//
-//                }
-//            }
-//        }
+
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {

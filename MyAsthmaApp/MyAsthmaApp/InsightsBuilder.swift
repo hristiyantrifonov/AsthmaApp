@@ -73,6 +73,8 @@ class InsightsBuilder {
             print(medicationArraySettingOne)
             print(medicationArraySettingTwo)
             print(medicationArraySettingThree)
+            
+            
         /*******  BUILD OPERATIONS  *******/
         
         //Now we create "BuildInsightsOperation" to actually make insights from the data collected
@@ -159,8 +161,6 @@ class InsightsBuilder {
         }
         
         /*** ADDING DEPENDENCIES FOR SMOOTH OPERATIONAL FLOW ***/
-        //this is instead of semaphore?
-        
         //addDependency - make the receiver (feedDataOperation) dependent on the completion of the argument in brackets
         //feedDataOperation is dependent on the QUERY OPERATIONS
         feedDataOperation.addDependency(insightSettingOneEventsOperation)

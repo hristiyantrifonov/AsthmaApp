@@ -20,11 +20,7 @@ protocol Activity {
 
 //provides unique identifiers for intervention and assessment activities
 enum ActivityType: String {
-    case takeNurofen
     case outdoorWalk
-    case test
-    
-    case bloodGlucose
-    case backPain
+    case peakFlow
     
 }

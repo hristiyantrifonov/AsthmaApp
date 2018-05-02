@@ -12,6 +12,7 @@ import Firebase
 class FirebaseManager {
     
     var ref: DatabaseReference!
+    
     var userFieldValue : Any?
     
     init() {
@@ -25,7 +26,7 @@ class FirebaseManager {
     //MARK: - General System Methods
     
     /*
-     Fetch the requests which were addressed for a specific doctor
+     Fetch the requests which were addressed to a specific doctor
      */
     func fetchDoctorRequests(doctorID : String, completion : @escaping Value){
         
@@ -262,6 +263,7 @@ class FirebaseManager {
             completion(dict)
         })
     }
+    
     
     func updatePatientSettings(patientID : String, settingIdentifier: String, newMain : String, newFirst : String, newSecond : String, completion: @escaping Value){
         

@@ -751,7 +751,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdl-Ke-brQ">
                                         <rect key="frame" x="30" y="251" width="231" height="35"/>
@@ -2153,6 +2153,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="cos-7r-GVc" id="hh1-dy-uyd"/>
                         <outlet property="instructionsTextField" destination="PY3-2f-c8Z" id="fGR-Dn-ObR"/>
                         <outlet property="summaryTextField" destination="Z0C-dp-n9w" id="BVy-sD-n4M"/>
                         <outlet property="titleTextField" destination="nOX-Vw-2JH" id="1kg-2w-XiU"/>

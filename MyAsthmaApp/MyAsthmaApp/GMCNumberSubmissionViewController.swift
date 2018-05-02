@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ZeroKit
 import Firebase
 
 class GMCNumberSubmissionViewController: UIViewController {
@@ -20,8 +19,6 @@ class GMCNumberSubmissionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        
-        print("User with ID: \(userID)")
         
         // Do any additional setup after loading the view.
     }

@@ -9,9 +9,10 @@ target 'MyAsthmaApp' do
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Performance'
   pod 'KeychainSwift'
   pod 'SVProgressHUD'
-  pod 'ZeroKit'
+  
 
   target 'MyAsthmaAppTests' do
     inherit! :search_paths

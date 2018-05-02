@@ -55,7 +55,6 @@ class CarePlanStoreManager: NSObject {
     }
     
     func updateInsights() {
-        print("LO PASE BIEN")
         insightsBuilder.updateInsights { [weak self] completed, newInsights in
             // If new insights have been created, notifiy the delegate.
             guard let storeManager = self, let newInsights = newInsights , completed else { return }

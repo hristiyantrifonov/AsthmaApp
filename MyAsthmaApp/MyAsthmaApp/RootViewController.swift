@@ -53,6 +53,7 @@ class RootViewController: UITabBarController {
         super.init(coder: aDecoder)
         self.navigationItem.setHidesBackButton(true, animated:true);
         
+        self.patient = OCKPatient(identifier: "patient", carePlanStore: self.storeManager.myCarePlanStore, name: "John Appleseed", detailInfo: nil, careTeamContacts: self.contacts, tintColor: nil, monogram: nil, image: nil, categories: nil, userInfo: nil)
         
         storeManager.delegate = self
         
@@ -85,10 +86,6 @@ class RootViewController: UITabBarController {
     }
 
     fileprivate func createCareContentsViewController() -> OCKCareContentsViewController {
-        /*
-         Care Card actions generally are taken to improve or
-         maintain a condition
-         */
 
         let viewController = OCKCareContentsViewController(carePlanStore: storeManager.myCarePlanStore)
 
@@ -102,15 +99,13 @@ class RootViewController: UITabBarController {
 
     fileprivate func createInsightsViewController() -> OCKInsightsViewController {
 
-        let activityType1: ActivityType = .bloodGlucose
-        let activityType2: ActivityType = .backPain
-        let activityType3 = "peak flow"
+        let activityType1 = "peak flow"
         
-        let widget1 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType1.rawValue, tintColor: UIColor.blue)
-        let widget2 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType2.rawValue, tintColor: UIColor.blue)
-        let widget3 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType3, tintColor: UIColor.blue)
+        let widget1 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType1, tintColor: UIColor.blue)
+//        let widget2 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType1.rawValue, tintColor: UIColor.blue)
+//        let widget3 = OCKPatientWidget.defaultWidget(withActivityIdentifier: activityType2.rawValue, tintColor: UIColor.blue)
 
-        let viewController = OCKInsightsViewController(insightItems: storeManager.insights, patientWidgets: [widget1, widget2, widget3], thresholds: nil, store: storeManager.myCarePlanStore)
+        let viewController = OCKInsightsViewController(insightItems: storeManager.insights, patientWidgets: [widget1], thresholds: nil, store: storeManager.myCarePlanStore)
 
         viewController.tabBarItem = UITabBarItem(title: "Insights", image: UIImage(named: "insights"), selectedImage: UIImage.init(named: "insights-filled"))
         viewController.title = "Insights"
@@ -132,7 +127,6 @@ class RootViewController: UITabBarController {
     //Unwind segue
     @IBAction func unwindToRoot(segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? AddContactViewController{
-            print("YEEES BABY")
             contacts.append(sourceVC.contact)
             print(contacts)
             self.connectViewController.contacts = self.contacts
@@ -157,7 +151,7 @@ extension RootViewController: OCKCareContentsViewControllerDelegate {
         print(assessmentEvent.activity.userInfo)
         print(assessmentEvent.activity.userInfo?["descriptions"])
         
-        //Uses the options (i.e description, assessmentType, max and min values) we have save to the activity userInfor hash dictionary
+        //Uses the options (i.e description, assessmentType, max and min values) we have save to the activity userInfo hash dictionary
         let taskOptions = assessmentEvent.activity.userInfo
         
         let taskBuilder = TaskBuilder()
@@ -166,6 +160,7 @@ extension RootViewController: OCKCareContentsViewControllerDelegate {
         let taskViewController : ORKTaskViewController
         
         let assessmentTypeChosen = taskOptions!["assessmentType"]!
+//        let assessmentTypeChosen = "quantityAssessment"
         print("Creating \(assessmentTypeChosen)")
         
         if assessmentTypeChosen as! String == "scaleAssessment"{
@@ -235,8 +230,6 @@ extension RootViewController {
                                                image: nil)
                 
                 self.contacts.append(contactObject)
-                
-                self.patient = OCKPatient(identifier: "patient", carePlanStore: self.storeManager.myCarePlanStore, name: "John Doe", detailInfo: nil, careTeamContacts: self.contacts, tintColor: nil, monogram: "JD", image: nil, categories: nil, userInfo: ["Age": "21", "Gender": "M", "Phone":"888-555-5512"])
                 
                 self.connectViewController.contacts = self.contacts
                 
@@ -360,7 +353,7 @@ extension RootViewController: OCKConnectViewControllerDataSource {
 
 extension RootViewController: OCKConnectViewControllerDelegate {
     
-    /// Called when the user taps a contact in the `OCKConnectViewController`.
+    /// Called when the user taps on share button of contact in the `OCKConnectViewController`.
     func connectViewController(_ connectViewController: OCKConnectViewController, didSelectShareButtonFor contact: OCKContact, presentationSourceView sourceView: UIView?) {
         print("didSelectShareButtonFor \(contact.name)")
         let document = carePlanData.generateSampleDocument()
