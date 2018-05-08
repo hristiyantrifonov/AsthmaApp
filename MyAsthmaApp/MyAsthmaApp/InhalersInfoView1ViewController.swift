@@ -1,20 +1,18 @@
 //
-//  UnderstandingAsthmaPage1ViewController.swift
+//  InhalersInfoView1ViewController.swift
 //  MyAsthmaApp
 //
-//  Created by user136629 on 4/30/18.
+//  Created by user136629 on 5/7/18.
 //  Copyright © 2018 Hristiyan Trifonov. All rights reserved.
 //
 
 import UIKit
 
-class UnderstandingAsthmaPage1ViewController: UIViewController {
+class InhalersInfoView1ViewController: UIViewController {
 
-    @IBOutlet weak var infoLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
 

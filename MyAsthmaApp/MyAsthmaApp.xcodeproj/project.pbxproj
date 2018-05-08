@@ -28,6 +28,11 @@
 		844D2748208CCB9A0033EB39 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D2747208CCB9A0033EB39 /* AddContactViewController.swift */; };
 		845708A92050D228007B49A8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708A82050D228007B49A8 /* WelcomeViewController.swift */; };
 		845708AB2050D431007B49A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845708AA2050D431007B49A8 /* LoginViewController.swift */; };
+		845C34DF20A0B7D100D29856 /* AsthmaTriggersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C34DE20A0B7D100D29856 /* AsthmaTriggersViewController.swift */; };
+		845C34E620A0D13A00D29856 /* MyInhalersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C34E520A0D13A00D29856 /* MyInhalersViewController.swift */; };
+		845C34E820A0D17000D29856 /* InhalersInfoView1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C34E720A0D17000D29856 /* InhalersInfoView1ViewController.swift */; };
+		845C34EA20A0D17F00D29856 /* InhalersInforView2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C34E920A0D17F00D29856 /* InhalersInforView2ViewController.swift */; };
+		845C34ED20A0E26200D29856 /* AsthmaAssessmentsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C34EC20A0E26200D29856 /* AsthmaAssessmentsInfoViewController.swift */; };
 		84602C92208FC1B40088B989 /* InsightSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84602C91208FC1B40088B989 /* InsightSettingsViewController.swift */; };
 		84615A34206FCB76007CE6B6 /* AddActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */; };
 		846AA752209898DD00A695C6 /* PeakFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA751209898DD00A695C6 /* PeakFlow.swift */; };
@@ -50,6 +55,7 @@
 		84B61CF0207E69EB00F522A4 /* AddAssessmentPickerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B61CEF207E69EB00F522A4 /* AddAssessmentPickerDelegates.swift */; };
 		84BD186E205C16A600B37E16 /* QueryActivityEventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BD186D205C16A600B37E16 /* QueryActivityEventsOperation.swift */; };
 		84CC38962097239B006EF666 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CC38952097239B006EF666 /* GradientButton.swift */; };
+		84D4935520A1495D00A4CC2F /* AsthmaAttacksInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D4935420A1495D00A4CC2F /* AsthmaAttacksInfoViewController.swift */; };
 		84E17A372061F2290099631A /* ActivityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E17A362061F2290099631A /* ActivityBuilder.swift */; };
 		84F2E27F209799CA00C3405C /* UnderstandingAsthmaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2E27E209799CA00C3405C /* UnderstandingAsthmaViewController.swift */; };
 		84F2E28120979C8000C3405C /* UnderstandingAsthmaPage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2E28020979C8000C3405C /* UnderstandingAsthmaPage1ViewController.swift */; };
@@ -168,6 +174,11 @@
 		844D2747208CCB9A0033EB39 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		845708A82050D228007B49A8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		845708AA2050D431007B49A8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		845C34DE20A0B7D100D29856 /* AsthmaTriggersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsthmaTriggersViewController.swift; sourceTree = "<group>"; };
+		845C34E520A0D13A00D29856 /* MyInhalersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInhalersViewController.swift; sourceTree = "<group>"; };
+		845C34E720A0D17000D29856 /* InhalersInfoView1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InhalersInfoView1ViewController.swift; sourceTree = "<group>"; };
+		845C34E920A0D17F00D29856 /* InhalersInforView2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InhalersInforView2ViewController.swift; sourceTree = "<group>"; };
+		845C34EC20A0E26200D29856 /* AsthmaAssessmentsInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsthmaAssessmentsInfoViewController.swift; sourceTree = "<group>"; };
 		84602C91208FC1B40088B989 /* InsightSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSettingsViewController.swift; sourceTree = "<group>"; };
 		84615A33206FCB76007CE6B6 /* AddActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivitiesViewController.swift; sourceTree = "<group>"; };
 		846AA751209898DD00A695C6 /* PeakFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakFlow.swift; sourceTree = "<group>"; };
@@ -190,6 +201,7 @@
 		84B61CEF207E69EB00F522A4 /* AddAssessmentPickerDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssessmentPickerDelegates.swift; sourceTree = "<group>"; };
 		84BD186D205C16A600B37E16 /* QueryActivityEventsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryActivityEventsOperation.swift; sourceTree = "<group>"; };
 		84CC38952097239B006EF666 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		84D4935420A1495D00A4CC2F /* AsthmaAttacksInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsthmaAttacksInfoViewController.swift; sourceTree = "<group>"; };
 		84E17A362061F2290099631A /* ActivityBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityBuilder.swift; sourceTree = "<group>"; };
 		84F2E27E209799CA00C3405C /* UnderstandingAsthmaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderstandingAsthmaViewController.swift; sourceTree = "<group>"; };
 		84F2E28020979C8000C3405C /* UnderstandingAsthmaPage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderstandingAsthmaPage1ViewController.swift; sourceTree = "<group>"; };
@@ -309,6 +321,26 @@
 			name = "Doctor's Interface Side";
 			sourceTree = "<group>";
 		};
+		845C34E420A0D10800D29856 /* Understanding Asthma Info */ = {
+			isa = PBXGroup;
+			children = (
+				84F2E27E209799CA00C3405C /* UnderstandingAsthmaViewController.swift */,
+				84F2E28020979C8000C3405C /* UnderstandingAsthmaPage1ViewController.swift */,
+				84F2E28220979C9A00C3405C /* UnderstandingAsthmaPage2ViewController.swift */,
+			);
+			name = "Understanding Asthma Info";
+			sourceTree = "<group>";
+		};
+		845C34EB20A0D18700D29856 /* My Inhalers Info */ = {
+			isa = PBXGroup;
+			children = (
+				845C34E520A0D13A00D29856 /* MyInhalersViewController.swift */,
+				845C34E720A0D17000D29856 /* InhalersInfoView1ViewController.swift */,
+				845C34E920A0D17F00D29856 /* InhalersInforView2ViewController.swift */,
+			);
+			name = "My Inhalers Info";
+			sourceTree = "<group>";
+		};
 		846CA361204F7CEA00AADA1A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,9 +399,11 @@
 			isa = PBXGroup;
 			children = (
 				848A8FFC20913CE7006CE498 /* KnowledgeBookViewController.swift */,
-				84F2E27E209799CA00C3405C /* UnderstandingAsthmaViewController.swift */,
-				84F2E28020979C8000C3405C /* UnderstandingAsthmaPage1ViewController.swift */,
-				84F2E28220979C9A00C3405C /* UnderstandingAsthmaPage2ViewController.swift */,
+				845C34E420A0D10800D29856 /* Understanding Asthma Info */,
+				845C34DE20A0B7D100D29856 /* AsthmaTriggersViewController.swift */,
+				845C34EB20A0D18700D29856 /* My Inhalers Info */,
+				845C34EC20A0E26200D29856 /* AsthmaAssessmentsInfoViewController.swift */,
+				84D4935420A1495D00A4CC2F /* AsthmaAttacksInfoViewController.swift */,
 			);
 			name = KnowledgeBook;
 			sourceTree = "<group>";
@@ -805,6 +839,7 @@
 				84920B1C2072F53C004E8498 /* AddAssessmentViewController.swift in Sources */,
 				DEE91CBA204227340024F76C /* AppDelegate.swift in Sources */,
 				846CA337204F663200AADA1A /* HealthBuilder.swift in Sources */,
+				845C34E820A0D17000D29856 /* InhalersInfoView1ViewController.swift in Sources */,
 				84F7E7A1208965F1004AB137 /* ViewPatientRequestsTableViewController.swift in Sources */,
 				846AA752209898DD00A695C6 /* PeakFlow.swift in Sources */,
 				843886E620898636006FAAA1 /* RequestReviewViewController.swift in Sources */,
@@ -815,6 +850,8 @@
 				846C835A209678C10039C7A2 /* Colors.swift in Sources */,
 				845708A92050D228007B49A8 /* WelcomeViewController.swift in Sources */,
 				8446D2E220868D4600BFFE30 /* FirebaseManager.swift in Sources */,
+				845C34ED20A0E26200D29856 /* AsthmaAssessmentsInfoViewController.swift in Sources */,
+				845C34EA20A0D17F00D29856 /* InhalersInforView2ViewController.swift in Sources */,
 				84B61CF0207E69EB00F522A4 /* AddAssessmentPickerDelegates.swift in Sources */,
 				843A192B2058C6B5002280FD /* User.swift in Sources */,
 				DEE91CC2204227340024F76C /* MyAsthmaApp.xcdatamodeld in Sources */,
@@ -834,8 +871,11 @@
 				DE561ABC204483160021E83A /* InsightsBuilder.swift in Sources */,
 				8495B78E208D753F003113C0 /* DocumentExporter.swift in Sources */,
 				843FED13208533BA00D5ED84 /* DoctorRootViewController.swift in Sources */,
+				84D4935520A1495D00A4CC2F /* AsthmaAttacksInfoViewController.swift in Sources */,
 				DEB2BA9B20471093009D60B5 /* OutdoorWalk.swift in Sources */,
+				845C34DF20A0B7D100D29856 /* AsthmaTriggersViewController.swift in Sources */,
 				8446D2E82086AA3A00BFFE30 /* ChangeActionPlanTableViewController.swift in Sources */,
+				845C34E620A0D13A00D29856 /* MyInhalersViewController.swift in Sources */,
 				84F2E27F209799CA00C3405C /* UnderstandingAsthmaViewController.swift in Sources */,
 				8426E2F8205E04AE001FD646 /* CarePlanData.swift in Sources */,
 				DEB2BA9920470FFE009D60B5 /* Activity.swift in Sources */,

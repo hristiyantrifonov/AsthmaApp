@@ -1460,7 +1460,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ynv-8C-0Hk">
-                                <rect key="frame" x="16" y="173" width="343" height="393"/>
+                                <rect key="frame" x="16" y="80" width="343" height="477"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1474,52 +1474,293 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ipj-S3-aPs" userLabel="Tips">
-                                <rect key="frame" x="16" y="71" width="343" height="94"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip description here..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS0-nz-CRu">
-                                        <rect key="frame" x="41" y="29" width="302" height="65"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tips-lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="GM8-uW-d83">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily Tips!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0N-K5-aeA">
-                                        <rect key="frame" x="41" y="8" width="294" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="informationTableView" destination="Ynv-8C-0Hk" id="dEu-jJ-jAA"/>
-                        <outlet property="tipDescriptionLabel" destination="vS0-nz-CRu" id="DIQ-kn-8UC"/>
-                        <outlet property="tipsContainer" destination="ipj-S3-aPs" id="TkN-I2-Xh3"/>
-                        <segue destination="Amh-HB-Wh8" kind="show" identifier="goToUnderstandAsthma" id="7RV-8x-sav"/>
+                        <segue destination="AkR-7h-ZZj" kind="show" identifier="goToUnderstandAsthma" id="7RV-8x-sav"/>
+                        <segue destination="dWo-Vm-7L5" kind="show" identifier="goToAsthmaTriggers" id="nkz-0C-b0a"/>
+                        <segue destination="lRY-HQ-ZU0" kind="show" identifier="goToMyInhalers" id="xNB-bS-10K"/>
+                        <segue destination="csv-Ki-hX7" kind="show" identifier="goToAsthmaAssessments" id="nyy-S8-NEx"/>
+                        <segue destination="ov8-Qv-xSE" kind="show" identifier="goToAsthmaAttacks" id="T6B-k2-She"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W38-k0-lxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2472.8000000000002" y="416.94152923538235"/>
         </scene>
-        <!--Understanding Asthma View Controller-->
+        <!--Title-->
         <scene sceneID="pxd-kn-JAQ">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Amh-HB-Wh8" customClass="UnderstandingAsthmaViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Amh-HB-Wh8" customClass="UnderstandingAsthmaViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Title" id="6Fv-Im-J07"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfJ-8p-VRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3494" y="411"/>
+            <point key="canvasLocation" x="4188" y="417"/>
+        </scene>
+        <!--Inhalers Info View1 View Controller-->
+        <scene sceneID="dvq-33-Bof">
+            <objects>
+                <viewController storyboardIdentifier="inhalersInfoView1" id="piE-Qz-ibt" customClass="InhalersInfoView1ViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MTr-ct-U7z"/>
+                        <viewControllerLayoutGuide type="bottom" id="oyT-5a-6eN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dgt-HU-wgC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWU-jd-CyG">
+                                <rect key="frame" x="16" y="78" width="343" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Although there's no cure for asthma, there are now lots of incredibly effective medicines to help relieve the symptoms and cut the risk of asthma attacks.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dg9-Oh-aEr">
+                                <rect key="frame" x="16" y="163" width="343" height="213"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Asthma medications could be either controller or quick-relief medications. Controller medications are long-term and are focused on preventing any disease exacerbations. These medications control your sensitivity to triggers and aim to reduce the inflammation of the airways. Your prevent inhalers, used once or twice a day is a good example of such medication.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your prevent Inhaler is usually brown." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIE-tP-HD2">
+                                <rect key="frame" x="16" y="371" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 1 of 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3Z-Sr-SHz">
+                                <rect key="frame" x="285" y="641" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prevent-inhaler" translatesAutoresizingMaskIntoConstraints="NO" id="11g-xe-xza">
+                                <rect key="frame" x="16" y="378" width="343" height="247"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGm-Vy-U8v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4552.8000000000002" y="2175.562218890555"/>
+        </scene>
+        <!--Inhalers Infor View2 View Controller-->
+        <scene sceneID="gUo-we-kOn">
+            <objects>
+                <viewController storyboardIdentifier="inhalersInfoView2" id="fZP-Wa-f1v" customClass="InhalersInforView2ViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lNJ-Pf-oqC"/>
+                        <viewControllerLayoutGuide type="bottom" id="JpG-4x-sLW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ShX-T3-Vx5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBB-uy-6wm">
+                                <rect key="frame" x="16" y="74" width="343" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Reliever inhalers are usually blue. They act quickly to treat asthma symptoms and give emergency relief when you're having an asthma attack. This inhaler is example of a quick-relief medication. </string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dri-mA-44u">
+                                <rect key="frame" x="16" y="197" width="343" height="107"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">These should not be taken frequently. If you need to use your reliever inhaler three times a week or more, it's a sign your asthma isn’t well managed. You should see your GP or asthma nurse urgently for an asthma review.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbb-nG-69l">
+                                <rect key="frame" x="16" y="312" width="343" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">If you only have very mild unregular symptoms, your GP may prescribe you just a reliever inhaler to use when you get symptoms.
+
+But if you notice you’re using your reliever inhaler three or more times a week, or you’re getting symptoms most weeks, go back to your GP to talk about getting preventer too.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Learn More" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cua-4f-pxl">
+                                <rect key="frame" x="141" y="522" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 2 of 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLN-ip-6hL">
+                                <rect key="frame" x="279" y="638" width="80" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FPe-tO-N7T">
+                                <rect key="frame" x="16" y="546" width="343" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.8857868020304569" green="0.8857868020304569" blue="0.8857868020304569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eiV-bZ-S8W">
+                                <rect key="frame" x="16" y="562" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Inhalers, Medications &amp; Treatments">
+                                    <color key="titleColor" red="0.0076142131979695105" green="0.0076142131979695105" blue="0.0076142131979695105" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="resource1" destination="eiV-bZ-S8W" id="4FR-Hv-Ae2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9p6-G3-9KD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5280.8000000000002" y="2175.562218890555"/>
+        </scene>
+        <!--My Inhalers View Controller-->
+        <scene sceneID="nXD-VW-ZJp">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Bif-rA-XQC" customClass="MyInhalersViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Pv8-FF-SWd"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GET-6y-q9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3831.1999999999998" y="2175.562218890555"/>
+        </scene>
+        <!--Asthma Triggers View Controller-->
+        <scene sceneID="oTL-u9-BmO">
+            <objects>
+                <viewController id="niG-pH-3pQ" customClass="AsthmaTriggersViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3pf-Of-IN0"/>
+                        <viewControllerLayoutGuide type="bottom" id="ReX-S0-juJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Ro-dy-ntn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfC-5q-I3O">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-X3-a1Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Learn More About Triggers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TI-lb-qhB">
+                                                <rect key="frame" x="82" y="595" width="210" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qy-bI-Jo9">
+                                                <rect key="frame" x="8" y="624" width="359" height="5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.82994923857868019" green="0.82994923857868019" blue="0.82994923857868019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRM-ln-HvF">
+                                                <rect key="frame" x="8" y="658" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Understanding Asthma">
+                                                    <color key="titleColor" red="0.017766497461928932" green="0.017766497461928932" blue="0.017766497461928932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUD-ff-9FN">
+                                                <rect key="frame" x="8" y="703" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="More Information On Different Triggers">
+                                                    <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRm-tC-BRu">
+                                                <rect key="frame" x="8" y="751" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Asthma at Work">
+                                                    <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1000" id="WYa-E9-JYh"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFV-yN-hmZ">
+                                        <rect key="frame" x="10" y="10" width="343" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.91116751269999996" green="0.91116751269999996" blue="0.91116751269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoI-bX-1Jj">
+                                        <rect key="frame" x="10" y="10" width="359" height="148"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">In general asthma symptoms are consisted of: sudden breath shortness’s, wheezing sound when breathing, coughing and tight chest. They often arise as a response to triggers, which can be different for everyone and of different intensity.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trigger could be any event that provokes the symptoms. Common triggers include, but are not limited to:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6Q-SM-rQm">
+                                        <rect key="frame" x="10" y="157" width="359" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyh-1q-dCB">
+                                        <rect key="frame" x="10" y="226" width="359" height="185"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFi-Cy-ERb">
+                                        <rect key="frame" x="10" y="419" width="359" height="155"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">The principle “everyone is different” applies highly when we talk about triggers, as every sufferer could have a different combination of triggers and they can influence him at various strength. In fact, airways sensitivity varies from day to day, which also affects how vulnerable you are.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Euq-X3-a1Q" secondAttribute="trailing" id="5MQ-CR-3xD"/>
+                                    <constraint firstAttribute="bottom" secondItem="Euq-X3-a1Q" secondAttribute="bottom" id="IuF-zW-99N"/>
+                                    <constraint firstItem="Euq-X3-a1Q" firstAttribute="top" secondItem="yfC-5q-I3O" secondAttribute="top" id="h7N-FC-5DA"/>
+                                    <constraint firstItem="Euq-X3-a1Q" firstAttribute="leading" secondItem="yfC-5q-I3O" secondAttribute="leading" id="pEc-Ze-zaG"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ReX-S0-juJ" firstAttribute="top" secondItem="yfC-5q-I3O" secondAttribute="bottom" id="DYk-sj-Lzw"/>
+                            <constraint firstItem="Euq-X3-a1Q" firstAttribute="width" secondItem="4Ro-dy-ntn" secondAttribute="width" id="FLw-Ea-fET"/>
+                            <constraint firstItem="yfC-5q-I3O" firstAttribute="leading" secondItem="4Ro-dy-ntn" secondAttribute="leading" id="N2Y-HE-wel"/>
+                            <constraint firstItem="yfC-5q-I3O" firstAttribute="top" secondItem="4Ro-dy-ntn" secondAttribute="top" id="Zl2-be-p32"/>
+                            <constraint firstAttribute="trailing" secondItem="yfC-5q-I3O" secondAttribute="trailing" id="hx9-0f-WCQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="TjY-Ut-HPU"/>
+                    <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <outlet property="bulletTextLabel" destination="kyh-1q-dCB" id="hzc-fo-fLc"/>
+                        <outlet property="resource1" destination="BRM-ln-HvF" id="Jdr-e4-XNn"/>
+                        <outlet property="resource2" destination="UUD-ff-9FN" id="fln-Cd-qbY"/>
+                        <outlet property="resource3" destination="dRm-tC-BRu" id="3zz-HH-B7D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n0x-6L-hrZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4188" y="1283.6581709145428"/>
         </scene>
         <!--Understanding Asthma Page1 View Controller-->
         <scene sceneID="EwJ-v5-i3m">
@@ -1533,15 +1774,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Understanding Your Asthma" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ6-Iw-qCw">
-                                <rect key="frame" x="16" y="66" width="343" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="understanding-asthma-pic1" translatesAutoresizingMaskIntoConstraints="NO" id="JcF-Rf-ohP">
-                                <rect key="frame" x="16" y="238" width="343" height="201"/>
+                                <rect key="frame" x="24" y="208" width="343" height="201"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bs-8V-ZOz">
@@ -1553,19 +1787,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 1 of 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhd-Gw-lQl">
-                                <rect key="frame" x="268" y="593" width="91" height="21"/>
+                                <rect key="frame" x="268" y="624" width="91" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xWR-CE-ldA">
-                                <rect key="frame" x="16" y="110" width="347" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.017766497461928932" green="0.017766497461928932" blue="0.017766497461928932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0u4-K4-F0u">
-                                <rect key="frame" x="16" y="117" width="343" height="113"/>
+                                <rect key="frame" x="16" y="67" width="343" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Asthma affects the airways of the lungs by causing long-term inflammation and narrowing of the airways (the small tubes that carry air in and out of the lungs) , which results in breathing difficulties</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1581,7 +1810,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALv-M1-4hq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4317.6000000000004" y="416.94152923538235"/>
+            <point key="canvasLocation" x="4858" y="417"/>
         </scene>
         <!--Understanding Asthma Page2 View Controller-->
         <scene sceneID="3C7-jw-k1e">
@@ -1596,7 +1825,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htz-6T-KqM">
-                                <rect key="frame" x="16" y="66" width="343" height="98"/>
+                                <rect key="frame" x="16" y="59" width="343" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Although there is no current cure, there are simple treatments that can help keep the symptoms under control so your asthma has minimum impact on your life.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1604,14 +1833,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 2 of 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53P-v6-yWe">
-                                <rect key="frame" x="268" y="593" width="91" height="21"/>
+                                <rect key="frame" x="269" y="626" width="91" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPK-OL-f4S">
-                                <rect key="frame" x="16" y="172" width="343" height="113"/>
+                                <rect key="frame" x="16" y="168" width="343" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Correct and regular treatment, prevent the numerous complications that could arise, including: asthma attacks, airway remodeling, work/school underperformance, persistent tiredness and more.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1619,14 +1848,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Asthma UK &amp; NHS Resources" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSN-BG-Ryh">
-                                <rect key="frame" x="16" y="324" width="343" height="21"/>
+                                <rect key="frame" x="16" y="341" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPu-iL-4on">
-                                <rect key="frame" x="0.0" y="356" width="375" height="30"/>
+                                <rect key="frame" x="16" y="391" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Asthma Overview by NHS">
@@ -1637,7 +1866,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQg-ii-W5m">
-                                <rect key="frame" x="0.0" y="394" width="375" height="30"/>
+                                <rect key="frame" x="16" y="434" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Asthma Care in NHS">
@@ -1648,7 +1877,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rm-kZ-QPI">
-                                <rect key="frame" x="0.0" y="432" width="375" height="30"/>
+                                <rect key="frame" x="16" y="477" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Asthma UK Helpline ">
@@ -1658,6 +1887,11 @@
                                     <action selector="asthmaHelplineClicked:" destination="ol3-hz-ef1" eventType="touchUpInside" id="MZj-gK-72m"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffH-d0-y2M">
+                                <rect key="frame" x="16" y="370" width="343" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.91116751269035534" green="0.91116751269035534" blue="0.91116751269035534" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1669,7 +1903,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ij-kd-Exl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5061.6000000000004" y="416.94152923538235"/>
+            <point key="canvasLocation" x="5504.8000000000002" y="416.94152923538235"/>
         </scene>
         <!--Title-->
         <scene sceneID="6dl-Yb-m4H">
@@ -2618,12 +2852,515 @@
             </objects>
             <point key="canvasLocation" x="473" y="-1345"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bwq-Tg-loG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AkR-7h-ZZj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UAo-HY-oJh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Amh-HB-Wh8" kind="relationship" relationship="rootViewController" id="mbD-Aq-4is"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HnV-b1-mBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3492.8000000000002" y="410.19490254872568"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4bR-G6-QQA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dWo-Vm-7L5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="seQ-Ha-VCi">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="niG-pH-3pQ" kind="relationship" relationship="rootViewController" id="zPH-jA-XUq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Tg-17-89j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3492" y="1126"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7rH-EE-fQa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lRY-HQ-ZU0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uOB-7R-hcO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Bif-rA-XQC" kind="relationship" relationship="rootViewController" id="NNY-a3-EOz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LhW-gJ-yYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3138" y="2176"/>
+        </scene>
+        <!--Asthma Attacks Info View Controller-->
+        <scene sceneID="hOJ-Cn-BbU">
+            <objects>
+                <viewController id="cfe-0O-aD6" customClass="AsthmaAttacksInfoViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4xY-Gn-kj5"/>
+                        <viewControllerLayoutGuide type="bottom" id="VX8-tP-ffg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NY5-6v-kfu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaS-Fv-GqH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="1436"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="olF-0U-xKO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Asthma-attack-info" translatesAutoresizingMaskIntoConstraints="NO" id="wLN-cH-VUF">
+                                                <rect key="frame" x="8" y="799" width="359" height="193"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgq-pV-zya">
+                                                <rect key="frame" x="8" y="1023" width="359" height="91"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">If your symptoms improve and you don't need to call 999, you still need to make an urgent same-day appointment with your GP or asthma nurse.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Additional Resources" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyx-c1-vDD">
+                                                <rect key="frame" x="101" y="1149" width="174" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jm5-fs-GzJ">
+                                                <rect key="frame" x="8" y="1178" width="359" height="3"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.86548223350253806" green="0.86548223350253806" blue="0.86548223350253806" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPw-yN-SeK">
+                                                <rect key="frame" x="8" y="489" width="359" height="3"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.86548223349999998" green="0.86548223349999998" blue="0.86548223349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Syl-cp-gEh">
+                                                <rect key="frame" x="8" y="1204" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="What to do during an attack (video)">
+                                                    <color key="titleColor" red="0.0076142131979695105" green="0.0076142131979695105" blue="0.0076142131979695105" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-WV-Sfz">
+                                                <rect key="frame" x="8" y="1242" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Asthma Attack Risk Checker">
+                                                    <color key="titleColor" red="0.007614213198" green="0.007614213198" blue="0.007614213198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nI0-Gc-828">
+                                                <rect key="frame" x="8" y="1280" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="When to go to Hospital">
+                                                    <color key="titleColor" red="0.007614213198" green="0.007614213198" blue="0.007614213198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzo-zJ-QWu">
+                                                <rect key="frame" x="8" y="1318" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Maintenance and Reliever Therapy (MART)">
+                                                    <color key="titleColor" red="0.007614213198" green="0.007614213198" blue="0.007614213198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1500" id="8QE-De-n9G"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcX-RN-Ebf">
+                                        <rect key="frame" x="8" y="11" width="359" height="105"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">One of the severe asthma outbursts is the asthma attack. These attacks are deadly and characterized by severe versions of the regular symptoms, rapid heartbeat, dizziness and fainting. </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What to do in an asthma attack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ta-K5-Xbx">
+                                        <rect key="frame" x="8" y="463" width="359" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In general you're having an asthma attack if any of the following happens:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4H-s7-dJg">
+                                        <rect key="frame" x="8" y="132" width="359" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TU5-c6-xpS">
+                                        <rect key="frame" x="8" y="183" width="359" height="3"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.86548223349999998" green="0.86548223349999998" blue="0.86548223349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- Your breathing is getting faster and it feels like you can't get your breath in properly. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOK-0H-mOu">
+                                        <rect key="frame" x="21" y="367" width="332" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- You're too breathless or it's difficult to speak, eat or sleep" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fh-85-ef3">
+                                        <rect key="frame" x="21" y="311" width="332" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4. If the ambulance is taking longer than 15 minutes you can repeat step 2." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5u-DO-w2u">
+                                        <rect key="frame" x="23" y="725" width="330" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuX-zm-Mwo">
+                                        <rect key="frame" x="21" y="631" width="332" height="86"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">3. If you feel worse at any point while you're using your inhaler or you don't feel better after 10 puffs or you're worried at any time, call 999 for an ambulance.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- Your symptoms are getting worse (cough, breathlessness, wheeze or tight chest)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mH1-U7-3xC">
+                                        <rect key="frame" x="22" y="255" width="332" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- Your reliever isn't helping or lasting over  four hours" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1g-K4-syy">
+                                        <rect key="frame" x="22" y="199" width="332" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1. Sit up straight - don't lie down. Try to keep calm." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6l-cm-qBr">
+                                        <rect key="frame" x="23" y="509" width="331" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2. Take one puff of your reliever inhaler (usually blue) every 30-60 seconds, up to a maximum of 10 puffs." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6a-r7-fe7">
+                                        <rect key="frame" x="21" y="561" width="332" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="olF-0U-xKO" secondAttribute="bottom" id="Lfu-7z-JHG"/>
+                                    <constraint firstAttribute="trailing" secondItem="olF-0U-xKO" secondAttribute="trailing" id="eOR-hX-H0a"/>
+                                    <constraint firstItem="olF-0U-xKO" firstAttribute="top" secondItem="eaS-Fv-GqH" secondAttribute="top" id="unD-RB-tfr"/>
+                                    <constraint firstItem="olF-0U-xKO" firstAttribute="leading" secondItem="eaS-Fv-GqH" secondAttribute="leading" id="yc0-af-7K0"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eaS-Fv-GqH" firstAttribute="top" secondItem="4xY-Gn-kj5" secondAttribute="bottom" id="5Ww-Ys-nu8"/>
+                            <constraint firstItem="olF-0U-xKO" firstAttribute="width" secondItem="NY5-6v-kfu" secondAttribute="width" id="RLd-dH-ayL"/>
+                            <constraint firstItem="eaS-Fv-GqH" firstAttribute="leading" secondItem="NY5-6v-kfu" secondAttribute="leading" id="gyX-0U-MpK"/>
+                            <constraint firstAttribute="trailing" secondItem="eaS-Fv-GqH" secondAttribute="trailing" id="iWL-aa-Ubk"/>
+                            <constraint firstItem="VX8-tP-ffg" firstAttribute="top" secondItem="eaS-Fv-GqH" secondAttribute="bottom" id="u6G-p9-Akc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ysj-W2-dzg"/>
+                    <size key="freeformSize" width="375" height="1500"/>
+                    <connections>
+                        <outlet property="resource1" destination="Syl-cp-gEh" id="hCu-wF-ITu"/>
+                        <outlet property="resource2" destination="WmX-WV-Sfz" id="QQO-XH-nhe"/>
+                        <outlet property="resource3" destination="nI0-Gc-828" id="yGP-ax-0hF"/>
+                        <outlet property="resource4" destination="Dzo-zJ-QWu" id="yoE-8g-4ZR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5nJ-C6-blH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4188" y="4597.6011994003002"/>
+        </scene>
+        <!--Asthma Assessments Info View Controller-->
+        <scene sceneID="KCg-sk-SwA">
+            <objects>
+                <viewController id="VAi-UA-vzg" customClass="AsthmaAssessmentsInfoViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6EG-ZV-Izx"/>
+                        <viewControllerLayoutGuide type="bottom" id="BH0-ju-yGh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VP7-OO-pky">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaU-RU-ABU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asr-cU-QFi">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATO-c0-pPl">
+                                                <rect key="frame" x="8" y="1034" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Manage Your Asthma">
+                                                    <color key="titleColor" red="0.017766497461928932" green="0.017766497461928932" blue="0.017766497461928932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jg-Ln-TWz">
+                                                <rect key="frame" x="8" y="1072" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Your Asthma Action Plan">
+                                                    <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvh-0Q-pOv">
+                                                <rect key="frame" x="8" y="1110" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Get the best out of Asthma Review">
+                                                    <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvC-I1-TIb">
+                                                <rect key="frame" x="8" y="1148" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="More on Peak Flow Test">
+                                                    <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jir-gi-NLS">
+                                                <rect key="frame" x="8" y="1186" width="359" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Taking Peak Flow Reading (video)">
+                                                    <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1400" id="yXV-7T-GI6"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dtw-V8-n1P">
+                                        <rect key="frame" x="12" y="358" width="359" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.85532994920000005" green="0.85532994920000005" blue="0.85532994920000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6. Blow as hard and fast as you can into the meter." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7S-fh-tfo">
+                                        <rect key="frame" x="12" y="774" width="359" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3. Hold the meter so it’s horizontal and make sure your hands are not blocking the measurement scale" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHW-3H-lSG">
+                                        <rect key="frame" x="156" y="592" width="215" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="peak-flow-meter" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-cp-RS7">
+                                        <rect key="frame" x="4" y="453" width="145" height="224"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-rR-e4E">
+                                        <rect key="frame" x="12" y="854" width="359" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">Repeat these steps three times and make note of your peak flow reading each time. All three results should be roughly the same, but it’s the highest reading you need to write in your peak flow diary.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Peak flow meter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnY-e5-0pn">
+                                        <rect key="frame" x="31" y="640" width="97" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Peak Flow Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNw-HH-yLu">
+                                        <rect key="frame" x="125" y="329" width="133" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1. Get yourself into a comfortable position, either sitting upright or standing" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWl-3b-FkV">
+                                        <rect key="frame" x="156" y="484" width="215" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4. Take a deep breath and fill your lungs all the way." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUA-lP-35x">
+                                        <rect key="frame" x="12" y="685" width="359" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zY-un-yKi">
+                                        <rect key="frame" x="12" y="375" width="359" height="93"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">The peak flow test (peak expiratory flow test or PEF) measures how fast you can breathe out, so you can see how well your lungs are working. </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2. Put the pointer back to the first line on the scale(usually 60)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K17-0J-fpt">
+                                        <rect key="frame" x="156" y="540" width="215" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsV-LY-b74">
+                                        <rect key="frame" x="12" y="714" width="359" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">5. Place the meter to your mouth and make sure you’re your lips form a tight seal around the mouthpiece. Do not put your tongue inside the hole.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7. Write down your reading (the number displayed next to the pointer)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ek-RC-SLO">
+                                        <rect key="frame" x="12" y="805" width="359" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Managing your asthma well will significantly cut your risk of an asthma attack." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hx-mL-N3i">
+                                        <rect key="frame" x="12" y="10" width="359" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDj-Iz-VDp">
+                                        <rect key="frame" x="12" y="55" width="359" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">There are tried and tested ways to help you stay well with your asthma, such as getting into a good routine of taking your asthma medicines and making the most of your asthma review. When asthma’s well managed, most people should be free of symptoms.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nK-mJ-1Dm">
+                                        <rect key="frame" x="12" y="196" width="359" height="108"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">If your asthma’s well managed, you’re actually less likely to need to use your reliever inhaler very often. And you’ll be kept on the lowest dose of preventer inhaler necessary to keep you free of symptoms.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UVn-ee-BHC">
+                                        <rect key="frame" x="8" y="1001" width="359" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.85532994920000005" green="0.85532994920000005" blue="0.85532994920000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Additional Resources" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAn-jp-rjH">
+                                        <rect key="frame" x="109" y="972" width="166" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="asr-cU-QFi" firstAttribute="top" secondItem="GaU-RU-ABU" secondAttribute="top" id="6Pp-CR-ZCg"/>
+                                    <constraint firstItem="asr-cU-QFi" firstAttribute="leading" secondItem="GaU-RU-ABU" secondAttribute="leading" id="EoF-Tz-QhT"/>
+                                    <constraint firstAttribute="trailing" secondItem="asr-cU-QFi" secondAttribute="trailing" id="FGF-dQ-TQg"/>
+                                    <constraint firstAttribute="bottom" secondItem="asr-cU-QFi" secondAttribute="bottom" id="x9V-fI-uLX"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GaU-RU-ABU" secondAttribute="trailing" id="DXe-0v-cTf"/>
+                            <constraint firstItem="GaU-RU-ABU" firstAttribute="top" secondItem="VP7-OO-pky" secondAttribute="top" id="Opw-PX-aDC"/>
+                            <constraint firstItem="asr-cU-QFi" firstAttribute="width" secondItem="VP7-OO-pky" secondAttribute="width" id="cCm-fw-AoC"/>
+                            <constraint firstItem="BH0-ju-yGh" firstAttribute="top" secondItem="GaU-RU-ABU" secondAttribute="bottom" id="dtE-2Q-E8e"/>
+                            <constraint firstItem="GaU-RU-ABU" firstAttribute="leading" secondItem="VP7-OO-pky" secondAttribute="leading" id="uxc-40-kls"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Q5k-D5-hxh"/>
+                    <size key="freeformSize" width="375" height="1400"/>
+                    <connections>
+                        <outlet property="resource1" destination="ATO-c0-pPl" id="A9u-1U-TKV"/>
+                        <outlet property="resource2" destination="0jg-Ln-TWz" id="6pQ-BR-WlQ"/>
+                        <outlet property="resource3" destination="Uvh-0Q-pOv" id="ch3-Hk-NZX"/>
+                        <outlet property="resource4" destination="RvC-I1-TIb" id="Aii-9X-Unm"/>
+                        <outlet property="resource5" destination="Jir-gi-NLS" id="OLG-hx-jwv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wHm-Us-YJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3831" y="3210"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pdE-PO-yIM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="csv-Ki-hX7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="brK-of-s9h">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VAi-UA-vzg" kind="relationship" relationship="rootViewController" id="Wk6-4b-PIm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RFC-hb-eff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3137" y="2934"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="u7e-HM-PZI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ov8-Qv-xSE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fgr-88-5Xw">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cfe-0O-aD6" kind="relationship" relationship="rootViewController" id="DPI-kz-XF6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l1D-Vi-yK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3450" y="4216"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Asthma-attack-info" width="781" height="412"/>
         <image name="login-key" width="144" height="144"/>
         <image name="myAsthma-Logo" width="500" height="500"/>
+        <image name="peak-flow-meter" width="1000" height="1000"/>
         <image name="person-icon" width="72" height="72"/>
-        <image name="tips-lightbulb" width="48" height="48"/>
+        <image name="prevent-inhaler" width="785" height="411"/>
         <image name="understanding-asthma-pic1" width="885" height="638"/>
     </resources>
     <inferredMetricsTieBreakers>

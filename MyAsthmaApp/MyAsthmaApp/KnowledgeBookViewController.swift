@@ -70,7 +70,21 @@ extension KnowledgeBookViewController: UITableViewDataSource{
         if indexOfSelectedRow == 0{
             performSegue(withIdentifier: "goToUnderstandAsthma", sender: self)
         }
+        else if indexOfSelectedRow == 1{
+            performSegue(withIdentifier: "goToAsthmaTriggers", sender: self)
+        }
+        else if indexOfSelectedRow == 2{
+            performSegue(withIdentifier: "goToMyInhalers", sender: self)
+        }
+        else if indexOfSelectedRow == 3{
+            performSegue(withIdentifier: "goToAsthmaAssessments", sender: self)
+        }
+        else if indexOfSelectedRow == 4{
+            performSegue(withIdentifier: "goToAsthmaAttacks", sender: self)
+        }
     }
+    
+
     
     
 }

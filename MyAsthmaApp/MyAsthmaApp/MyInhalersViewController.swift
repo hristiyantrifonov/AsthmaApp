@@ -1,25 +1,25 @@
 //
-//  UnderstandingAsthmaViewController.swift
+//  MyInhalersViewController.swift
 //  MyAsthmaApp
 //
-//  Created by user136629 on 4/30/18.
+//  Created by user136629 on 5/7/18.
 //  Copyright © 2018 Hristiyan Trifonov. All rights reserved.
 //
 
 import UIKit
 
-class UnderstandingAsthmaViewController: UIPageViewController {
-    
-    private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newUnderstandingAsthmaPage(number: 1),
-                self.newUnderstandingAsthmaPage(number: 2)]
-    }()
+class MyInhalersViewController: UIPageViewController {
 
+    private(set) lazy var orderedViewControllers: [UIViewController] = {
+        return [self.newInhalersPage(number: 1),
+                self.newInhalersPage(number: 2)]
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dataSource = self
-        self.title = "Understanding Your Asthma"
+        self.title = "My Inhalers"
         
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
@@ -27,7 +27,6 @@ class UnderstandingAsthmaViewController: UIPageViewController {
                                animated: true,
                                completion: nil)
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,17 +34,17 @@ class UnderstandingAsthmaViewController: UIPageViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func newUnderstandingAsthmaPage(number: Int) -> UIViewController {
+    private func newInhalersPage(number: Int) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewController(withIdentifier: "understandingAsthmaInfoView\(number)")
-        print("understandingAsthmaInfoView\(number)")
+            instantiateViewController(withIdentifier: "inhalersInfoView\(number)")
+        print("inhalersInfoView\(number)")
     }
 
 }
 
 // MARK: UIPageViewControllerDataSource
 
-extension UnderstandingAsthmaViewController: UIPageViewControllerDataSource {
+extension MyInhalersViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
@@ -85,3 +84,4 @@ extension UnderstandingAsthmaViewController: UIPageViewControllerDataSource {
     
     
 }
+
