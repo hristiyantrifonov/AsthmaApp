@@ -26,6 +26,12 @@ class InsightSettingsViewController: UIViewController {
     
     
     let userID = Auth.auth().currentUser?.uid
+    var settingsDictionary : [String : [String]] = [:]
+    
+    var identifiers : [String] = []
+    var firstMeds : [String] = []
+    var secondMeds : [String] = []
+    var thirdMeds : [String] = []
     
     
     override func viewDidLoad() {
@@ -43,7 +49,19 @@ class InsightSettingsViewController: UIViewController {
         secondMedicationPickerView.delegate = secondMedicationPickerDelegate
         secondMedicationPickerView.dataSource = secondMedicationPickerDelegate
         
-        // Do any additional setup after loading the view.
+        FirebaseManager().getPatientMainSettings(patientID: userID!) {
+            (settingsDict) in
+            self.settingsDictionary = (settingsDict as! NSDictionary) as! [String : [String]]
+            self.identifiers = self.settingsDictionary["Identifiers"]!
+            self.firstMeds = self.settingsDictionary["first-meds"]!
+            self.secondMeds = self.settingsDictionary["second-meds"]!
+            self.thirdMeds = self.settingsDictionary["third-meds"]!
+            
+            print(self.settingsDictionary)
+            print(self.identifiers)
+            print(self.firstMeds)
+        }
+        
         
     }
     
@@ -98,15 +116,5 @@ class InsightSettingsViewController: UIViewController {
         }
         
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

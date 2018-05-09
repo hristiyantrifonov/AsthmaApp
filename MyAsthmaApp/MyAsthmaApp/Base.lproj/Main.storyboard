@@ -119,9 +119,11 @@
                     <navigationItem key="navigationItem" id="0Bt-D8-HoL"/>
                     <connections>
                         <segue destination="gNZ-NI-dyo" kind="show" identifier="goToRoot" id="923-mf-DIl"/>
+                        <segue destination="DpD-wA-wAF" kind="unwind" unwindAction="unwindFromDoctorSideWithSegue:" id="oA9-ia-0IU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQn-Sh-2f3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DpD-wA-wAF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2162.4000000000001" y="-356.67166416791605"/>
         </scene>
@@ -230,10 +232,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome on board Dr. ... ... !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0f-5y-cuz">
-                                <rect key="frame" x="0.0" y="75" width="375" height="61"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -259,12 +261,12 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMY-rh-eQq">
-                                <rect key="frame" x="0.0" y="440" width="375" height="42"/>
+                                <rect key="frame" x="85" y="429" width="205" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="backgroundColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Submit">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0025131880163232331" green="0.0025380710659897998" blue="0.0025380710659897998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="submitButtonClicked:" destination="LeH-b3-i9Q" eventType="touchUpInside" id="Gmp-HV-cP8"/>
@@ -275,12 +277,14 @@
                     </view>
                     <connections>
                         <outlet property="gmcNumberTextField" destination="bSk-AS-dnf" id="LMv-ba-mF5"/>
+                        <outlet property="submitButton" destination="oMY-rh-eQq" id="nOb-Sl-Hei"/>
+                        <outlet property="welcomeLabel" destination="h0f-5y-cuz" id="m4h-cI-2W1"/>
                         <segue destination="drM-xg-1zJ" kind="show" identifier="goToDoctorMain" id="FmJ-Hy-Kgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fng-NV-Mms" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2094" y="950"/>
+            <point key="canvasLocation" x="-2095.1999999999998" y="949.47526236881572"/>
         </scene>
         <!--Requests-->
         <scene sceneID="WLk-cv-Ofr">
@@ -310,18 +314,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yjH-fX-fIP" id="5Zd-gI-aXj">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PMF-Hg-3WK">
-                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="5" width="33" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Ne-Im-KY8">
-                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -470,25 +474,98 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Doctor Main Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2U-Q0-kCb">
-                                        <rect key="frame" x="89" y="28" width="196" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Doctor Main Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2U-Q0-kCb">
+                                        <rect key="frame" x="0.0" y="3" width="375" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
+                                        <color key="backgroundColor" red="0.012565940081616387" green="0.012690355329949221" blue="0.012690355329949221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIW-UA-xaK">
-                                        <rect key="frame" x="89" y="165" width="196" height="30"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTd-KF-CDL">
+                                        <rect key="frame" x="0.0" y="55" width="375" height="167"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="View Patients">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="viewPatientsClicked:" destination="oIY-3T-WPW" eventType="touchUpInside" id="gnS-D9-Dwj"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6y-cT-qwD">
+                                                <rect key="frame" x="74" y="19" width="293" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8f-KZ-rbX">
+                                                <rect key="frame" x="74" y="70" width="293" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CH2-E2-x2x">
+                                                <rect key="frame" x="74" y="122" width="293" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cjq-xv-wt6">
+                                                <rect key="frame" x="57" y="8" width="1" height="151"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.99990516901016235" green="1" blue="0.99987047910690308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="email-icon" translatesAutoresizingMaskIntoConstraints="NO" id="BJz-fB-oMB">
+                                        <rect key="frame" x="10" y="174" width="36" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fingerprint-icon" translatesAutoresizingMaskIntoConstraints="NO" id="aJL-YM-49S">
+                                        <rect key="frame" x="10" y="121" width="36" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person-icon" translatesAutoresizingMaskIntoConstraints="NO" id="bPc-dd-z20">
+                                        <rect key="frame" x="10" y="70" width="36" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBO-Fu-4bP">
+                                        <rect key="frame" x="0.0" y="271" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIW-UA-xaK">
+                                                <rect key="frame" x="32" y="13" width="310" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="View Patients">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="viewPatientsClicked:" destination="oIY-3T-WPW" eventType="touchUpInside" id="gnS-D9-Dwj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqN-Fj-JKR">
+                                        <rect key="frame" x="0.0" y="475" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ah-I1-b6C">
+                                                <rect key="frame" x="32" y="10" width="310" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Log Out">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="logOutPressed:" destination="oIY-3T-WPW" eventType="touchUpInside" id="7U2-t4-L0K"/>
+                                                    <action selector="viewPatientsClicked:" destination="oIY-3T-WPW" eventType="touchUpInside" id="HJy-Ux-Cei"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -496,6 +573,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" id="tKN-CP-6Dl"/>
                     <connections>
+                        <outlet property="emailLabel" destination="CH2-E2-x2x" id="JR4-7M-IuW"/>
+                        <outlet property="gmcNumberLabel" destination="K8f-KZ-rbX" id="2IV-Ix-Xom"/>
+                        <outlet property="logOutView" destination="yqN-Fj-JKR" id="pr4-vu-frx"/>
+                        <outlet property="nameLabel" destination="v6y-cT-qwD" id="H07-54-hNH"/>
+                        <outlet property="optionsView" destination="RBO-Fu-4bP" id="xv8-p4-CHX"/>
+                        <outlet property="profileView" destination="HTd-KF-CDL" id="sI9-X2-qzY"/>
                         <segue destination="xM0-6S-Gv9" kind="show" identifier="goToPatientRecord" id="iNY-Pa-EOR"/>
                     </connections>
                 </viewController>
@@ -516,18 +599,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IpH-N5-LSO" id="FGb-B8-n8d">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lnj-JF-sxP">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="5" width="33" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eZN-mT-2pL">
-                                            <rect key="frame" x="16" y="25.5" width="33" height="14.5"/>
+                                            <rect key="frame" x="16" y="25" width="33" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -602,7 +685,7 @@
                                             <constraint firstAttribute="height" constant="20.5" id="dOO-KL-x7E"/>
                                             <constraint firstAttribute="width" constant="323" id="mKE-kG-YwQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.9071342945098877" green="0.4836394190788269" blue="0.46170830726623535" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -865,7 +948,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="XKj-ir-eFj" kind="show" id="vMD-7u-DqF"/>
+                                            <segue destination="iVi-t2-hxg" kind="show" id="vMD-7u-DqF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sly-T3-mCS" customClass="GradientButton" customModule="MyAsthmaApp" customModuleProvider="target">
@@ -903,7 +986,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="7sW-x9-Gfh" kind="show" id="hXz-L8-bfH"/>
+                                            <segue destination="2QI-lN-dQ7" kind="show" id="hXz-L8-bfH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1051,7 +1134,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ukj-KZ-KU9" id="Dol-cD-VBy">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1086,13 +1169,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Va3-Jz-au5" userLabel="MessageLabel">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="cKQ-wr-0er">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u67-sv-xCC">
+                                    <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.00091533271132260329" green="0.0025380710659897998" blue="0.0004999381527097317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="HzR-vT-3a8">
                             <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1117,18 +1207,18 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fXv-T2-ajQ" id="MRV-ol-gaq">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H2E-zF-5vX">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="5" width="33" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aOJ-cs-mBr">
-                                            <rect key="frame" x="16" y="25.5" width="33" height="14.5"/>
+                                            <rect key="frame" x="16" y="25" width="33" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -1151,18 +1241,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="messageLabel" destination="Va3-Jz-au5" id="4WO-vV-vlR"/>
+                        <outlet property="messageContainer" destination="cKQ-wr-0er" id="8tK-eY-f9z"/>
+                        <outlet property="messageLabel" destination="u67-sv-xCC" id="Rlc-Y4-e4Y"/>
                         <outlet property="myTableView" destination="2GB-nv-KTw" id="G98-uE-gHC"/>
                         <segue destination="Vin-mf-bZm" kind="show" identifier="goToAddActivities" id="3Vh-mb-L1v"/>
                         <segue destination="G4e-OC-b2w" kind="show" identifier="goToAddAssessment" id="I6E-QA-Oah"/>
                         <segue destination="bL6-9d-9Zh" kind="show" identifier="goToAddNote" id="dpJ-Zd-ZPV"/>
-                        <segue destination="QH5-9v-Q0x" kind="unwind" identifier="unwindToLoginWithSegue" unwindAction="unwindToLoginWithSegue:" id="RC9-Mu-kIF"/>
+                        <segue destination="QH5-9v-Q0x" kind="unwind" unwindAction="unwindAfterAdditionWithSegue:" id="sh1-ui-jhw"/>
+                        <segue destination="QH5-9v-Q0x" kind="unwind" identifier="newUnwind" unwindAction="newUnwindWithSegue:" id="1c8-yh-wuj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czn-Nk-hNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QH5-9v-Q0x" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1532" y="-2122"/>
+            <point key="canvasLocation" x="1532" y="-2122.4887556221893"/>
         </scene>
         <!--Insight Settings View Controller-->
         <scene sceneID="hKQ-gH-Vpc">
@@ -1294,7 +1386,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ya4-Pt-31i" id="eLJ-5O-f3a">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66z-ec-VQp">
@@ -1332,13 +1424,26 @@
                             <outlet property="delegate" destination="XKj-ir-eFj" id="Y0l-qL-PRD"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="lxy-UB-iBa">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="QbI-EK-w62">
+                            <connections>
+                                <action selector="dismissClicked:" destination="XKj-ir-eFj" id="hne-Qu-voA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="dP7-is-FWF">
+                            <connections>
+                                <action selector="deleteRequestClicked:" destination="XKj-ir-eFj" id="ujo-f6-ARX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="dP7-is-FWF" id="New-8l-YMz"/>
                         <outlet property="finaliseChangesButton" destination="wvv-s6-AB4" id="4x7-kH-ISA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hA2-ka-69l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="-353"/>
+            <point key="canvasLocation" x="2023" y="-364"/>
         </scene>
         <!--Add Contact View Controller-->
         <scene sceneID="b0b-lw-ecz">
@@ -1394,17 +1499,6 @@
                                         </segments>
                                         <color key="tintColor" red="0.062829700408082043" green="0.063451776649746217" blue="0.063451776649746217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6g8-Bv-uch">
-                                        <rect key="frame" x="77" y="384" width="188" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Submit &amp; Add Another">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="submitAndAddAnotherClicked:" destination="h04-Ms-nid" eventType="touchUpInside" id="Yqi-6K-OWK"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D46-bJ-lLX">
                                         <rect key="frame" x="45" y="334" width="252" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1437,7 +1531,6 @@
                         <outlet property="nameTextField" destination="Sr1-YN-pm5" id="rUH-Td-LOz"/>
                         <outlet property="phoneTextField" destination="Vkk-rh-3nh" id="cIa-jN-BxB"/>
                         <outlet property="relationTextField" destination="sSd-fc-2CW" id="AzF-wJ-uWe"/>
-                        <outlet property="submitAnotherButton" destination="6g8-Bv-uch" id="dPh-59-fvk"/>
                         <outlet property="submitButton" destination="D46-bJ-lLX" id="Da5-5T-Alg"/>
                         <segue destination="aTD-zy-fiz" kind="unwind" identifier="unwindToRoot" unwindAction="unwindToRootWithSegue:" id="JcO-m8-Xcn"/>
                     </connections>
@@ -1445,9 +1538,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suI-4E-n9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="aTD-zy-fiz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2472.8000000000002" y="-358.4707646176912"/>
+            <point key="canvasLocation" x="2812" y="-358.4707646176912"/>
         </scene>
-        <!--Knowledge Book View Controller-->
+        <!--Knowledge Book Resources-->
         <scene sceneID="gS8-td-zfi">
             <objects>
                 <viewController id="7sW-x9-Gfh" customClass="KnowledgeBookViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1468,7 +1561,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Z7-Oz-qRb" id="FbT-95-IdL">
-                                            <rect key="frame" x="0.0" y="0.0" width="296" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="296" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1477,6 +1570,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Knowledge Book Resources" id="cQx-hV-9br">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="wq5-Bj-HoH">
+                            <connections>
+                                <action selector="exitClicked:" destination="7sW-x9-Gfh" id="bh4-mh-CqK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="informationTableView" destination="Ynv-8C-0Hk" id="dEu-jJ-jAA"/>
                         <segue destination="AkR-7h-ZZj" kind="show" identifier="goToUnderstandAsthma" id="7RV-8x-sav"/>
@@ -1488,17 +1588,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W38-k0-lxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2472.8000000000002" y="416.94152923538235"/>
+            <point key="canvasLocation" x="2812" y="416.94152923538235"/>
         </scene>
         <!--Title-->
         <scene sceneID="pxd-kn-JAQ">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Amh-HB-Wh8" customClass="UnderstandingAsthmaViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Title" id="6Fv-Im-J07"/>
+                    <navigationItem key="navigationItem" title="Title" id="6Fv-Im-J07">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="E6O-21-f5K">
+                            <connections>
+                                <action selector="doneClicked:" destination="Amh-HB-Wh8" id="obI-Z1-cld"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfJ-8p-VRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4188" y="417"/>
+            <point key="canvasLocation" x="4527.1999999999998" y="416.94152923538235"/>
         </scene>
         <!--Inhalers Info View1 View Controller-->
         <scene sceneID="dvq-33-Bof">
@@ -1617,6 +1723,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                 <state key="normal" title="Inhalers, Medications &amp; Treatments">
                                     <color key="titleColor" red="0.0076142131979695105" green="0.0076142131979695105" blue="0.0076142131979695105" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="resourceClicked:" destination="fZP-Wa-f1v" eventType="touchUpInside" id="wcm-oW-Mlv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1629,17 +1738,23 @@ But if you notice you’re using your reliever inhaler three or more times a wee
             </objects>
             <point key="canvasLocation" x="5280.8000000000002" y="2175.562218890555"/>
         </scene>
-        <!--My Inhalers View Controller-->
+        <!--Title-->
         <scene sceneID="nXD-VW-ZJp">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Bif-rA-XQC" customClass="MyInhalersViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Pv8-FF-SWd"/>
+                    <navigationItem key="navigationItem" title="Title" id="UgL-AR-Q5h">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="38F-9j-HIO">
+                            <connections>
+                                <action selector="doneClicked:" destination="Bif-rA-XQC" id="DY0-HG-86U"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GET-6y-q9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3831.1999999999998" y="2175.562218890555"/>
         </scene>
-        <!--Asthma Triggers View Controller-->
+        <!--Title-->
         <scene sceneID="oTL-u9-BmO">
             <objects>
                 <viewController id="niG-pH-3pQ" customClass="AsthmaTriggersViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1672,23 +1787,35 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRM-ln-HvF">
                                                 <rect key="frame" x="8" y="658" width="359" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Understanding Asthma">
                                                     <color key="titleColor" red="0.017766497461928932" green="0.017766497461928932" blue="0.017766497461928932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="understandingTriggersClicked:" destination="niG-pH-3pQ" eventType="touchUpInside" id="NP9-Lf-ypV"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUD-ff-9FN">
                                                 <rect key="frame" x="8" y="703" width="359" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="More Information On Different Triggers">
                                                     <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="moreInfoClicked:" destination="niG-pH-3pQ" eventType="touchUpInside" id="2lL-9c-GCo"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRm-tC-BRu">
                                                 <rect key="frame" x="8" y="751" width="359" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Asthma at Work">
                                                     <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="asthmaAtWorkClicked:" destination="niG-pH-3pQ" eventType="touchUpInside" id="48C-5I-kMg"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1749,7 +1876,13 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                             <constraint firstAttribute="trailing" secondItem="yfC-5q-I3O" secondAttribute="trailing" id="hx9-0f-WCQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="TjY-Ut-HPU"/>
+                    <navigationItem key="navigationItem" title="Title" id="u0c-5f-elq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="RgT-p4-u1g">
+                            <connections>
+                                <action selector="doneClicked:" destination="niG-pH-3pQ" id="nJj-F6-X9m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="bulletTextLabel" destination="kyh-1q-dCB" id="hzc-fo-fLc"/>
@@ -1810,7 +1943,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALv-M1-4hq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4858" y="417"/>
+            <point key="canvasLocation" x="5196" y="416.94152923538235"/>
         </scene>
         <!--Understanding Asthma Page2 View Controller-->
         <scene sceneID="3C7-jw-k1e">
@@ -1903,7 +2036,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ij-kd-Exl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5504.8000000000002" y="416.94152923538235"/>
+            <point key="canvasLocation" x="5844" y="416.94152923538235"/>
         </scene>
         <!--Title-->
         <scene sceneID="6dl-Yb-m4H">
@@ -1999,7 +2132,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDU-rg-t3i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3353" y="-908"/>
+            <point key="canvasLocation" x="3692" y="-908.09595202398805"/>
         </scene>
         <!--Add Assessment View Controller-->
         <scene sceneID="dNP-QR-7Ht">
@@ -2254,6 +2387,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                     <action selector="doneButtonClicked:" destination="G4e-OC-b2w" eventType="touchUpInside" id="ClB-7a-wOq"/>
                                     <action selector="doneButtonClicked:" destination="Vin-mf-bZm" eventType="touchUpInside" id="ygX-3t-5Ti"/>
                                     <action selector="doneButtonClicked:" destination="bL6-9d-9Zh" eventType="touchUpInside" id="zDK-cd-Ibb"/>
+                                    <segue destination="Yrh-iu-kvc" kind="unwind" unwindAction="unwindAfterAdditionWithSegue:" id="fbT-9F-ahc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2277,6 +2411,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vay-ub-ixi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Yrh-iu-kvc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3353" y="-2333"/>
         </scene>
@@ -2381,6 +2516,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                 <connections>
                                     <action selector="doneButtonClicked:" destination="bL6-9d-9Zh" eventType="touchUpInside" id="OL1-Qo-0Ev"/>
                                     <action selector="doneButtonClicked:" destination="Vin-mf-bZm" eventType="touchUpInside" id="Vmp-VC-0pN"/>
+                                    <segue destination="SjU-Ug-Pbk" kind="unwind" unwindAction="unwindAfterAdditionWithSegue:" id="M3n-L0-SMP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2394,6 +2530,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuU-c9-xdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SjU-Ug-Pbk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3353" y="-1614"/>
         </scene>
@@ -2727,7 +2864,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrN-QN-GL5">
-                                <rect key="frame" x="16" y="537" width="343" height="40"/>
+                                <rect key="frame" x="16" y="546" width="343" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -2736,6 +2873,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                 </state>
                                 <connections>
                                     <action selector="doneButtonClicked:" destination="Vin-mf-bZm" eventType="touchUpInside" id="ZVh-qa-Fyo"/>
+                                    <segue destination="oQx-ob-IMh" kind="unwind" unwindAction="unwindAfterAdditionWithSegue:" id="3ae-Q1-gTa"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1C-DZ-peh">
@@ -2747,15 +2885,6 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rok-ok-M2s">
-                                <rect key="frame" x="66" y="593" width="243" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98039215686274506" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Submit &amp; Add Another">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2785,7 +2914,6 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                         <outlet property="optionalityButtonPanel" destination="jif-an-yQm" id="JUc-G0-AiP"/>
                         <outlet property="saturdayTextField" destination="bBj-3r-BP2" id="qMi-G3-Hhj"/>
                         <outlet property="saturdayView" destination="sek-m1-LDA" id="Qdt-8N-Bky"/>
-                        <outlet property="submitAndAddAnotherButton" destination="Rok-ok-M2s" id="jIR-RU-HUR"/>
                         <outlet property="summaryTextField" destination="STI-tS-ICP" id="Dcd-qF-CP6"/>
                         <outlet property="sundayTextField" destination="724-BB-AQz" id="BMn-fr-utP"/>
                         <outlet property="sundayView" destination="zq7-RK-Ip2" id="UEH-w7-RSo"/>
@@ -2799,6 +2927,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5I3-JD-5b7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oQx-ob-IMh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3353" y="-3035"/>
         </scene>
@@ -2868,7 +2997,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HnV-b1-mBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3492.8000000000002" y="410.19490254872568"/>
+            <point key="canvasLocation" x="3831.1999999999998" y="409.7451274362819"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4bR-G6-QQA">
@@ -2906,7 +3035,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
             </objects>
             <point key="canvasLocation" x="3138" y="2176"/>
         </scene>
-        <!--Asthma Attacks Info View Controller-->
+        <!--Title-->
         <scene sceneID="hOJ-Cn-BbU">
             <objects>
                 <viewController id="cfe-0O-aD6" customClass="AsthmaAttacksInfoViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -2959,6 +3088,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="What to do during an attack (video)">
                                                     <color key="titleColor" red="0.0076142131979695105" green="0.0076142131979695105" blue="0.0076142131979695105" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="whatToDoDuringAttackClicked:" destination="cfe-0O-aD6" eventType="touchUpInside" id="B9L-53-EQe"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmX-WV-Sfz">
                                                 <rect key="frame" x="8" y="1242" width="359" height="30"/>
@@ -2966,6 +3098,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="Asthma Attack Risk Checker">
                                                     <color key="titleColor" red="0.007614213198" green="0.007614213198" blue="0.007614213198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="riskCheckerClicked:" destination="cfe-0O-aD6" eventType="touchUpInside" id="FDg-3S-nan"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nI0-Gc-828">
                                                 <rect key="frame" x="8" y="1280" width="359" height="30"/>
@@ -2973,6 +3108,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="When to go to Hospital">
                                                     <color key="titleColor" red="0.007614213198" green="0.007614213198" blue="0.007614213198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="whenToGoToHospitalClicked:" destination="cfe-0O-aD6" eventType="touchUpInside" id="iLD-JC-9fh"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzo-zJ-QWu">
                                                 <rect key="frame" x="8" y="1318" width="359" height="30"/>
@@ -2980,6 +3118,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="Maintenance and Reliever Therapy (MART)">
                                                     <color key="titleColor" red="0.007614213198" green="0.007614213198" blue="0.007614213198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="MARTClicked:" destination="cfe-0O-aD6" eventType="touchUpInside" id="TxQ-Sb-uqK"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3089,7 +3230,13 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                             <constraint firstItem="VX8-tP-ffg" firstAttribute="top" secondItem="eaS-Fv-GqH" secondAttribute="bottom" id="u6G-p9-Akc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Ysj-W2-dzg"/>
+                    <navigationItem key="navigationItem" title="Title" id="OXO-gB-CwA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ls9-QM-bpS">
+                            <connections>
+                                <action selector="doneClicked:" destination="cfe-0O-aD6" id="yYc-Jb-QEA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="resource1" destination="Syl-cp-gEh" id="hCu-wF-ITu"/>
@@ -3102,7 +3249,7 @@ But if you notice you’re using your reliever inhaler three or more times a wee
             </objects>
             <point key="canvasLocation" x="4188" y="4597.6011994003002"/>
         </scene>
-        <!--Asthma Assessments Info View Controller-->
+        <!--Title-->
         <scene sceneID="KCg-sk-SwA">
             <objects>
                 <viewController id="VAi-UA-vzg" customClass="AsthmaAssessmentsInfoViewController" customModule="MyAsthmaApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -3126,6 +3273,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="Manage Your Asthma">
                                                     <color key="titleColor" red="0.017766497461928932" green="0.017766497461928932" blue="0.017766497461928932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="manageAsthmaClicked:" destination="VAi-UA-vzg" eventType="touchUpInside" id="1fz-jV-o6v"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jg-Ln-TWz">
                                                 <rect key="frame" x="8" y="1072" width="359" height="30"/>
@@ -3133,6 +3283,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="Your Asthma Action Plan">
                                                     <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="yourAsthmaActionPlanClicked:" destination="VAi-UA-vzg" eventType="touchUpInside" id="PsM-lj-V9u"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvh-0Q-pOv">
                                                 <rect key="frame" x="8" y="1110" width="359" height="30"/>
@@ -3140,6 +3293,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="Get the best out of Asthma Review">
                                                     <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="bestOutOfAsthmaReviewClicked:" destination="VAi-UA-vzg" eventType="touchUpInside" id="3ME-rF-Ood"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvC-I1-TIb">
                                                 <rect key="frame" x="8" y="1148" width="359" height="30"/>
@@ -3147,6 +3303,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="More on Peak Flow Test">
                                                     <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="moreOnPeakFlowTestClicked:" destination="VAi-UA-vzg" eventType="touchUpInside" id="B25-fz-OrL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jir-gi-NLS">
                                                 <rect key="frame" x="8" y="1186" width="359" height="30"/>
@@ -3154,6 +3313,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                                                 <state key="normal" title="Taking Peak Flow Reading (video)">
                                                     <color key="titleColor" red="0.017766497459999999" green="0.017766497459999999" blue="0.017766497459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="takingReadingClicked:" destination="VAi-UA-vzg" eventType="touchUpInside" id="ZZn-Ob-Hu3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3303,7 +3465,13 @@ But if you notice you’re using your reliever inhaler three or more times a wee
                             <constraint firstItem="GaU-RU-ABU" firstAttribute="leading" secondItem="VP7-OO-pky" secondAttribute="leading" id="uxc-40-kls"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Q5k-D5-hxh"/>
+                    <navigationItem key="navigationItem" title="Title" id="o6Q-zV-ZJn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="cVe-Lz-rmV">
+                            <connections>
+                                <action selector="doneClicked:" destination="VAi-UA-vzg" id="mgz-ac-AKi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="1400"/>
                     <connections>
                         <outlet property="resource1" destination="ATO-c0-pPl" id="A9u-1U-TKV"/>
@@ -3353,9 +3521,47 @@ But if you notice you’re using your reliever inhaler three or more times a wee
             </objects>
             <point key="canvasLocation" x="3450" y="4216"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MQX-L2-6GI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2QI-lN-dQ7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3af-NF-1XP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7sW-x9-Gfh" kind="relationship" relationship="rootViewController" id="Zo7-Uu-X9p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5d3-Zb-wFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142" y="417"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YQc-4I-m0y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iVi-t2-hxg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WW1-nG-cYh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XKj-ir-eFj" kind="relationship" relationship="rootViewController" id="jFe-jE-AUh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D9T-L9-FeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1626" y="-353"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Asthma-attack-info" width="781" height="412"/>
+        <image name="email-icon" width="48" height="48"/>
+        <image name="fingerprint-icon" width="48" height="48"/>
         <image name="login-key" width="144" height="144"/>
         <image name="myAsthma-Logo" width="500" height="500"/>
         <image name="peak-flow-meter" width="1000" height="1000"/>
@@ -3364,9 +3570,9 @@ But if you notice you’re using your reliever inhaler three or more times a wee
         <image name="understanding-asthma-pic1" width="885" height="638"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="923-mf-DIl"/>
-        <segue reference="Z1V-XS-UEU"/>
-        <segue reference="RaX-ho-l6N"/>
+        <segue reference="MGS-kv-fjf"/>
+        <segue reference="3Vh-mb-L1v"/>
+        <segue reference="I6E-QA-Oah"/>
         <segue reference="fcV-TA-AhX"/>
     </inferredMetricsTieBreakers>
 </document>

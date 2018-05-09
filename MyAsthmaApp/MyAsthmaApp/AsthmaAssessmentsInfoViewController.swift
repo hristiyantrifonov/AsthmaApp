@@ -18,8 +18,14 @@ class AsthmaAssessmentsInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        styleButton(button: resource1)
+        styleButton(button: resource2)
+        styleButton(button: resource3)
+        styleButton(button: resource4)
+        styleButton(button: resource5)
+        
+        self.title = "Asthma Assessment"
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,14 +44,46 @@ class AsthmaAssessmentsInfoViewController: UIViewController {
     
     //https://www.youtube.com/watch?v=8tYutVUswH4 - taking peak flow reading (video)
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    @IBAction func doneClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
     }
-    */
+    
+    @IBAction func manageAsthmaClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/manage-your-asthma")
+    }
+    
+    @IBAction func yourAsthmaActionPlanClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/manage-your-asthma/action-plan/")
+    }
+    
+    @IBAction func bestOutOfAsthmaReviewClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/manage-your-asthma/action-plan/")
+    }
+    
+    @IBAction func moreOnPeakFlowTestClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/manage-your-asthma/peak-flow/")
+    }
+    
+    @IBAction func takingReadingClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.youtube.com/watch?v=8tYutVUswH4")
+    }
+    
+    
+    //MARK: - Helper Functions
+    func openUrl(urlStr:String!) {
+        
+        if let url = NSURL(string:urlStr) {
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func styleButton(button: UIButton){
+        button.backgroundColor = .clear
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+    }
 
 }

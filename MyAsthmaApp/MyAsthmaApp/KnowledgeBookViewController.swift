@@ -22,9 +22,16 @@ class KnowledgeBookViewController: UIViewController {
         
         informationTableView.delegate = self
         informationTableView.dataSource = self
+        
+        self.title = "Knowledge Book Resources"
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func exitClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

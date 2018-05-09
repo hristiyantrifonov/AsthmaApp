@@ -17,7 +17,9 @@ class ConfigurationTableViewController: UITableViewController {
                         "Read-only note that will serve as reminder for the patient"]
     
     
+    
     @IBOutlet var myTableView: UITableView!
+    @IBOutlet weak var messageContainer: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     
     var success : Bool = false
@@ -30,6 +32,7 @@ class ConfigurationTableViewController: UITableViewController {
         super.viewDidLoad()
         
 //        myTableView.separatorStyle = .none
+        messageContainer.isHidden = !success
         messageLabel.isHidden = !success
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,6 +44,50 @@ class ConfigurationTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func unwindAfterAddition(segue: UIStoryboardSegue) {
+        
+        if let sourceVC = segue.source as? AddActivitiesViewController{
+            print("1 \(sourceVC.successAddition)")
+            messageContainer.alpha = 1.0
+            messageLabel.isHidden = sourceVC.successAddition
+            messageContainer.isHidden = sourceVC.successAddition
+            messageLabel.text = sourceVC.additionText
+            messageLabel.textColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1)
+            messageContainer.layer.cornerRadius = 8.0
+            messageContainer.layer.borderWidth = 1.0
+            messageContainer.layer.borderColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1).cgColor
+            
+        }
+        
+        if let sourceVC = segue.source as? AddAssessmentViewController{
+            messageContainer.alpha = 1.0
+            messageLabel.isHidden = sourceVC.successAddition
+            messageContainer.isHidden = sourceVC.successAddition
+            messageLabel.text = sourceVC.additionText
+            messageLabel.textColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1)
+            messageContainer.layer.cornerRadius = 8.0
+            messageContainer.layer.borderWidth = 1.0
+            messageContainer.layer.borderColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1).cgColor
+        }
+        
+        if let sourceVC = segue.source as? AddNoteViewController{
+            print("2 \(sourceVC.successAddition)")
+            messageContainer.alpha = 1.0
+            messageLabel.isHidden = sourceVC.successAddition
+            messageContainer.isHidden = sourceVC.successAddition
+            messageLabel.text = sourceVC.additionText
+            messageLabel.textColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1)
+            messageContainer.layer.cornerRadius = 8.0
+            messageContainer.layer.borderWidth = 1.0
+            messageContainer.layer.borderColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1).cgColor
+        }
+        
+        UIView.animate(withDuration: 3.5, animations: {
+            self.messageContainer.alpha = 0.0
+        })
+        
     }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,7 +167,7 @@ class ConfigurationTableViewController: UITableViewController {
             do{
                 try Auth.auth().signOut()
                 print("Logged out")
-                self.performSegue(withIdentifier: "unwindToLoginWithSegue", sender: nil)
+                self.performSegue(withIdentifier: "newUnwind", sender: nil)
                 
             }catch{
                 print("Could not logout user")

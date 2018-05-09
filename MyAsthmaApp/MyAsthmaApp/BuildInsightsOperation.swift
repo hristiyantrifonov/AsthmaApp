@@ -209,7 +209,7 @@ class BuildInsightsOperation: Operation {
                 let firstMedicationEventsForDay = subsettingOneEvents![dayComponents]
                 if let medicationPercentage = percentageEventsCompleted(firstMedicationEventsForDay) , medicationPercentage > 0.0 {
                     // Scale the adherance to the same 0-10 scale as pain values.
-                    let scaledMedication = medicationPercentage * 10
+                    let scaledMedication = medicationPercentage * (Float(assessmentValues.max()!))
                     
                     firstMedicationValues.append(scaledMedication)
                     firstMedicationLabels.append(percentageFormatter.string(from: medicationPercentage as! NSNumber)!)
@@ -228,7 +228,7 @@ class BuildInsightsOperation: Operation {
                 let secondMedicationEventsForDay = subsettingTwoEvents![dayComponents]
                 if let medicationPercentage = percentageEventsCompleted(secondMedicationEventsForDay) , medicationPercentage > 0.0 {
                     // Scale the adherance to the same 0-10 scale as pain values.
-                    let scaledMedication = medicationPercentage * 10.0
+                    let scaledMedication = medicationPercentage * (Float(assessmentValues.max()!))
                     
                     secondMedicationValues.append(scaledMedication)
                     secondMedicationLabels.append(percentageFormatter.string(from: medicationPercentage as! NSNumber)!)
@@ -306,7 +306,7 @@ class BuildInsightsOperation: Operation {
         //The date to start pain/medication comparison from
         let calendar = Calendar.current
         var components = DateComponents()
-        components.day = -7
+        components.day = 0
         
         let startDate = calendar.date(byAdding: components as DateComponents, to: Date())! //set start 7 days back from today
         
@@ -360,7 +360,7 @@ class BuildInsightsOperation: Operation {
                 let firstMedicationEventsForDay = subsettingOneEvents![dayComponents]
                 if let medicationPercentage = percentageEventsCompleted(firstMedicationEventsForDay) , medicationPercentage > 0.0 {
                     // Scale the adherance to the same 0-10 scale as pain values.
-                    let scaledMedication = medicationPercentage * 10.0
+                    let scaledMedication = medicationPercentage * (Float(assessmentValues.max()!))
                     
                     firstMedicationValues.append(scaledMedication)
                     firstMedicationLabels.append(percentageFormatter.string(from: medicationPercentage as! NSNumber)!)
@@ -370,14 +370,14 @@ class BuildInsightsOperation: Operation {
                     firstMedicationLabels.append(percentageFormatter.string(from: 0)!)
                 }
                 
-                firstMedicationBarSeries = OCKBarSeries(title: secondSettingMedicationsIdentifiers?[0] ?? "Unknown", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
+                firstMedicationBarSeries = OCKBarSeries(title: secondSettingMedicationsIdentifiers?[0] ?? "Unknown", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor(red: 128/255, green: 108/255, blue: 67/255, alpha: 1.0))
             }
             
             if subsettingTwoEvents != nil {
                 let secondMedicationEventsForDay = subsettingTwoEvents![dayComponents]
                 if let medicationPercentage = percentageEventsCompleted(secondMedicationEventsForDay) , medicationPercentage > 0.0 {
                     // Scale the adherance to the same 0-10 scale as pain values.
-                    let scaledMedication = medicationPercentage * 10.0
+                    let scaledMedication = medicationPercentage * (Float(assessmentValues.max()!))
                     
                     secondMedicationValues.append(scaledMedication)
 //                    secondMedicationLabels.append(String(secondMedicationEventsForDay.filter({$0.state == .completed}).count))
@@ -388,7 +388,7 @@ class BuildInsightsOperation: Operation {
                     secondMedicationLabels.append(percentageFormatter.string(from: 0)!)
                 }
                 
-                secondMedicationBarSeries = OCKBarSeries(title: secondSettingMedicationsIdentifiers?[1] ?? "Unknown", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
+                secondMedicationBarSeries = OCKBarSeries(title: secondSettingMedicationsIdentifiers?[1] ?? "Unknown", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor(red: 150/255, green: 144/255, blue: 147/255, alpha: 1.0))
             }
             
             
@@ -402,7 +402,7 @@ class BuildInsightsOperation: Operation {
          */
         
         //bars for each set of data
-        let painBarSeries = OCKBarSeries(title: mainSettingUnit, values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
+        let painBarSeries = OCKBarSeries(title: mainSettingUnit, values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor(red: 180/255, green: 145/255, blue: 146/255, alpha: 1.0))
         
         var insightDataSeries : [OCKBarSeries]
         
@@ -518,7 +518,7 @@ class BuildInsightsOperation: Operation {
                     firstMedicationLabels.append(percentageFormatter.string(from: 0)!)
                 }
                 
-                firstMedicationBarSeries = OCKBarSeries(title: thirdSettingMedicationsIdentifiers?[0] ?? "Unknown", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor.darkGray)
+                firstMedicationBarSeries = OCKBarSeries(title: thirdSettingMedicationsIdentifiers?[0] ?? "Unknown", values: firstMedicationValues as [NSNumber], valueLabels: firstMedicationLabels, tintColor: UIColor(red: 179/255, green: 188/255, blue: 146/255, alpha: 1.0))
             }
             
             if subsettingTwoEvents != nil {
@@ -535,7 +535,7 @@ class BuildInsightsOperation: Operation {
                     secondMedicationLabels.append(percentageFormatter.string(from: 0)!)
                 }
                 
-                secondMedicationBarSeries = OCKBarSeries(title: firstSettingMedicationsIdentifiers?[1] ?? "Unknown", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor.brown)
+                secondMedicationBarSeries = OCKBarSeries(title: firstSettingMedicationsIdentifiers?[1] ?? "Unknown", values: secondMedicationValues as [NSNumber], valueLabels: secondMedicationLabels, tintColor: UIColor(red: 212/255, green: 202/255, blue: 160/255, alpha: 1.0))
             }
             
             
@@ -548,7 +548,7 @@ class BuildInsightsOperation: Operation {
          */
         
         //bars for each set of data
-        let painBarSeries = OCKBarSeries(title: mainSettingUnit, values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor.blue)
+        let painBarSeries = OCKBarSeries(title: mainSettingUnit, values: assessmentValues as [NSNumber], valueLabels: assessmentLabels, tintColor: UIColor(red: 40/255, green: 120/255, blue: 119/55, alpha: 1.0))
         
         var insightDataSeries : [OCKBarSeries]
         

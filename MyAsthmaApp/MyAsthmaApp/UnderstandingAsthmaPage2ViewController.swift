@@ -18,15 +18,10 @@ class UnderstandingAsthmaPage2ViewController: UIViewController {
         super.viewDidLoad()
         
         //Styles for the view
-        firstResource.backgroundColor = .clear
-        firstResource.layer.borderWidth = 1
-        firstResource.layer.borderColor = UIColor.black.cgColor
-        secondResource.backgroundColor = .clear
-        secondResource.layer.borderWidth = 1
-        secondResource.layer.borderColor = UIColor.black.cgColor
-        thirdResource.backgroundColor = .clear
-        thirdResource.layer.borderWidth = 1
-        thirdResource.layer.borderColor = UIColor.black.cgColor
+        styleButton(button: firstResource)
+        styleButton(button: secondResource)
+        styleButton(button: thirdResource)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -59,7 +54,12 @@ class UnderstandingAsthmaPage2ViewController: UIViewController {
         if let url = NSURL(string:urlStr) {
             UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
         }
-        
+    }
+    
+    func styleButton(button: UIButton){
+        button.backgroundColor = .clear
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
     }
 
 }

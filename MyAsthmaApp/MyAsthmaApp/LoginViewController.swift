@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
             if error != nil {
                 print(error!)
                 SVProgressHUD.dismiss()
-                self.errorLabel.text = "There was problem with your login. Pleasy try again."
+                self.errorLabel.text = "There was a problem with your login. Try again!"
                 
                 RegistrationViewController().updateErrorLabel(self.errorLabel, false)
             }else{
@@ -86,8 +86,20 @@ class LoginViewController: UIViewController {
         
     }
     
+    @IBAction func newUnwind(segue: UIStoryboardSegue){
+        if let sourceVC = segue.source as? ConfigurationTableViewController{
+            self.errorLabel.text = "Configuration Complete!"
+            self.errorLabel.textColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1.0)
+            RegistrationViewController().updateErrorLabel(self.errorLabel, false)
+        }
+    }
+    
     @IBAction func unwindToLoginFromInsights(segue: UIStoryboardSegue) {
-        
+        if let sourceVC = segue.source as? InsightSettingsViewController{
+            self.errorLabel.text = "Your settings were updated! Please log in."
+            self.errorLabel.textColor = UIColor(red: 0/255, green: 102/255, blue: 0/255, alpha: 1.0)
+            RegistrationViewController().updateErrorLabel(self.errorLabel, false)
+        }
     }
     
 }

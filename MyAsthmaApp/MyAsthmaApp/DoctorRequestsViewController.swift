@@ -24,6 +24,8 @@ class DoctorRequestsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarItem = UITabBarItem(title: "Requests", image: UIImage(named: "requests"), selectedImage: UIImage.init(named: "requests-filled"))
+        
         firebaseManager.fetchDoctorRequests(doctorID: doctorID!) {
             (requests) in
     

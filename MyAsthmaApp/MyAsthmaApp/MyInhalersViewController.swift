@@ -28,7 +28,11 @@ class MyInhalersViewController: UIPageViewController {
                                completion: nil)
         }
     }
-
+    @IBAction func doneClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

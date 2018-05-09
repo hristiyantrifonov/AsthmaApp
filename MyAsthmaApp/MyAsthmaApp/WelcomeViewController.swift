@@ -54,4 +54,8 @@ class WelcomeViewController: UIViewController{
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
         
     }
+    
+    @IBAction func unwindFromDoctorSide(segue: UIStoryboardSegue) {
+        
+    }
 }

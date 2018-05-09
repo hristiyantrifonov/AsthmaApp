@@ -321,6 +321,20 @@ class FirebaseManager {
         })
     }
     
+    func getRequestReviewStatus(requestID : String, completion : @escaping Value){
+        ref.child("requests").child(requestID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let request = snapshot.value as? NSDictionary
+            
+            if request != nil{
+                let status = request!["Reviewed"] as? Bool
+                completion(status)
+            }else{
+                completion(nil)
+            }
+        })
+    }
+    
     
     /*
         Sets the decision made by the doctor whether to allow change or not

@@ -13,6 +13,9 @@ class GMCNumberSubmissionViewController: UIViewController {
 
     @IBOutlet weak var gmcNumberTextField: UITextField!
     
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var submitButton: UIButton!
+    
     var ref: DatabaseReference!
     let userID = Auth.auth().currentUser?.uid
     
@@ -20,7 +23,16 @@ class GMCNumberSubmissionViewController: UIViewController {
         super.viewDidLoad()
         ref = Database.database().reference()
         
-        // Do any additional setup after loading the view.
+        submitButton.backgroundColor = .clear
+        submitButton.layer.cornerRadius = 8
+        submitButton.layer.borderWidth = 1
+        submitButton.layer.borderColor = UIColor.black.cgColor
+        
+        FirebaseManager().returnUserField(userID: userID!, key: "Surname") {
+            (value) in
+            
+            self.welcomeLabel.text = "Welcome on board Dr. \(value!)!"
+        }
     }
 
     override func didReceiveMemoryWarning() {

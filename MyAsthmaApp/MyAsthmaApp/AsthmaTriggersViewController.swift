@@ -45,9 +45,11 @@ class AsthmaTriggersViewController: UIViewController {
         
         bulletTextLabel.text = fullString
         
-        // Do any additional setup after loading the view.
+        styleButton(button: resource1)
+        styleButton(button: resource2)
+        styleButton(button: resource3)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,15 +60,35 @@ class AsthmaTriggersViewController: UIViewController {
     //https://www.asthma.org.uk/advice/triggers/ - More infor
     
     //https://www.asthma.org.uk/advice/understanding-asthma/types/occupational-asthma/ - Asthma at work
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func doneClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    @IBAction func understandingTriggersClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/triggers/understanding/")
+    }
+    
+    @IBAction func moreInfoClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/triggers/")
+    }
+    
+    @IBAction func asthmaAtWorkClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/understanding-asthma/types/occupational-asthma/")
+    }
+    
+    //MARK: - Helper Functions
+    func openUrl(urlStr:String!) {
+        
+        if let url = NSURL(string:urlStr) {
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func styleButton(button: UIButton){
+        button.backgroundColor = .clear
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+    }
+    
 }

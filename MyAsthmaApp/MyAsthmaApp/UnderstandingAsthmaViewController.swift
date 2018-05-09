@@ -14,10 +14,10 @@ class UnderstandingAsthmaViewController: UIPageViewController {
         return [self.newUnderstandingAsthmaPage(number: 1),
                 self.newUnderstandingAsthmaPage(number: 2)]
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         dataSource = self
         self.title = "Understanding Your Asthma"
         
@@ -29,7 +29,12 @@ class UnderstandingAsthmaViewController: UIPageViewController {
         }
         
     }
-
+    
+    @IBAction func doneClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,7 +45,7 @@ class UnderstandingAsthmaViewController: UIPageViewController {
             instantiateViewController(withIdentifier: "understandingAsthmaInfoView\(number)")
         print("understandingAsthmaInfoView\(number)")
     }
-
+    
 }
 
 // MARK: UIPageViewControllerDataSource

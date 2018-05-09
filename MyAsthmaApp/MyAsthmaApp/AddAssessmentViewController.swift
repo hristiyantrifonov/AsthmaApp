@@ -25,6 +25,8 @@ class AddAssessmentViewController: UIViewController {
     @IBOutlet weak var optionalityButton: UIButton!
     let greenDesignColor = UIColor(red:40/255, green:164/255, blue:40/255, alpha: 1)
     
+    var successAddition : Bool = false
+    let additionText = "Successfully added new assessment!"
     
     
     //Scale Assessment Panel & it's Properties
@@ -168,6 +170,7 @@ class AddAssessmentViewController: UIViewController {
                     selectedMaxValue: Int(maxValueTextField.text!)!, selectedMinValue: Int(minValueTextField.text!)!, optionalityChosen: optionalityChosen, completion: {
                     (success) in
                     print("Action Plan Altering - \(success) (for Adding Scale Assessment)")
+                    self.successAddition = true
                 })
                 
             }else{ //Quantity type of assessment is desired
@@ -175,6 +178,7 @@ class AddAssessmentViewController: UIViewController {
                 ActionPlanAlteringManager().addQuantityAssessment(inputTitle: inputTitle, inputSummary: inputSummary, quantityAssessmentDesciption: quantityAssessmentDescriptionTextField.text!, quantityAssessmentTypeIdentifier: assessmentTypeIdentifier, unitChosen: chosenUnit, optionalityChosen: optionalityChosen, completion: {
                     (success) in
                     print("Action Plan Altering - \(success) (for Adding Quantity Assessment)")
+                    self.successAddition = true
                 })
             }
             

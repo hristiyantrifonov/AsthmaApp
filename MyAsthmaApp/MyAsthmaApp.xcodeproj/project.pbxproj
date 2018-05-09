@@ -312,6 +312,7 @@
 		843FED1120852AA100D5ED84 /* Doctor's Interface Side */ = {
 			isa = PBXGroup;
 			children = (
+				840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */,
 				843FED12208533BA00D5ED84 /* DoctorRootViewController.swift */,
 				841DBB3B207EED23006F9E0B /* DoctorMainViewController.swift */,
 				843FED092085260700D5ED84 /* DoctorsPatientsTableViewController.swift */,
@@ -462,12 +463,11 @@
 				846CA33E204F7A3D00AADA1A /* RegistrationViewController.swift */,
 				84347FE5205074E800FEF667 /* MainTabViewController.swift */,
 				DEE91CBB204227340024F76C /* RootViewController.swift */,
+				84723121207252860001582F /* ConfigurationTableViewController.swift */,
 				DE1E33EC2042394E000E07F7 /* CarePlanStoreManager.swift */,
+				84920B152072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift */,
 				8446D2E120868D4600BFFE30 /* FirebaseManager.swift */,
 				8426E2F7205E04AE001FD646 /* CarePlanData.swift */,
-				84723121207252860001582F /* ConfigurationTableViewController.swift */,
-				84920B152072EB1E004E8498 /* PopUpDoctorCredentialsViewController.swift */,
-				840CEEC6207EDB93003486D3 /* GMCNumberSubmissionViewController.swift */,
 				84A7D63420530BD4003343D1 /* Main.storyboard */,
 				DEE91CC3204227350024F76C /* Assets.xcassets */,
 				DEE91CC5204227350024F76C /* LaunchScreen.storyboard */,

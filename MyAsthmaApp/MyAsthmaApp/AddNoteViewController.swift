@@ -16,6 +16,8 @@ class AddNoteViewController: UIViewController {
     @IBOutlet weak var instructionsTextField: UITextField!
     
     @IBOutlet weak var doneButton: UIButton!
+    var successAddition : Bool = false
+    let additionText = "Successfully added a new note!"
     
     fileprivate let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
     
@@ -36,9 +38,11 @@ class AddNoteViewController: UIViewController {
     
 
     @IBAction func doneButtonClicked(_ sender: Any) {
+        
         let inputTitle = titleTextField.text!
         let inputSummary = summaryTextField.text!
         let inputInstructions = instructionsTextField.text!
+        
         
         let myCarePlanStore = storeManager.myCarePlanStore
         
@@ -54,11 +58,6 @@ class AddNoteViewController: UIViewController {
             }
             else{
                 print("Note successfully added")
-                DispatchQueue.main.async { //Because we need to update these from the main thread not background one
-                    self.navigationController?.popViewController(animated: true)
-                    self.dismiss(animated: true, completion: nil)
-                    
-                }
             }
         }
         

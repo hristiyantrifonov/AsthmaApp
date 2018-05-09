@@ -14,7 +14,8 @@ class InhalersInforView2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        styleButton(button: resource1)
         // Do any additional setup after loading the view.
     }
 
@@ -26,6 +27,23 @@ class InhalersInforView2ViewController: UIViewController {
     
     //https://www.asthma.org.uk/advice/inhalers-medicines-treatments/inhalers-and-spacers - Inhalers, Treatments, Medications
     
+    @IBAction func resourceClicked(_ sender: Any) {
+        openUrl(urlStr: "https://www.asthma.org.uk/advice/inhalers-medicines-treatments/inhalers-and-spacers")
+    }
+    
+    //MARK: - Helper Functions
+    func openUrl(urlStr:String!) {
+        
+        if let url = NSURL(string:urlStr) {
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func styleButton(button: UIButton){
+        button.backgroundColor = .clear
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+    }
     
 
 }

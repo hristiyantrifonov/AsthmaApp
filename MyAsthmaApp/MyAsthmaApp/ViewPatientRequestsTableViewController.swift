@@ -25,11 +25,13 @@ class ViewPatientRequestsTableViewController: UITableViewController {
     var selectedRequestID : String!
     
     @IBOutlet weak var finaliseChangesButton: UIButton!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         disableSubmitButton()
+        disableDeleteButton()
         
         FirebaseManager().fetchPatientSubmittedRequests(patientID: userID!) {
             (fetchedRequests) in
@@ -58,9 +60,21 @@ class ViewPatientRequestsTableViewController: UITableViewController {
         finaliseChangesButton.backgroundColor = UIColor(red: 0/255, green: 179/255, blue: 179/255, alpha: 1)
     }
     
+    func enableDeleteButton(){
+        deleteButton.isEnabled = true
+    }
+    
     func disableSubmitButton(){
         finaliseChangesButton.isEnabled = false
         finaliseChangesButton.backgroundColor = UIColor.gray
+    }
+    
+    func disableDeleteButton(){
+        deleteButton.isEnabled = false
+    }
+    @IBAction func dismissClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -110,14 +124,29 @@ class ViewPatientRequestsTableViewController: UITableViewController {
             FirebaseManager().getRequestStatus(requestID: requestID as! String) {
                 (status) in
                 print("here")
+                var reviewedStatus = false
                 print(status)
-                if status as! Bool == false{
-                    cell.statusLabel.text = "Pending"
-                    cell.statusLabel.textColor = UIColor(red: 204/255, green: 102/255, blue: 0/255, alpha: 1)
-                }else{
-                    cell.statusLabel.text = "Authorised"
-                    cell.statusLabel.textColor = UIColor(red: 0/255, green: 179/255, blue: 60/255, alpha: 1)
-                }
+                FirebaseManager().getRequestReviewStatus(requestID: requestID as! String, completion: { (reviewed) in
+                    if (reviewed != nil){
+                        reviewedStatus = true
+                    }
+                    
+                    
+                    if status as! Bool == false && reviewedStatus == true{
+                        cell.statusLabel.text = "Rejected"
+                        cell.statusLabel.textColor = UIColor(red: 204/255, green: 20/255, blue: 0/255, alpha: 1)
+                    }
+                    else if status as! Bool == false{
+                        cell.statusLabel.text = "Pending"
+                        cell.statusLabel.textColor = UIColor(red: 204/255, green: 102/255, blue: 0/255, alpha: 1)
+                    }else{
+                        cell.statusLabel.text = "Authorised"
+                        cell.statusLabel.textColor = UIColor(red: 0/255, green: 179/255, blue: 60/255, alpha: 1)
+                    }
+                    
+                })
+                
+                
                 
             }
             
@@ -140,12 +169,31 @@ class ViewPatientRequestsTableViewController: UITableViewController {
             
             if status == "Pending"{
                 disableSubmitButton()
+                disableDeleteButton()
             }
             else if status == "Authorised"{
                 enableSubmitButton()
+                disableDeleteButton()
+            }
+            else if status == "Rejected"{
+                disableSubmitButton()
+                enableDeleteButton()
             }
         }
         
+    }
+    
+    
+    
+    @IBAction func deleteRequestClicked(_ sender: Any) {
+        print("Delete request")
+        FirebaseManager().removeRequest(requestID: self.selectedRequestID)
+        //Return to main menu
+        //TODO - useful to pass back some message of success
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func finaliseChangesClicked(_ sender: Any) {
@@ -192,7 +240,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
                 })
                 
             }
-            else if requestIdentifier == "Add Scale Assessment"{
+            else if requestIdentifier == "Add S. Assessment"{
                 
                 let activityTitle = parametersObject["Title"] as! String
                 let activitySummary = parametersObject["Summary"] as! String
@@ -215,7 +263,7 @@ class ViewPatientRequestsTableViewController: UITableViewController {
                 
                 
             }
-            else if requestIdentifier == "Add Quantity Assessment"{
+            else if requestIdentifier == "Add Q. Assessment"{
                 
                 let activityTitle = parametersObject["Title"] as! String
                 let activitySummary = parametersObject["Summary"] as! String

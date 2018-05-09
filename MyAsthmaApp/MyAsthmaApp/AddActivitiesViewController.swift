@@ -17,6 +17,7 @@ class AddActivitiesViewController: UIViewController {
     @IBOutlet weak var instructionsTextField: UITextField!
     var selectedGroupIdentifier : String = ""
     var successAddition : Bool = false
+    let additionText = "Successfully added new activity!"
     
     //Group Part Properties
     var activitiesGroupsArray : [String] = []
@@ -86,9 +87,6 @@ class AddActivitiesViewController: UIViewController {
         doneButton.layer.cornerRadius = 5
         doneButton.layer.borderWidth = 1.5
         doneButton.layer.borderColor = UIColor.black.cgColor
-        submitAndAddAnotherButton.layer.cornerRadius = 5
-        submitAndAddAnotherButton.layer.borderWidth = 1.5
-        submitAndAddAnotherButton.layer.borderColor = UIColor.black.cgColor
         cancelNewGroupButton.layer.cornerRadius = 5
         cancelNewGroupButton.layer.borderWidth = 1.5
         cancelNewGroupButton.layer.borderColor = UIColor.black.cgColor

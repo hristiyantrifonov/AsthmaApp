@@ -69,10 +69,6 @@ class InsightsBuilder {
         }
         
         myGroup.notify(queue: .main) {
-            print(identifiersArray)
-            print(medicationArraySettingOne)
-            print(medicationArraySettingTwo)
-            print(medicationArraySettingThree)
             
             
         /*******  BUILD OPERATIONS  *******/
@@ -206,8 +202,10 @@ class InsightsBuilder {
         let currentWeekRange = calendar.weekDatesForDate(currentDate)
         let previousWeekRange = calendar.weekDatesForDate(currentWeekRange.start.addingTimeInterval(-1))
         
-        let queryRangeStart = calendar.dateComponents([.year, .month, .day, .era], from: previousWeekRange.start)
-        let queryRangeEnd = calendar.dateComponents([.year, .month, .day, .era], from: currentDate)
+//        let queryRangeStart = calendar.dateComponents([.year, .month, .day, .era], from: previousWeekRange.start)
+//        let queryRangeEnd = calendar.dateComponents([.year, .month, .day, .era], from: currentDate)
+        let queryRangeStart = calendar.dateComponents([.year, .month, .day, .era], from: currentWeekRange.start)
+        let queryRangeEnd = calendar.dateComponents([.year, .month, .day, .era], from: currentWeekRange.end)
         
         return (start: queryRangeStart, end: queryRangeEnd)
     }

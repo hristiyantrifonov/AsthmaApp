@@ -67,8 +67,8 @@ class RequestReviewViewController: UIViewController {
             let schedule = requestParameterFields["Schedule"] as! NSArray
             let optionality = requestParameterFields["Optionality"] as! Bool
             
-            var optional = "optional"
-            if optionality{
+            var optional = ""
+            if optionality == true {
                 optional = "compulsory"
             }
             

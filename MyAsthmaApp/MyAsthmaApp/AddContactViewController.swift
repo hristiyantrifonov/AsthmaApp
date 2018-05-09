@@ -34,10 +34,6 @@ class AddContactViewController: UIViewController {
         submitButton.layer.cornerRadius = 7
         submitButton.layer.borderWidth = 1
         submitButton.layer.borderColor = UIColor.black.cgColor
-        submitAnotherButton.backgroundColor = .clear
-        submitAnotherButton.layer.cornerRadius = 7
-        submitAnotherButton.layer.borderWidth = 1
-        submitAnotherButton.layer.borderColor = UIColor.black.cgColor
         
         // Do any additional setup after loading the view.
     }
