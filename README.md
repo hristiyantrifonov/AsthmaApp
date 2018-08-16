@@ -1,5 +1,4 @@
 # AsthmaApp
-## Project by Hristiyan Trifonov
 
 Apple CareKit application aiming to amend the disease management of people struggling with asthma. 
 This project was submitted as my dissertation project in the final year of study. 
